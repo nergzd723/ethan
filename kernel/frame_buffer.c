@@ -39,7 +39,7 @@ void clear_screen()
     fb_write_cell(i, ' ', FB_BLACK, FB_BLACK);
   }
 }
-void newline(){
+void fb_newline(){
   while(cursor_pos > 0){
     fb_write_byte(' ');
   }
