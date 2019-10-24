@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include <frame_buffer.h>
+#include <shell.h>
 
 // https://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html
 
@@ -45,7 +45,7 @@ void process_key_press(uint8_t scan_code) {
 
     // TODO: add to the character buffer
     // But for now, let's just print to the screen
-    fb_write_byte(c);
+    charbridge(c);
 }
 
 void process_key_release(uint8_t scan_code) {

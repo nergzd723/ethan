@@ -39,7 +39,11 @@ void clear_screen()
     fb_write_cell(i, ' ', FB_BLACK, FB_BLACK);
   }
 }
-
+void newline(){
+  while(cursor_pos > 0){
+    fb_write_byte(' ');
+  }
+}
 /** move_cursor:
  *  Moves the cursor of the framebuffer to the given position
  *
@@ -56,10 +60,12 @@ void move_cursor_to_pos(unsigned short pos)
 void fb_write_byte(uint8_t b) {
   fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
   cursor_pos++;
-
+  move_cursor_to_pos(cursor_pos);
   // Stop the cursor from going off the screen
   // TODO: advance the screen
   if (cursor_pos < FB_CELLS) {
+    clear_screen();
+    cursor_pos = 0;
     move_cursor_to_pos(cursor_pos);
   }
 }
