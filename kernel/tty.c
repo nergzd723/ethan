@@ -37,9 +37,22 @@ static void terminal_put_at(uint8_t c, size_t x, size_t y) {
     terminal_ptr[index] = vga_char(c);
 }
 
+void clear_screen(void){
+    for(int i = 0; i<VGA_HEIGHT*VGA_WIDTH; i++){
+        terminal_putchar(' ');
+    }
+}
+
 // TODO: come back here and make the downscrolling better.
 // TODO: more elegantly handle newlines
 void terminal_putchar(char c) {
+    if (++terminal_column == VGA_WIDTH){
+        terminal_column = 0;
+        if (++terminal_row == VGA_HEIGHT) {
+            clear_screen();
+            terminal_row = 0;
+        }
+    }
     if (c == '\n') {
         terminal_row++;
         terminal_column = 0;
@@ -52,12 +65,6 @@ void terminal_putchar(char c) {
         return;
     }
     terminal_put_at(c, terminal_column, terminal_row);
-    if (++terminal_column == VGA_WIDTH) {
-        terminal_column = 0;
-        if (++terminal_row == VGA_HEIGHT) {
-            terminal_row = 0;
-        }
-    }
 }
 
 void terminal_write(const char* data, size_t size) {
