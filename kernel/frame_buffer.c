@@ -20,7 +20,7 @@ uint16_t cursor_pos = 0;
 int printf (const char * format, ...) {
   int i = 0;
   while (format[i]) {
-    write_byte(format[i]);
+    fb_write_byte(format[i]);
     i++;
   }
   return i;
