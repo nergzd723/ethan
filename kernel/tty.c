@@ -47,6 +47,10 @@ void clear_screen(void){
 // TODO: more elegantly handle newlines
 void terminal_putchar(char c) {
     if (c == '\n') {
+        if (terminal_row++ == VGA_HEIGHT){
+            clear_screen();
+            terminal_row = 0;
+        }
         terminal_row++;
         terminal_column = 0;
         return;
