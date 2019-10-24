@@ -58,7 +58,7 @@ void terminal_putchar(char c) {
         terminal_column--;
         return;
     }
-    if (c == '^[[A'){
+    if (c == '\u'){
         terminal_row--;
         return;
     }

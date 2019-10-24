@@ -110,7 +110,7 @@ void init_keyboard() {
     keymap[0][0x34] = '.';
     keymap[0][0x27] = ';';
     keymap[0][0x0E] = '\b';
-    keymap[0][0x48] = '^[[A';
+    keymap[0][0x48] = '\u';
 
     /* Shift key is pressed */
     keymap[1][0x1E] = 'A';
@@ -144,8 +144,8 @@ void init_keyboard() {
     keymap[1][0x34] = '>';
     keymap[1][0x27] = ':';
     keymap[1][0x0E] = '\b';
-    keymap[0][0x48] = '^[[A';
-    
+    keymap[0][0x48] = '\u';
+
     /* Register the keyboard handler */
     register_interrupt_handler(33, &keyboard_handler);
 }
