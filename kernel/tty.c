@@ -52,9 +52,14 @@ void terminal_putchar(char c) {
         return;
     }
     if (c == '\b'){
+        if (terminal_column-- == VGA_WIDTH)
         terminal_column--;
         terminal_putchar(' ');
         terminal_column--;
+        return;
+    }
+    if (c == '^[[A'){
+        terminal_row--;
         return;
     }
     if (++terminal_column == VGA_WIDTH){
