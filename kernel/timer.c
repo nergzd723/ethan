@@ -4,16 +4,27 @@
 #include <logger.h>
 
 uint32_t tick = 0;
+int sec = 0;
 
 static void timer_callback(context_t* context)
 {
    tick++;
    if (tick % TIMER_FREQUENCY == 0) {
-      logf("One second has passed...\n");
+      sec++;
       tick = 0;
    }
 }
 
+int getsecfromboot(){
+   return sec;
+}
+
+void wait(int second){
+   int oldsec = sec;
+   while ((sec-oldsec) != second){}
+   return;
+   
+}
 void init_timer(uint32_t frequency)
 {
    // Firstly, register our timer callback.

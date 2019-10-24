@@ -17,6 +17,14 @@ char *fb = (char *) 0x000B8000;
 
 uint16_t cursor_pos = 0;
 
+int printf (const char * format, ...) {
+  int i = 0;
+  while (format[i]) {
+    write_byte(format[i]);
+    i++;
+  }
+  return i;
+}
 /** fb_write_cell:
  *  Writes a character with the given foreground and background to position i
  *  in the framebuffer.

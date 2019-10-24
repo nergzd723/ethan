@@ -28,5 +28,5 @@ void clear_screen();
 void fb_backspace();
 void fb_write_byte(uint8_t b);
 void fb_newline();
-
+int printf (const char * format, ...);
 #endif /* INCLUDE_FRAME_BUFFER_H */
