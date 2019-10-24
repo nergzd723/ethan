@@ -45,6 +45,11 @@ void terminal_putchar(char c) {
         terminal_column = 0;
         return;
     }
+    if (c == '\b'){
+        terminal_column--;
+        terminal_putchar(" ");
+        terminal_column--;
+    }
     terminal_put_at(c, terminal_column, terminal_row);
     if (++terminal_column == VGA_WIDTH) {
         terminal_column = 0;
