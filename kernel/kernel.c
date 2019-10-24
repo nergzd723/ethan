@@ -11,6 +11,7 @@
 #include <keyboard.h>
 #include <memory.h>
 #include "multiboot.h"
+#include <frame_buffer.h>
 
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();
@@ -61,7 +62,7 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_idt();
    logf("IDT initialized\n");
 
-   init_terminal();
+   clear_screen();
    logf("Terminal initialized\n");
 
    init_keyboard();

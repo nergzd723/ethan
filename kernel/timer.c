@@ -8,7 +8,8 @@ uint32_t tick = 0;
 static void timer_callback(context_t* context)
 {
    tick++;
-   logf("Tick %u\n", tick); 
+   logf("Tick ");
+   logf(tick); 
    // TODO: something is wrong here but not critical
    // Logf prints weird characters followed by the correct number
    // Does it have to do with size of uint32_t ?
