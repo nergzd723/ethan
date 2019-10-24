@@ -8,10 +8,10 @@ uint32_t tick = 0;
 static void timer_callback(context_t* context)
 {
    tick++;
-   logf("Tick %u\n", tick);
-   // TODO: something is wrong here but not critical
-   // Logf prints weird characters followed by the correct number
-   // Does it have to do with size of uint32_t ?
+   if (tick % TIMER_FREQUENCY == 0) {
+      logf("One second has passed...\n");
+      tick = 0;
+   }
 }
 
 void init_timer(uint32_t frequency)

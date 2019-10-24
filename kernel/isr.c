@@ -15,7 +15,8 @@ void isr_handler(context_t* context) {
 }
 
 void irq_handler(context_t* context) {
-    logf("Received IRQ: %x\n", context->int_no - 32);
+    if (context->int_no - 32 != 0)
+        logf("Received IRQ: %x\n", context->int_no - 32);
     // Send an EOI to the PIC-> 
     // Subtract 32 from the interrupt number to get the IRQ number->
     pic_send_eoi(context->int_no - 32);
