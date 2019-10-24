@@ -40,7 +40,8 @@ void clear_screen()
   }
 }
 void fb_newline(){
-  while(cursor_pos > 0){
+  int targetpos = VGA_COLS - (cursor_pos % VGA_COLS)
+  for(int t; i<targetpos; t++){
     fb_write_byte(' ');
   }
 }
