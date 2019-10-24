@@ -60,10 +60,12 @@ void move_cursor_to_pos(unsigned short pos)
 void fb_write_byte(uint8_t b) {
   fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
   cursor_pos++;
-  move_cursor_to_pos(cursor_pos);
   // Stop the cursor from going off the screen
   // TODO: advance the screen
   if (cursor_pos < FB_CELLS) {
+    move_cursor_to_pos(cursor_pos);
+  }
+  else{
     clear_screen();
     cursor_pos = 0;
     move_cursor_to_pos(cursor_pos);
