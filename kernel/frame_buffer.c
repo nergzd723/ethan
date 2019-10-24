@@ -3,6 +3,7 @@
 
 #include "frame_buffer.h"
 #include "io.h"
+#include ""
 
 /* The I/O ports */
 #define FB_COMMAND_PORT         0x3D4
@@ -40,7 +41,8 @@ void clear_screen()
   }
 }
 void fb_newline(){
-  int targetpos = 80 - (cursor_pos % 80);
+  
+  int targetpos = 80 - (cursor_pos % 80); //TODO: it still doesnt work
   for(int t; t<targetpos; t++){
     fb_write_byte(' ');
   }
@@ -63,14 +65,12 @@ void fb_write_byte(uint8_t b) {
   cursor_pos++;
   // Stop the cursor from going off the screen
   // TODO: advance the screen
-  if (cursor_pos < FB_CELLS) {
-    move_cursor_to_pos(cursor_pos);
-  }
-  else{
+  if !(cursor_pos < FB_CELLS) {
     clear_screen();
     cursor_pos = 0;
     move_cursor_to_pos(cursor_pos);
   }
+  move_cursor_to_pos(cursor_pos);
 }
 void fb_backspace() {
   cursor_pos--;
