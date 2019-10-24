@@ -3,7 +3,6 @@
 
 #include "frame_buffer.h"
 #include "io.h"
-#include "stdio.h"
 
 /* The I/O ports */
 #define FB_COMMAND_PORT         0x3D4
