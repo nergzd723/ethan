@@ -42,4 +42,5 @@ start:
     call kmain                      ; Jump to kmain (never to return)
 
     cli                             ; We should not return here, but if we do:
-    hlt                             ;   clear all interrupts and halt
+    hlt
+    jmp $                            ;   clear all interrupts and halt

@@ -61,10 +61,6 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_idt();
    logf("IDT initialized\n");
 
-
-   logf("%x\n", 32); // TODO: this is a big bug
-   // I cannot believe that I can't handle this correctly
-
    init_terminal();
    logf("Terminal initialized\n");
 
@@ -73,7 +69,8 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
 
    init_paging();
    logf("Paging initialized\n");
-
+   init_timer(1000);
+   logf("Timer init!\n");
    __asm__ volatile("sti");
 
    while(1) {
