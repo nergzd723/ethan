@@ -37,7 +37,7 @@ static void terminal_put_at(uint8_t c, size_t x, size_t y) {
     terminal_ptr[index] = vga_char(c);
 }
 
-void clear_screen(void){
+void old_clear_screen(void){
     for(int i = 0; i<VGA_HEIGHT*VGA_WIDTH; i++){
         terminal_putchar(' ');
     }
