@@ -54,19 +54,34 @@ void fill_screen(unsigned char color){
     fb_write_cell(i, ' ', color, color);
   }
 }
-
+char* inttostr( int zahl ) 
+{ 
+   static char text[20];
+   int loc=19;
+   text[19] = 0;
+   while (zahl)
+   {
+       --loc;
+       text[loc] = (zahl%10)+'0';
+       zahl/=10;
+   }
+   if (loc==19)
+   {
+      --loc;
+       text[loc] = '0';
+   }
+   return &text[loc];
+}
 void clear_screen()
 {
   fill_screen(FB_BLACK);
 }
 
 void fb_newline(){
-  int targetpos = 80 - (cursor_pos % 80); //TODO: it still doesnt work
-  for(int t; t<targetpos; t++){
-    fb_write_byte(' ');
-  }
-  printf(targetpos);
-  printf(cursor_pos);
+  int c = cursor_pos;
+  c = (c/80) + 1;
+  cursor_pos = c;
+  move_cursor_to_pos(c);
 }
 /** move_cursor:
  *  Moves the cursor of the framebuffer to the given position
