@@ -11,10 +11,11 @@ void charbridge(char c){
             fb_newline();
             break;
         default:
+            lastcommbuf += c;
+            terminal_buf += c;
             fb_write_byte(c);
             break;
-        lastcommbuf += c;
-        terminal_buf += c;
+        
 
     }
 }
