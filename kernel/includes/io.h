@@ -15,6 +15,15 @@ static inline uint8_t inb(uint16_t port) {
     return ret;
 }
 
+//clear interrupts
+static inline void cli(void){
+    asm volatile( "cli" );
+}
+
+static inline halt(void){
+    asm volatile( "hlt" );
+}
+
 static inline void io_wait(void) {
     /* TODO: This is probably fragile. */
     asm volatile ( "jmp 1f\n\t"

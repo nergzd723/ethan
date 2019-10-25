@@ -5,11 +5,15 @@
 
 uint32_t tick = 0;
 int sec = 0;
+uint32_t msec;
 
 static void timer_callback(context_t* context)
 {
    tick++;
-   if (tick % TIMER_FREQUENCY == 0) {
+   if (tick % MILLISECOND == 0) {
+      msec++;
+   }
+   if (tick % TIMER_FREQUENCY == 0){
       sec++;
       tick = 0;
    }

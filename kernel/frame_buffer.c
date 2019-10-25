@@ -41,14 +41,18 @@ void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg
     fb[i + 1] = ((bg & 0x0F) << 4) | (fg & 0x0F);
 }
 
-void clear_screen()
-{
-  for (int i = 0; i < FB_CELLS; i++) {
-    fb_write_cell(i, ' ', FB_BLACK, FB_BLACK);
+void fill_screen(unsigned char color){
+    for (int i = 0; i < FB_CELLS; i++) {
+    fb_write_cell(i, ' ', color, color);
   }
 }
+
+void clear_screen()
+{
+  fill_screen(FB_BLACK);
+}
+
 void fb_newline(){
-  
   int targetpos = 80 - (cursor_pos % 80); //TODO: it still doesnt work
   for(int t; t<targetpos; t++){
     fb_write_byte(' ');
@@ -72,13 +76,14 @@ void fb_write_byte(uint8_t b) {
   cursor_pos++;
   // Stop the cursor from going off the screen
   // TODO: advance the screen
-  if (cursor_pos != FB_CELLS) {
+  if (!cursor_pos < FB_CELLS) {
     clear_screen();
     cursor_pos = 0;
     move_cursor_to_pos(cursor_pos);
   }
   move_cursor_to_pos(cursor_pos);
 }
+
 void fb_backspace() {
   cursor_pos--;
   fb_write_cell(cursor_pos, ' ', FB_WHITE, FB_BLACK);
