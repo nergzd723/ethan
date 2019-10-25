@@ -115,7 +115,7 @@ void fb_write_byte(uint8_t b) {
 void fb_backspace() {
   if (cursor_pos-- < FB_COLS){
     cursor_pos++;
-    return;
+    printf(inttostr(cursor_pos));
   }
   cursor_pos--;
   fb_write_cell(cursor_pos, ' ', FB_WHITE, FB_BLACK);
