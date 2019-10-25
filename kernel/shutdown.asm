@@ -1,8 +1,7 @@
 global shutdown
-[bits 32]
+[bits 16]
 shutdown:
 	cli
-	mov eax, DATASEL16
 	mov ds, eax
 	mov es, eax
 	mov fs, eax
@@ -10,13 +9,11 @@ shutdown:
 	mov ss, eax
  
 	mov eax, cr0
-	mov [savcr0], eax
 	and eax, 0x7FFFFFFe
 	mov cr0, eax
  
 	jmp 0:realmode
 
-[bits 16]
 realmode:
 	mov sp, 0x8000
 	mov ax, 0
