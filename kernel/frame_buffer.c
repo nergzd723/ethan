@@ -25,6 +25,12 @@ int printf (const char * format, ...) {
   }
   return i;
 }
+
+//get current VGA row
+int row(){
+  int rr = cursor_pos 
+}
+
 /** fb_write_cell:
  *  Writes a character with the given foreground and background to position i
  *  in the framebuffer.

@@ -5,7 +5,7 @@
 
 uint32_t tick = 0;
 int sec = 0;
-uint32_t msec;
+uint32_t msec = 0;
 
 static void timer_callback(context_t* context)
 {
@@ -21,6 +21,13 @@ static void timer_callback(context_t* context)
 
 int getsecfromboot(){
    return sec;
+}
+
+//wait millisecond
+void waitm(int ms){
+   int olds = msec;
+   while ((msec-olds) != ms){}
+   return;
 }
 
 void wait(int second){
