@@ -12,6 +12,7 @@
 #include <memory.h>
 #include "multiboot.h"
 #include <frame_buffer.h>
+#include <shutdown.h>
 
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();

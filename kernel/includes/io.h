@@ -30,5 +30,4 @@ static inline void io_wait(void) {
                    "1:jmp 2f\n\t"
                    "2:" );
 }
-void shutdown();
 #endif
