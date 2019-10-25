@@ -28,7 +28,8 @@ int printf (const char * format, ...) {
 
 //get current VGA row
 int row(){
-  int rr = cursor_pos 
+  int rr = cursor_pos / 80;
+  return rr;
 }
 
 /** fb_write_cell:

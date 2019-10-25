@@ -30,4 +30,6 @@ void fb_write_byte(uint8_t b);
 void fb_newline();
 void fill_screen(unsigned char color);
 int printf (const char * format, ...);
+int row();
+
 #endif /* INCLUDE_FRAME_BUFFER_H */
