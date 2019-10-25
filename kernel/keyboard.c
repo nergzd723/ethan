@@ -146,7 +146,6 @@ void init_keyboard() {
     keymap[1][0x27] = ':';
     keymap[1][0x0E] = '\b';
     keymap[1][0x48] = '\t';
-    keymap[1][0x50] = '\'
     /* Register the keyboard handler */
     register_interrupt_handler(33, &keyboard_handler);
 }

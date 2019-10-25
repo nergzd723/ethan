@@ -11,7 +11,6 @@ void charbridge(char c){
             fb_newline();
             break;
         default:
-            str
             fb_write_byte(c);
             break;
     }
