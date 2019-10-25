@@ -1,9 +1,19 @@
 #define PANIC
 
-#include <logger.h>
-#include <frame_buffer.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <string.h>
+#include <tty.h>
+#include <idt.h>
+#include <pic.h>
 #include <io.h>
-#include <multiboot.h>
+#include <logger.h>
+#include <gdt.h>
+#include <timer.h>
+#include <keyboard.h>
+#include <memory.h>
+#include "multiboot.h"
+#include <frame_buffer.h>
 
 void panic(char* panicmessage, int paniccode){
     clear_screen();

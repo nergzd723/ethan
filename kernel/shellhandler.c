@@ -1,4 +1,6 @@
 #include <frame_buffer.h>
+char[] lastcommbuf;
+char[] terminal_buf;
 void charbridge(char c){
     switch(c)
     {
@@ -11,5 +13,8 @@ void charbridge(char c){
         default:
             fb_write_byte(c);
             break;
+        lastcommbuf += c;
+        terminal_buf += c;
+        
     }
 }
