@@ -15,7 +15,5 @@ void charbridge(char c){
             terminal_buf += c;
             fb_write_byte(c);
             break;
-        
-
     }
 }
