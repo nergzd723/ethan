@@ -103,6 +103,9 @@ void fb_newline()
   cursor_pos += 80;
   int a = cursor_pos % 80;
   cursor_pos -= a;
+  if (cursor_pos > FB_CELLS){
+    cursor_pos = 0;
+  }
   move_cursor_to_pos(cursor_pos);
 }
 
