@@ -80,8 +80,8 @@ void clear_screen()
 void fb_newline(){
   int c = cursor_pos;
   c = (c/80) + 1;
-  cursor_pos = c;
-  move_cursor_to_pos(c);
+  cursor_pos = c*10;
+  move_cursor_to_pos(c*10);
 }
 /** move_cursor:
  *  Moves the cursor of the framebuffer to the given position
