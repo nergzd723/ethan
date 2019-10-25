@@ -66,8 +66,8 @@ void fb_newline(){
   for(int t; t<targetpos; t++){
     fb_write_byte(' ');
   }
-  logf(targetpos);
-  logf(cursorpos);
+  printf(targetpos);
+  printf(cursor_pos);
 }
 /** move_cursor:
  *  Moves the cursor of the framebuffer to the given position
