@@ -9,7 +9,3 @@ void strrev(char * str) {
         str[len - 1 - i] = temp;
     }
 }
-char *strcat(char *restrict dest, const char *restrict src) {
-	strcpy(dest + strlen(dest), src);
-	return dest;
-}
