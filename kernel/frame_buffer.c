@@ -18,15 +18,6 @@ char *fb = (char *) 0x000B8000;
 
 uint16_t cursor_pos = 0;
 
-int printf (const char * format, ...) {
-  int i = 0;
-  while (format[i]) {
-    fb_write_byte(format[i]);
-    i++;
-  }
-  return i;
-}
-
 //get current VGA row
 int row(){
   int rr = cursor_pos / 80;
@@ -79,6 +70,15 @@ void clear_screen()
   fill_screen(FB_BLACK);
 }
 
+int printf (const char * format, ...) {
+  int i = 0;
+  while (format[i]) {
+    fb_write_byte(format[i]);
+    i++;
+  }
+  return i;
+}
+
 void fb_newline(){
   int c = cursor_pos;
   c = (c/80) + 1;
@@ -113,7 +113,7 @@ void fb_write_byte(uint8_t b) {
 }
 
 void fb_backspace() {
-  if (cursor_pos-- = 0){
+  if (cursor_pos-- == 0){
     cursor_pos++;
     logf(inttostr(cursor_pos));
   }
