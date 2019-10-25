@@ -79,8 +79,7 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    logf("timer working");
    clear_screen();
    //shutdown(); that doesnt work, is page faulting
-   panic("TEST_PANIC", 0);
+   //panic("TEST_PANIC", 0); works!
    while(1) {
-      
    }
 }
