@@ -113,7 +113,7 @@ void fb_write_byte(uint8_t b) {
 }
 
 void fb_backspace() {
-  if (cursor_pos-- < FB_COLS){
+  if (cursor_pos-- = 0){
     cursor_pos++;
     logf(inttostr(cursor_pos));
   }
