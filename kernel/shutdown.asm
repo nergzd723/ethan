@@ -1,5 +1,5 @@
 global shutdown
-
+[bits 32]
 shutdown:
 	cli
 	mov ds, eax
@@ -7,10 +7,6 @@ shutdown:
 	mov fs, eax
 	mov gs, eax
 	mov ss, eax
- 
-	mov eax, cr0
-	and eax, 0x7FFFFFFe
-	mov cr0, eax
  
 	jmp 0:realmode
 
