@@ -31,5 +31,6 @@ void fb_newline();
 void fill_screen(unsigned char color);
 int printf (const char * format, ...);
 int row();
+char* inttostr( int zahl );
 
 #endif /* INCLUDE_FRAME_BUFFER_H */

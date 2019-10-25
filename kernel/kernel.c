@@ -13,6 +13,7 @@
 #include "multiboot.h"
 #include <frame_buffer.h>
 #include <shutdown.h>
+#include <panic.h>
 
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();
@@ -77,7 +78,8 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    waitm(300);
    logf("timer working");
    clear_screen();
-   shutdown();
+   //shutdown(); that doesnt work, is page faulting
+   panic("");
    while(1) {
       
    }

@@ -7,7 +7,6 @@ shutdown:
 	mov fs, eax
 	mov gs, eax
 	mov ss, eax
- 
 	jmp 0:realmode
 
 realmode:
