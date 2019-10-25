@@ -76,7 +76,7 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    waitm(300);
    logf("timer working");
    clear_screen();
-   printf("this should appear after 2 sec");
+   shutdown();
    while(1) {
       
    }

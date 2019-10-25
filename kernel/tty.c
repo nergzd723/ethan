@@ -48,7 +48,7 @@ void old_clear_screen(void){
 void terminal_putchar(char c) {
     if (c == '\n') {
         if (terminal_row++ == VGA_HEIGHT){
-            clear_screen();
+            old_clear_screen();
             terminal_row = 0;
         }
         terminal_row++;
@@ -85,6 +85,3 @@ void terminal_write(const char* data, size_t size) {
 void terminal_print(const char* data) {
     terminal_write(data, strlen(data));
 }
-
-
-
