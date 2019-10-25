@@ -1,6 +1,6 @@
 #include <frame_buffer.h>
-char[FB_COLS] lastcommbuf;
-char[FB_CELLS] terminal_buf;
+char lastcommbuf[FB_COLS];
+char terminal_buf[FB_CELLS];
 void charbridge(char c){
     switch(c)
     {
