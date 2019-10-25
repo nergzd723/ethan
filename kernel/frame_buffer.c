@@ -78,13 +78,6 @@ int printf (const char * format, ...) {
   }
   return i;
 }
-
-void fb_newline(){
-  int c = cursor_pos;
-  c = (c/80) + 1;
-  cursor_pos = c*10;
-  move_cursor_to_pos(c*10);
-}
 /** move_cursor:
  *  Moves the cursor of the framebuffer to the given position
  *
@@ -96,6 +89,13 @@ void move_cursor_to_pos(unsigned short pos)
   outb(FB_DATA_PORT,    ((pos >> 8) & 0x00FF));
   outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
   outb(FB_DATA_PORT,    pos & 0x00FF);
+}
+
+void fb_newline()
+{
+  int c = cursor_pos;
+  cursor_pos += 80;
+  move_cursor_to_pos(cursor_pos);
 }
 
 void fb_write_byte(uint8_t b) {
@@ -113,9 +113,8 @@ void fb_write_byte(uint8_t b) {
 }
 
 void fb_backspace() {
-  if (cursor_pos-- == 0){
-    cursor_pos++;
-    logf(inttostr(cursor_pos));
+  if (cursor_pos == 0){
+    return;
   }
   cursor_pos--;
   fb_write_cell(cursor_pos, ' ', FB_WHITE, FB_BLACK);
