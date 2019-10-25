@@ -3,6 +3,7 @@
 
 #include "frame_buffer.h"
 #include "io.h"
+#include <logger.h>
 
 /* The I/O ports */
 #define FB_COMMAND_PORT         0x3D4
@@ -60,10 +61,13 @@ void clear_screen()
 }
 
 void fb_newline(){
+  logf();
   int targetpos = 80 - (cursor_pos % 80); //TODO: it still doesnt work
   for(int t; t<targetpos; t++){
     fb_write_byte(' ');
   }
+  logf(targetpos);
+  logf(cursorpos);
 }
 /** move_cursor:
  *  Moves the cursor of the framebuffer to the given position

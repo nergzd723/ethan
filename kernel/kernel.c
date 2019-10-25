@@ -73,8 +73,9 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_timer(TIMER_FREQUENCY);
    logf("Timer initialized\n");
    __asm__ volatile("sti");
-   waitm(200);
+   waitm(300);
    logf("timer working");
+   clear_screen();
    printf("this should appear after 2 sec");
    while(1) {
       
