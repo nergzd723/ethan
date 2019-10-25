@@ -1,5 +1,5 @@
 global shutdown
-[bits 16]
+
 shutdown:
 	cli
 	mov ds, eax
