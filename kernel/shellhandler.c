@@ -1,6 +1,6 @@
 #include <frame_buffer.h>
-char[] lastcommbuf;
-char[] terminal_buf;
+char[FB_COLS] lastcommbuf;
+char[FB_CELLS] terminal_buf;
 void charbridge(char c){
     switch(c)
     {
@@ -15,6 +15,6 @@ void charbridge(char c){
             break;
         lastcommbuf += c;
         terminal_buf += c;
-        
+
     }
 }
