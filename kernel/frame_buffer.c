@@ -107,6 +107,10 @@ void fb_newline()
 }
 
 void fb_write_byte(uint8_t b) {
+  if (b == '\n'){
+    fb_newline();
+    return;
+  }
   fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
   cursor_pos++;
   // Stop the cursor from going off the screen
