@@ -18,5 +18,4 @@ void panic(char* panicmessage, int paniccode){
     logf("clearing interrupts");
     cli();
     halt();
-   }
 }
