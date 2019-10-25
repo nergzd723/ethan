@@ -54,6 +54,7 @@ void fill_screen(unsigned char color){
     fb_write_cell(i, ' ', color, color);
   }
 }
+
 char* inttostr( int zahl ) 
 { 
    static char text[20];
@@ -72,6 +73,7 @@ char* inttostr( int zahl )
    }
    return &text[loc];
 }
+
 void clear_screen()
 {
   fill_screen(FB_BLACK);
@@ -111,7 +113,7 @@ void fb_write_byte(uint8_t b) {
 }
 
 void fb_backspace() {
-  if (cursorpos-- < VGA_COLS){
+  if (cursor_pos-- < FB_COLS){
     return;
   }
   cursor_pos--;
