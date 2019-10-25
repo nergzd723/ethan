@@ -61,7 +61,6 @@ void clear_screen()
 }
 
 void fb_newline(){
-  logf();
   int targetpos = 80 - (cursor_pos % 80); //TODO: it still doesnt work
   for(int t; t<targetpos; t++){
     fb_write_byte(' ');
