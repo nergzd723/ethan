@@ -91,10 +91,20 @@ void move_cursor_to_pos(unsigned short pos)
   outb(FB_DATA_PORT,    pos & 0x00FF);
 }
 
+// down arrow pointer
+void downarrowp()
+{
+  int c = cursor_pos;
+  cursor_pos += 79;
+  move_cursor_to_pos(cursor_pos);
+}
+//\n like func
 void fb_newline()
 {
   int c = cursor_pos;
   cursor_pos += 80;
+  int a = cursor_pos % 80;
+  cursor_pos -= a;
   move_cursor_to_pos(cursor_pos);
 }
 
