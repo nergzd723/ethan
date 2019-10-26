@@ -10,6 +10,9 @@ void fb_newlinehandler(){
     if (strcmp(command, "help") == 0){
         printf("Ethan operational. Part of MEOW project.");
     }
+    if (strcmp(command, "panic") == 0){
+        printf("panicking");
+    }
     fb_newline();
     //empty buffer????
     lastcommbuf[0] = 0;
