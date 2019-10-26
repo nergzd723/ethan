@@ -69,7 +69,7 @@ void terminal_putchar(char c) {
     if (++terminal_column == VGA_WIDTH){
         terminal_column = 0;
         if (++terminal_row == VGA_HEIGHT) {
-            clear_screen();
+            old_clear_screen();
             terminal_row = 0;
         }
     }
