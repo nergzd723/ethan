@@ -23,10 +23,11 @@ void fb_newlinehandler(){
 }
 
 void charbridge(char c){
+    int len = strlen(lastcommbuf);
     switch(c)
     {
         case '\b':
-            int len = strlen(s);
+            lastcommbuf[len-1] = '\0'
             fb_backspace();
             break;
         case '\n':
