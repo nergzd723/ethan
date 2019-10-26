@@ -1,13 +1,14 @@
 #include <string.h>
 
-char* strcat(char dest[], const char* source)
+char* strcat(char *dest, const char *src)
 {
-    int i = 0;
-    int len = strlen(dest);
-    while(source[i]){
-    dest[len+i] = source[i];
-    }
-    return dest;
+    char *rdest = dest;
+
+    while (*dest)
+      dest++;
+    while (*dest++ = *src++)
+      ;
+    return rdest;
 }
 
 char* strcatbyte(char dest[], char source)

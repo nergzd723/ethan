@@ -26,8 +26,8 @@ void charbridge(char c){
             fb_newlinehandler();
             break;
         default:
-            strcatbyte(lastcommbuf, c);
-            strcatbyte(terminal_buf, c);
+            strcat(lastcommbuf, c);
+            strcat(terminal_buf, c);
             fb_write_byte(c);
             break;
     }
