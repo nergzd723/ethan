@@ -98,6 +98,24 @@ void downarrowp()
   cursor_pos += 79;
   move_cursor_to_pos(cursor_pos);
 }
+// up arrow pointer
+void uparrowp()
+{
+  cursor_pos -= 79;
+  move_cursor_to_pos(cursor_pos);
+}
+
+// left arrow pointer
+void leftarrowp(){
+  cursor_pos -= 1;
+  move_cursor_to_pos(cursor_pos);
+}
+
+// right arrow pointer
+void rightarrowp(){
+  cursor_pos += 1;
+  move_cursor_to_pos(cursor_pos);
+}
 //\n like func
 void fb_newline()
 {

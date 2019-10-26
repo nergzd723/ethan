@@ -32,5 +32,9 @@ void fill_screen(unsigned char color);
 int printf (const char * format, ...);
 int row();
 char* inttostr( int zahl );
+void downarrowp();
+void uparrowp();
+void leftarrowp();
+void rightarrowp();
 
 #endif /* INCLUDE_FRAME_BUFFER_H */

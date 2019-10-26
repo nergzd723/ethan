@@ -26,6 +26,18 @@ void charbridge(char c){
     int len = strlen(lastcommbuf);
     switch(c)
     {
+        case 208:
+            uparrowp();
+            break;
+        case 209:
+            downarrowp();
+            break;
+        case 174:
+            leftarrowp();
+            break;
+        case 175:
+            rightarrowp();
+            break;
         case '\b':
             lastcommbuf[len-1] = '\0';
             fb_backspace();

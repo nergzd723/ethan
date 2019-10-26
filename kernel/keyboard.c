@@ -111,7 +111,14 @@ void init_keyboard() {
     keymap[0][0x34] = '.';
     keymap[0][0x27] = ';';
     keymap[0][0x0E] = '\b';
-    keymap[0][0x48] = '\t';
+    //up arrow pointer
+    keymap[0][0x48] = 208;
+    //down arrow pointer
+    keymap[0][0x50] = 209;
+    //left pointer
+    keymap[0][0x4B] = 174;
+    //right pointer, using extended ASCII table
+    keymap[0][0x4D] = 175;
 
     /* Shift key is pressed */
     keymap[1][0x1E] = 'A';
@@ -146,6 +153,12 @@ void init_keyboard() {
     keymap[1][0x27] = ':';
     keymap[1][0x0E] = '\b';
     keymap[1][0x48] = '\t';
+    keymap[1][0x4B] = 174;
+    keymap[1][0x4D] = 175;
+    //up arrow pointer
+    keymap[1][0x48] = 208;
+    //down arrow pointer
+    keymap[1][0x50] = 209;
     /* Register the keyboard handler */
     register_interrupt_handler(33, &keyboard_handler);
 }
