@@ -26,16 +26,16 @@ void charbridge(char c){
     int len = strlen(lastcommbuf);
     switch(c)
     {
-        case '╩':
+        case '#':
             uparrowp();
             break;
-        case '╦':
+        case '$':
             downarrowp();
             break;
-        case '«':
+        case '%':
             leftarrowp();
             break;
-        case '»':
+        case '&':
             rightarrowp();
             break;
         case '\b':

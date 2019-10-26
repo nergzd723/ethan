@@ -112,13 +112,13 @@ void init_keyboard() {
     keymap[0][0x27] = ';';
     keymap[0][0x0E] = '\b';
     //up arrow pointer
-    keymap[0][0x48] = 208;
+    keymap[0][0x48] = '#';
     //down arrow pointer
-    keymap[0][0x50] = 209;
+    keymap[0][0x50] = '$';
     //left pointer
-    keymap[0][0x4B] = 174;
+    keymap[0][0x4B] = '%';
     //right pointer, using extended ASCII table
-    keymap[0][0x4D] = 175;
+    keymap[0][0x4D] = '&';
 
     /* Shift key is pressed */
     keymap[1][0x1E] = 'A';
