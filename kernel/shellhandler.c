@@ -17,7 +17,7 @@ void fb_newlinehandler(){
     printf(">>> ");
     //empty buffer????
     //lastcommbuf[0] = 0; maybe is a reason?
-    memset(&lastcommbuf[0], 0, sizeof(lastcommbuf));
+    memset(&lastcommbuf[0], 0, sizeof(lastcommbuf)); //really not the reason
 }
 
 void charbridge(char c){
