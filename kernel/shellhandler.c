@@ -7,7 +7,7 @@ char terminal_buf[FB_CELLS];
 void fb_newlinehandler(){
     char* command = lastcommbuf;
     if (strcmp(command, "work")){
-        printf("YAAAAAAAAY\n\n\n\n\n\n\n")
+        printf("YAAAAAAAAY\n\n\n\n\n\n\n");
     }
 }
 
