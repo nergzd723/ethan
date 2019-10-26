@@ -3,17 +3,16 @@
 #include <logger.h>
 
 char lastcommbuf[FB_COLS] = "";
-char terminal_buf[FB_CELLS] = "";
 
 void fb_newlinehandler(){
     char* command = lastcommbuf;
     logf(lastcommbuf);
-    logf(terminal_buf);
-    logf(inttostr(strcmp(command, "work")));
     if (strcmp(command, "work") == 0){
         printf("YAAAAAAAAY\n\n\n\n\n\n\n");
     }
     fb_newline();
+    //empty buffer????
+    memset(lastcommbuf, 0, FB_COLS);
 }
 
 void charbridge(char c){
@@ -27,7 +26,6 @@ void charbridge(char c){
             break;
         default:
             strcat(lastcommbuf, &c);
-            strcat(terminal_buf, &c);
             fb_write_byte(c);
             break;
     }
