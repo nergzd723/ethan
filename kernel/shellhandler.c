@@ -22,20 +22,20 @@ void fb_newlinehandler(){
     memset(&lastcommbuf[0], 0, sizeof(lastcommbuf)); //really not the reason
 }
 
-void charbridge(char c){
+void charbridge(unsigned char c){
     int len = strlen(lastcommbuf);
     switch(c)
     {
-        case '#':
+        case 208:
             uparrowp();
             break;
-        case '$':
+        case 209:
             downarrowp();
             break;
-        case '%':
+        case 174:
             leftarrowp();
             break;
-        case '&':
+        case 175:
             rightarrowp();
             break;
         case '\b':

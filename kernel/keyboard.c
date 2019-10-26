@@ -15,7 +15,7 @@
 #define SHIFT 1
 #define NORMAL 0
 
-char keymap[2][KEYMAP_SIZE];
+unsigned char keymap[2][KEYMAP_SIZE];
 int shift = 0;   // > 1 if the shift key is pressed
 
 void process_key_press(uint8_t scan_code) {
@@ -112,13 +112,13 @@ void init_keyboard() {
     keymap[0][0x27] = ';';
     keymap[0][0x0E] = '\b';
     //up arrow pointer
-    keymap[0][0x48] = '#';
+    keymap[0][0x48] = '208';
     //down arrow pointer
-    keymap[0][0x50] = '$';
+    keymap[0][0x50] = '209';
     //left pointer
-    keymap[0][0x4B] = '%';
+    keymap[0][0x4B] = '174';
     //right pointer, using extended ASCII table
-    keymap[0][0x4D] = '&';
+    keymap[0][0x4D] = '175';
 
     /* Shift key is pressed */
     keymap[1][0x1E] = 'A';
