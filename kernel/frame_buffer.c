@@ -95,8 +95,10 @@ void move_cursor_to_pos(unsigned short pos)
 // down arrow pointer
 void downarrowp()
 {
-  if (cursor_pos += 79 > FB_CELLS){
+  int i = cursor_pos += 79;
+  if (i > FB_CELLS){
     cursor_pos = 0;
+    return;
   }
   cursor_pos += 79;
   move_cursor_to_pos(cursor_pos);
@@ -104,8 +106,10 @@ void downarrowp()
 // up arrow pointer
 void uparrowp()
 {
-  if (cursor_pos += 79 < FB_CELLS){
+  int i = cursor_pos -= 79;
+  if (i < FB_CELLS){
     cursor_pos = 0;
+    return;
   }
   cursor_pos -= 79;
   move_cursor_to_pos(cursor_pos);
@@ -113,8 +117,10 @@ void uparrowp()
 
 // left arrow pointer
 void leftarrowp(){
-  if (cursor_pos += 79 < FB_CELLS){
+  int i = cursor_pos -= 1;
+  if (i < FB_CELLS){
     cursor_pos = 0;
+    return;
   }
   cursor_pos -= 1;
   move_cursor_to_pos(cursor_pos);
@@ -122,8 +128,10 @@ void leftarrowp(){
 
 // right arrow pointer
 void rightarrowp(){
-  if (cursor_pos += 79 > FB_CELLS){
+  int i = cursor_pos += 1;
+  if (i > FB_CELLS){
     cursor_pos = 0;
+    return;
   }
   cursor_pos += 1;
   move_cursor_to_pos(cursor_pos);
