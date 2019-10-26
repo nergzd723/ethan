@@ -124,12 +124,12 @@ void fb_write_byte(uint8_t b) {
   }
   else{
     clear_screen();
-    cursor_pos = 0;
+    cursor_pos = 1;
   }
 }
 
 void fb_backspace() {
-  if (cursor_pos == 0){
+  if (cursor_pos == 1){
     return;
   }
   cursor_pos--;
