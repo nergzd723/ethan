@@ -14,6 +14,7 @@
 #include <frame_buffer.h>
 #include <shutdown.h>
 #include <panic.h>
+#include <isr.h>
 
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();
