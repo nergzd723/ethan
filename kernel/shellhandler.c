@@ -30,7 +30,7 @@ void charbridge(char c){
             fb_newlinehandler();
             break;
         default:
-            strcat(lastcommbuf, &c);
+            append(lastcommbuf, c);
             fb_write_byte(c);
             break;
     }
