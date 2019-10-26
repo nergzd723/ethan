@@ -147,6 +147,10 @@ void fb_newline()
   }
   move_cursor_to_pos(cursor_pos);
 }
+ //reset cursor pos, need for other tasks
+void reset_cursor(){
+  cursor_pos = 0;
+}
 
 void fb_write_byte(uint8_t b) {
   if (b == '\n'){

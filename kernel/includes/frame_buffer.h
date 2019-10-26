@@ -36,5 +36,6 @@ void downarrowp();
 void uparrowp();
 void leftarrowp();
 void rightarrowp();
+void reset_cursor();
 
 #endif /* INCLUDE_FRAME_BUFFER_H */

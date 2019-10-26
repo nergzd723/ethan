@@ -13,11 +13,12 @@
 
 void panic(char* panicmessage, int paniccode){
     cli();
+    reset_cursor();
     clear_screen();
-    fill_screen(FB_MAGENTA);
-    printf("System crash!\n");
+    printf("                                System crash!\n\n\n\n\n");
+    printf("                                ");
     printf(panicmessage);
-    printf("\n");
+    printf("\n\n\n\n");
     printf(inttostr(paniccode));
     printf("\n");
     halt();
