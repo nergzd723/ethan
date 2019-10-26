@@ -2,13 +2,13 @@
 #include <string.h>
 #include <logger.h>
 
-char lastcommbuf[FB_COLS] = "";
+char lastcommbuf[FB_CELLS] = "";
 
 void fb_newlinehandler(){
     char* command = lastcommbuf;
     logf(lastcommbuf);
-    if (strcmp(command, "work") == 0){
-        printf("YAAAAAAAAY\n\n\n\n\n\n\n");
+    if (strcmp(command, "help") == 0){
+        printf("Ethan operational. Part of MEOW project.");
     }
     fb_newline();
     //empty buffer????
