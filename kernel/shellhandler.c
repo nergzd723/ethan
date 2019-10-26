@@ -19,7 +19,6 @@ void charbridge(char c){
             break;
         case '\n':
             fb_newlinehandler();
-            lastcommbuf = "";
             break;
         default:
             strcatbyte(lastcommbuf, c);
