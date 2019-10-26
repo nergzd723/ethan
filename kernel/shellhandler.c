@@ -1,13 +1,11 @@
 #include <frame_buffer.h>
 #include <string.h>
-#include <logger.h>
 #include <panic.h>
 
 char lastcommbuf[FB_CELLS] = "";
 
 void fb_newlinehandler(){
     char* command = lastcommbuf;
-    logf(lastcommbuf);
     if (strcmp(command, "help") == 0){
         printf("\nEthan operational. Part of MEOW project.");
     }
