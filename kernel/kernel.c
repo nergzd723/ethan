@@ -77,7 +77,7 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    __asm__ volatile("sti");
    waitm(300);
    logf("timer working");
-   clear_screen();
+   //clear_screen(); really shouldnt
    //shutdown(); that doesnt work, is page faulting
    //panic("TEST_PANIC", 0); works!
    while(1) {
