@@ -13,6 +13,5 @@ typedef struct context context_t;
 
 typedef void (*isr_t)(context_t*);
 void register_interrupt_handler(uint8_t n, isr_t handler);
-void interrupt(uint32_t interrupt_number);
 
 #endif
