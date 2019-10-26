@@ -12,13 +12,13 @@
 #include <timer.h>
 
 void panic(char* panicmessage, int paniccode){
-    waitm(1000);
+    cli();
     clear_screen();
     fill_screen(FB_MAGENTA);
     printf("System crash!\n");
+    printf(panicmessage);
+    printf("\n");
     printf(inttostr(paniccode));
     printf("\n");
-    logf("clearing interrupts");
-    cli();
     halt();
 }
