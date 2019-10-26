@@ -78,6 +78,7 @@ int printf (const char * format, ...) {
   }
   return i;
 }
+
 /** move_cursor:
  *  Moves the cursor of the framebuffer to the given position
  *
