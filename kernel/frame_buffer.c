@@ -95,44 +95,44 @@ void move_cursor_to_pos(unsigned short pos)
 // down arrow pointer
 void downarrowp()
 {
-  int i = cursor_pos += 79;
-  if (i > FB_CELLS){
-    cursor_pos = 0;
-    return;
-  }
+ // int i = cursor_pos += 79;
+ // if (i > FB_CELLS){
+ //   cursor_pos = 0;
+ //   return;
+// }
   cursor_pos += 79;
   move_cursor_to_pos(cursor_pos);
 }
 // up arrow pointer
 void uparrowp()
 {
-  int i = cursor_pos -= 79;
-  if (i < FB_CELLS){
-    cursor_pos = 0;
-    return;
-  }
+ // int i = cursor_pos -= 79;
+ // if (i < FB_CELLS){
+ //   cursor_pos = 0;
+//    return;
+//  }
   cursor_pos -= 79;
   move_cursor_to_pos(cursor_pos);
 }
 
 // left arrow pointer
 void leftarrowp(){
-  int i = cursor_pos -= 1;
-  if (i < FB_CELLS){
-    cursor_pos = 0;
-    return;
-  }
+//  int i = cursor_pos -= 1;
+//  if (i < FB_CELLS){
+//    cursor_pos = 0;
+//    return;
+//  }
   cursor_pos -= 1;
   move_cursor_to_pos(cursor_pos);
 }
 
 // right arrow pointer
 void rightarrowp(){
-  int i = cursor_pos += 1;
-  if (i > FB_CELLS){
-    cursor_pos = 0;
-    return;
-  }
+//  int i = cursor_pos += 1;
+//  if (i > FB_CELLS){
+//    cursor_pos = 0;
+//    return;
+//  }
   cursor_pos += 1;
   move_cursor_to_pos(cursor_pos);
 }
