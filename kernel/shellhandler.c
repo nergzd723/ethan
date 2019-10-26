@@ -12,7 +12,7 @@ void fb_newlinehandler(){
     }
     fb_newline();
     //empty buffer????
-    memset(lastcommbuf, 0, FB_COLS);
+    lastcommbuf[0] = 0;
 }
 
 void charbridge(char c){
