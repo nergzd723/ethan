@@ -21,8 +21,8 @@ char* strcatbyte(char dest[], char source)
 
 //append by char
 char* append(char* s, char c) {
-        int len = strlen(s);
-        s[len] = c;
-        s[len+1] = '\0';
-        return s;
+    int len = strlen(s);
+    s[len] = c;
+    s[len+1] = '\0';
+    return s;
 }

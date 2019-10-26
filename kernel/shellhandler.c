@@ -7,7 +7,7 @@ char lastcommbuf[FB_CELLS] = "";
 void fb_newlinehandler(){
     char* command = lastcommbuf;
     if (strcmp(command, "help") == 0){
-        printf("\nEthan operational. Part of MEOW project.");
+        printf("\nEthan operational. Part of MEOW project.\nAvailable commands: help, panic");
     }
     if (strcmp(command, "panic") == 0){
         printf("\npanicking");

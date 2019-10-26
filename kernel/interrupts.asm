@@ -138,3 +138,10 @@ irq_common_stub:
     add esp, 8     ; Cleans up the pushed error code and pushed ISR number
     sti
     iret           ; pops 5 things at once: CS, EIP, EFLAGS, SS, and ESP
+global interrupt
+; interrupt - Generates a software interrupt
+; stack: [esp + 4] the software interrupt that should be generated (0-255)
+;        [esp    ] the return address
+interrupt:
+  mov eax, [esp+4]
+  int 49

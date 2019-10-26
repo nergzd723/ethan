@@ -69,7 +69,8 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
 
    init_keyboard();
    logf("Keyboard intialized\n");
-
+   interrupt(48);
+   logf("IDT and irq handlers operational\n");
    init_paging();
    logf("Paging initialized\n");
    init_timer(TIMER_FREQUENCY);
