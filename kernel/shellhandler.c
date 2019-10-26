@@ -27,7 +27,7 @@ void charbridge(char c){
     switch(c)
     {
         case '\b':
-            lastcommbuf[len-1] = '\0'
+            lastcommbuf[len-1] = '\0';
             fb_backspace();
             break;
         case '\n':
