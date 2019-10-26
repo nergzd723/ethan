@@ -1,6 +1,7 @@
 #include <frame_buffer.h>
 #include <string.h>
 #include <logger.h>
+#include <panic.h>
 
 char lastcommbuf[FB_CELLS] = "";
 
@@ -12,6 +13,7 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "panic") == 0){
         printf("\npanicking");
+        panic("USER_DEMAND_PANIC", 0);
     }
     fb_newline();
     printf(">>> ");
@@ -24,6 +26,7 @@ void charbridge(char c){
     switch(c)
     {
         case '\b':
+            int len = strlen(s);
             fb_backspace();
             break;
         case '\n':
