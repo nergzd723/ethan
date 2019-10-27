@@ -92,7 +92,7 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    printf(inttostr(memorycount()-lowmem()));
    printf("K USABLE extended memory\n");
    printf(inttostr(discoverspeed()));
-   printf("MHz CPU speed\n")
+   printf("MHz CPU speed\n");
    printf(">>> ");
 #endif
 #ifdef TIMER
