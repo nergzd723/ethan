@@ -28,6 +28,9 @@ void charbridge(unsigned char c){
     int len = strlen(lastcommbuf);
     switch(c)
     {
+        case 205:
+            panic("PAUSE/BREAK", 1)
+            break;
         case 208:
             uparrowp();
             break;
