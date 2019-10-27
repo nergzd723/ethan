@@ -37,8 +37,8 @@ void process_key_press(uint8_t scan_code) {
 
     /* Convert the scan code into a character */
     if (keymap[modifier][scan_code] == 0) {
-        #ifdef PANIC_ON_UNHANDLED_KEYPRESS
         logf("[PANIC] Unhandled keypress: %x", scan_code);
+        #ifdef PANIC_ON_UNHANDLED_KEYPRESS
         while(1); // TODO: change to panic
         #endif
     }
