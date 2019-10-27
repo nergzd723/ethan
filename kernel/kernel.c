@@ -89,7 +89,7 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    printf(inttostr(lowmem()));
    printf("K lowmem, ");
    printf(inttostr(himem()));
-   print("K extended memory\n")
+   print("K extended memory\n");
    printf(">>> ");
 #endif
 #ifdef TIMER
