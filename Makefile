@@ -6,7 +6,7 @@ HEADERS = $(wildcard $(KERNELDIR)/*.h)
 BUILDDIR = build
 KERNELDIR = kernel
 
-CFLAGS := -nostdlib -ffreestanding -02 -g -Wall -Wextra
+CFLAGS := -nostdlib -ffreestanding -g -Wall -Wextra
 
 OBJS = ${C_SOURCES:.c=.o}
 
