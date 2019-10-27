@@ -3,10 +3,6 @@
 
 #include <stdint.h>
 
-void cpu_cycle();
-
-int discoverspeed();
-
 static inline void outb (unsigned short _port, unsigned char _data) {
     __asm__ __volatile__ ("outb %1, %0" : : "dN" (_port), "a" (_data));
 }
