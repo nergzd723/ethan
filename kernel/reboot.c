@@ -3,7 +3,6 @@
 
 void reboot()
 {
-    uint8_t temp;
     asm volatile ("cli");
     outb(KBRD_INTRFC, KBRD_RESET);
 loop:
