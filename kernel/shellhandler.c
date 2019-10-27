@@ -5,6 +5,7 @@
 #include <random.h>
 #include <shutdown.h>
 #include <logger.h>
+#include <cpu_speed.h>
 
 char lastcommbuf[FB_CELLS] = "";
 
@@ -32,6 +33,11 @@ void fb_newlinehandler(){
     if (strcmp(command, "reboot") == 0){
         logf("\nRebooting\n");
         reboot();
+    }
+    if (strcmp(command, "getcpuspeed") == 0){
+        printf("\nCPU speed - ");
+        printf(inttostr(discoverspeed()));
+        printf("Mhz\n");
     }
     fb_newline();
     printf(">>> ");
