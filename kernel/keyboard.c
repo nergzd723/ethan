@@ -124,7 +124,7 @@ void init_keyboard() {
     keymap[0][0x4D] = 175;
     keymap[0][0x45] = 205;
     keymap[0][0xC] = '-';
-    keymap[0][]
+    //keymap[0][]
     /* Shift key is pressed */
     keymap[1][0x1E] = 'A';
     keymap[1][0x30] = 'B';
