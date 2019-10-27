@@ -2,6 +2,7 @@
 #include <string.h>
 #include <panic.h>
 #include <userapp.h>
+#include <random.h>
 
 char lastcommbuf[FB_CELLS] = "";
 
