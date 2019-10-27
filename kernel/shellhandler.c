@@ -31,7 +31,7 @@ void fb_newlinehandler(){
         shutdown();
     }
     if (strcmp(command, "version") == 0){
-        printf("\nEthanium -           H     H\n\
+        printf("\nEthanium -            H     H\n\
                       |     |\n\
                   H---C-----C---H\n\
                       |     |\n\
