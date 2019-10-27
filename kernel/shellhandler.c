@@ -8,7 +8,7 @@ char lastcommbuf[FB_CELLS] = "";
 
 void fb_newlinehandler(){
     char* command = lastcommbuf;
-    if (strcmp(command, "randomb")){
+    if (strcmp(command, "randomb") == 0){
         int a = rand();
         unsigned char c = a % 256;
         printf("\nYour random number is\n");
