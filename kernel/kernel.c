@@ -16,6 +16,7 @@
 #include <cpu_speed.h>
 #include <random.h>
 #include <boot.h>
+#include "multiboot.h"
 
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();
