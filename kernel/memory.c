@@ -3,6 +3,7 @@
 #include "logger.h"
 #include <stddef.h>
 #include <isr.h>
+#include <io.h>
 
 extern void load_page_directory(uint32_t);
 extern void enable_paging();
@@ -58,6 +59,15 @@ void boot_map_page_ia32(uint32_t* kernel_page_directory, uint32_t virtual_addres
     uint32_t page_table_index = virtual_address >> 12 & 0x03FF;
 
     page_table[page_table_index] = physical_address | 3; // supervisor, r/w, present
+}
+//get CMOS memory count
+unsigned short memorycount(){
+    outb(0x70, 0x30);
+    unsigned char lowmem = inb(0x71);
+    outb(0x70, 0x31);
+    unsigned char himem = inb(0x71);
+    unsigned short total = lowmem | himem << 8;
+    return total;
 }
 
 void page_fault_handler(context_t* context) {
