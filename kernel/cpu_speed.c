@@ -9,5 +9,5 @@ int discoverspeed(){
         cpu_cycle();
         clock++;
     }
-    return (clock * 60) / 100000;
+    return (clock * 240) / 100000;
 }
