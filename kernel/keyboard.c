@@ -123,6 +123,7 @@ void init_keyboard() {
     //right pointer, using extended ASCII table
     keymap[0][0x4D] = 175;
     keymap[0][0x45] = 205;
+    keymap[0][0xC] = '_';
 
     /* Shift key is pressed */
     keymap[1][0x1E] = 'A';
