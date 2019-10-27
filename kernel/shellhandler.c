@@ -4,6 +4,7 @@
 #include <userapp.h>
 #include <random.h>
 #include <shutdown.h>
+#include <logger.h>
 
 char lastcommbuf[FB_CELLS] = "";
 
