@@ -44,4 +44,16 @@ cpu_cycle:
    xor edx,eax
    xor eax,edx
    xor edx,eax
+   xor eax,edx
+   xor edx,eax
+   xor eax,edx
+   xor edx,eax
+   xor eax,edx
+   xor edx,eax
+   xor eax,edx
+   xor edx,eax
+   xor eax,edx
+   xor edx,eax
+   xor eax,edx
+   xor edx,eax
    ret
