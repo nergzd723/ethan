@@ -35,7 +35,7 @@ void fb_newlinehandler(){
                       |     |\n\
                   H———C—————C———H\n\
                       |     |\n\
-                      H     H\n")
+                      H     H\n");
     }
     if (strcmp(command, "reboot") == 0){
         logf("\nRebooting\n");
