@@ -11,5 +11,5 @@ loop:
 }
 
 void shutdown_qemu_vm(){
-    outb(0x604, 0x2000)
+    outb(0x604, 0x200);
 }
