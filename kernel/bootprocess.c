@@ -51,7 +51,7 @@ void boot_stage1(){
     init_idt();
     printf("OK\n");
     logf("IDT initialized\n");
-    printf("Keyboard...\n")
+    printf("Keyboard...\n");
     init_keyboard();
     printf("OK\n");
     logf("Keyboard intialized\n");
