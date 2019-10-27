@@ -1,4 +1,4 @@
-#define PAGING
+//#define PAGING
 //#define PANIC_ON_UNHANDLED_KEYPRESS
-#define STANDALONE
-#define TIMER
+//#define STANDALONE
+//#define TIMER
