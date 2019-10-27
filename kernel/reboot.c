@@ -9,3 +9,7 @@ loop:
     asm volatile ("hlt"); /* if that didn't work, halt the CPU */
     goto loop; /* if a NMI is received, halt again */
 }
+
+void shutdown_qemu_vm(){
+    outb(0x604, 0x2000)
+}

@@ -25,8 +25,11 @@ void fb_newlinehandler(){
     if (strcmp(command, "jibber") == 0){
         dojibberish();
     }
+    if (strcmp(command, "shutdown_qemu") == 0){
+        shutdown_qemu_vm();
+    }
     if (strcmp(command, "reboot") == 0){
-        printf("\nRebooting\n");
+        logf("\nRebooting\n");
         reboot();
     }
     fb_newline();
