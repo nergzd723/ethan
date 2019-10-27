@@ -1,6 +1,6 @@
 #include <keyboard.h>
 #include <shutdown.h>
-
+#include <io.h>
 void reboot()
 {
     asm volatile ("cli");
