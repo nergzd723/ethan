@@ -107,11 +107,11 @@ void downarrowp()
 // up arrow pointer
 void uparrowp()
 {
- // int i = cursor_pos -= 79;
- // if (i < FB_CELLS){
- //   cursor_pos = 0;
-//    return;
-//  }
+  int i = cursor_pos % FB_COLS;
+  if (i == 0){
+    cursor_pos = 0;
+    return;
+  } 
   cursor_pos -= 79;
   move_cursor_to_pos(cursor_pos);
 }
