@@ -1,1 +1,1 @@
-void dojibberish(int sec);
+void dojibberish();

@@ -2,13 +2,9 @@
 #include <random.h>
 #include <frame_buffer.h>
 
-void dojibberish(int sec){
+void dojibberish(){
     clear_screen();
-    int i = getsecfromboot();
-    while(getsecfromboot() - i != sec){
+    while(1){
         printf(inttostr(rand));
     }
-    clear_screen();
-    reset_cursor();
-    return;
 }

@@ -15,7 +15,7 @@ void fb_newlinehandler(){
         panic("USER_DEMAND_PANIC", 0);
     }
     if (strcmp(command, "jibber") == 0){
-        void dojibberish(100);
+        dojibberish();
     }
     fb_newline();
     printf(">>> ");
