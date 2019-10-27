@@ -23,6 +23,10 @@ int getsecfromboot(){
    return sec;
 }
 
+uint32_t getmsecfromboot(){
+   return msec;
+}
+
 //wait millisecond
 void waitm(int ms){
    int olds = msec;
