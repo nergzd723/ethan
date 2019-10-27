@@ -85,7 +85,11 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
 #ifdef STANDALONE
    printf("Ethan booted! Got ");
    printf(inttostr(memorycount()));
-   printf(" K mem");
+   printf("K mem total, ");
+   printf(inttostr(lowmem()));
+   printf("K lowmem, ");
+   printf(inttostr(himem()));
+   print("K extended memory\n")
    printf(">>> ");
 #endif
 #ifdef TIMER

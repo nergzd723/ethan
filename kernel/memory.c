@@ -60,14 +60,19 @@ void boot_map_page_ia32(uint32_t* kernel_page_directory, uint32_t virtual_addres
 
     page_table[page_table_index] = physical_address | 3; // supervisor, r/w, present
 }
+unsigned char lowmem(){
+    outb(0x70, 0x30);
+    return inb(0x71);
+}
+
+unsigned char himem(){
+    outb(0x70, 0x31);
+    return inb(0x71);
+}
+
 //get CMOS memory count
 unsigned short memorycount(){
-    outb(0x70, 0x30);
-    unsigned char lowmem = inb(0x71);
-    outb(0x70, 0x31);
-    unsigned char himem = inb(0x71);
-    unsigned short total = lowmem | himem << 8;
-    return total;
+    return lowmem() | himem() << 8;
 }
 
 void page_fault_handler(context_t* context) {
