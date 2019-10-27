@@ -2,6 +2,7 @@
 #include <isr.h>
 #include <io.h>
 #include <logger.h>
+#include <stdint.h>
 
 uint32_t tick = 0;
 int sec = 0;
