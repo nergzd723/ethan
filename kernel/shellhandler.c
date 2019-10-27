@@ -18,7 +18,7 @@ void fb_newlinehandler(){
         printf(inttostr(c));
     }
     if (strcmp(command, "help") == 0){
-        printf("\nEthanium operational. Part of MEOW project.\nAvailable commands: help, panic, jibber, randomb, reboot, shutdown, getcpuspeed");
+        printf("\nEthanium operational. Part of MEOW project.\nAvailable commands: help, panic, jibber, randomb, reboot, shutdown");
     }
     if (strcmp(command, "panic") == 0){
         printf("\npanicking");
@@ -33,11 +33,6 @@ void fb_newlinehandler(){
     if (strcmp(command, "reboot") == 0){
         logf("\nRebooting\n");
         reboot();
-    }
-    if (strcmp(command, "getcpuspeed") == 0){
-        printf("\nCPU speed - ");
-        printf(inttostr(discoverspeed()));
-        printf("Mhz\n");
     }
     fb_newline();
     printf(">>> ");
