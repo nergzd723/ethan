@@ -19,6 +19,10 @@ static void timer_callback(context_t* context)
    }
 }
 
+uint32_t getmsecfromboot(){
+   return msec;
+}
+
 int getsecfromboot(){
    return sec;
 }
