@@ -28,7 +28,7 @@ void boot_stage2(){
    printf(inttostr(memorycount()-lowmem()));
    printf("K USABLE extended memory\n");
    if (memorycount() == 65535){
-       printf("It seems that you have more than 65M of RAM. Ethanium may not work properly\n");
+       printf("It seems that you have more than 64M of RAM. Ethanium may not work properly\n");
    }
    printf(inttostr(discoverspeed()));
    printf("MHz CPU speed\n");

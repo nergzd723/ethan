@@ -30,6 +30,13 @@ void fb_newlinehandler(){
     if (strcmp(command, "shutdown") == 0){
         shutdown();
     }
+    if (strcmp(command, "version") == 0){
+        printf("\nEthanium - H     H\n\
+                      |     |\n\
+                  H———C—————C———H\n\
+                      |     |\n\
+                      H     H\n")
+    }
     if (strcmp(command, "reboot") == 0){
         logf("\nRebooting\n");
         reboot();
