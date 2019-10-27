@@ -94,14 +94,14 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    printf("K USABLE extended memory\n");
    printf(inttostr(discoverspeed()));
    printf("MHz CPU speed\n");
+   srand(discoverspeed());
+   logf("Random seeded to CPU speed\n");
    printf(">>> ");
 #endif
 #ifdef TIMER
    waitm(300);
    logf("timer working");
 #endif
-   srand(discoverspeed());
-   logf("Random seeded to CPU speed\n");
    //clear_screen(); really shouldnt
    //shutdown(); that doesnt work, is page faulting
    //panic("TEST_PANIC", 0); works!
