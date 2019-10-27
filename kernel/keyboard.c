@@ -123,8 +123,8 @@ void init_keyboard() {
     //right pointer, using extended ASCII table
     keymap[0][0x4D] = 175;
     keymap[0][0x45] = 205;
-    keymap[0][0xC] = '_';
-
+    keymap[0][0xC] = '-';
+    keymap[0][]
     /* Shift key is pressed */
     keymap[1][0x1E] = 'A';
     keymap[1][0x30] = 'B';
@@ -164,6 +164,7 @@ void init_keyboard() {
     keymap[1][0x48] = 208;
     //down arrow pointer
     keymap[1][0x50] = 209;
+    keymap[1][0xC] = '_';
     /* Register the keyboard handler */
     register_interrupt_handler(33, &keyboard_handler);
 }

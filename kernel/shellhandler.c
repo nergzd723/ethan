@@ -18,7 +18,7 @@ void fb_newlinehandler(){
         printf(inttostr(c));
     }
     if (strcmp(command, "help") == 0){
-        printf("\nEthan operational. Part of MEOW project.\nAvailable commands: help, panic, jibber, randomb");
+        printf("\nEthanium operational. Part of MEOW project.\nAvailable commands: help, panic, jibber, randomb, reboot, shutdown, getcpuspeed");
     }
     if (strcmp(command, "panic") == 0){
         printf("\npanicking");
@@ -64,6 +64,9 @@ void charbridge(unsigned char c){
             break;
         case 175:
             rightarrowp();
+            break;
+        case '\t':
+            printf("     ");
             break;
         case '\b':
             lastcommbuf[len-1] = '\0';
