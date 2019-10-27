@@ -44,6 +44,7 @@ void fill_screen(unsigned char color){
     for (int i = 0; i < FB_CELLS; i++) {
     fb_write_cell(i, ' ', color, color);
   }
+  cursor_pos = 0;
 }
 
 char* inttostr( int zahl ) 
@@ -144,7 +145,8 @@ void fb_newline()
   }
   move_cursor_to_pos(cursor_pos);
 }
- //reset cursor pos, need for other tasks
+
+//reset cursor pos, need for other tasks
 void reset_cursor(){
   cursor_pos = 0;
 }

@@ -8,6 +8,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <shell.h>
+#include <defines.h>
 
 // https://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html
 
@@ -36,8 +37,10 @@ void process_key_press(uint8_t scan_code) {
 
     /* Convert the scan code into a character */
     if (keymap[modifier][scan_code] == 0) {
+        #ifdef PANIC_ON_UNHANDLED_KEYPRESS
         logf("[PANIC] Unhandled keypress: %x", scan_code);
         while(1); // TODO: change to panic
+        #endif
     }
 
     /* It's safe to convert to a character */
