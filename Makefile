@@ -15,13 +15,13 @@ all: build
 
 # Run the operating system on qemu
 run: all
-	qemu-system-i386 -m 1G -serial stdio -kernel $(BUILDDIR)/kernel.bin
+	qemu-system-i386 -m 32M -serial stdio -kernel $(BUILDDIR)/kernel.bin
 
 monitor: all
-	qemu-system-i386 -m 1G -monitor stdio -kernel $(BUILDDIR)/kernel.bin
+	qemu-system-i386 -m 32M -monitor stdio -kernel $(BUILDDIR)/kernel.bin
 
 debug: all
-	qemu-system-i386 -m 1G -s -S -monitor stdio -kernel $(BUILDDIR)/kernel.bin
+	qemu-system-i386 -m 32M -s -S -monitor stdio -kernel $(BUILDDIR)/kernel.bin
 
 build: asm_objects linker.ld
 	~/i386-unknown-elf/bin/i386-unknown-elf-gcc -g -I lib/includes -I kernel/includes $(C_SOURCES) $(BUILDDIR)/*.o -o $(BUILDDIR)/kernel.bin -nostdlib -ffreestanding -T linker.ld
