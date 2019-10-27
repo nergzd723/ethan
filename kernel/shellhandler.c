@@ -29,7 +29,7 @@ void charbridge(unsigned char c){
     switch(c)
     {
         case 205:
-            panic("PAUSE/BREAK", 1)
+            panic("PAUSE/BREAK", 1);
             break;
         case 208:
             uparrowp();
