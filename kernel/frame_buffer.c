@@ -107,8 +107,8 @@ void downarrowp()
 // up arrow pointer
 void uparrowp()
 {
-  int i = cursor_pos % 79;
-  if (i == 0){
+  int i = cursor_pos - 79;
+  if (i < 0){
     return;
   } 
   cursor_pos -= 79;
