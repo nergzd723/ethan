@@ -1,4 +1,4 @@
-#include <io.h>
+#include <cpu_speed.h>
 #include <timer.h>
 
 int discoverspeed(){

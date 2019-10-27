@@ -16,6 +16,7 @@
 #include <panic.h>
 #include <isr.h>
 #include <defines.h>
+#include <cpu_speed.h>
 
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();
