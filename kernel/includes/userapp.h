@@ -1,0 +1,1 @@
+void dojibberish(int sec);

@@ -1,17 +1,21 @@
 #include <frame_buffer.h>
 #include <string.h>
 #include <panic.h>
+#include <userapp.h>
 
 char lastcommbuf[FB_CELLS] = "";
 
 void fb_newlinehandler(){
     char* command = lastcommbuf;
     if (strcmp(command, "help") == 0){
-        printf("\nEthan operational. Part of MEOW project.\nAvailable commands: help, panic");
+        printf("\nEthan operational. Part of MEOW project.\nAvailable commands: help, panic, jibber");
     }
     if (strcmp(command, "panic") == 0){
         printf("\npanicking");
         panic("USER_DEMAND_PANIC", 0);
+    }
+    if (strcmp(command, "jibber") == 0){
+        void dojibberish(100);
     }
     fb_newline();
     printf(">>> ");

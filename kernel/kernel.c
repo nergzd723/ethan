@@ -17,6 +17,7 @@
 #include <isr.h>
 #include <defines.h>
 #include <cpu_speed.h>
+#include <random.h>
 
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();
@@ -99,6 +100,8 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    waitm(300);
    logf("timer working");
 #endif
+   srand(discoverspeed())
+   logf("Random seeded to CPU speed\n");
    //clear_screen(); really shouldnt
    //shutdown(); that doesnt work, is page faulting
    //panic("TEST_PANIC", 0); works!
