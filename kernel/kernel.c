@@ -83,7 +83,7 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
 #endif
    __asm__ volatile("sti");
 #ifdef STANDALONE
-   printf("Ethan booted! Got ")
+   printf("Ethan booted! Got ");
    printf(inttostr(memorycount()));
    printf(" K mem");
    printf(">>> ");
