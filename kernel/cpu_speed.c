@@ -4,10 +4,10 @@
 int discoverspeed(){
     uint32_t hsec = getmsecfromboot();
     uint32_t clock = 0;
-    while(getmsecfromboot() - hsec != 100){
+    while(getmsecfromboot() - hsec != 10){
         //4 cycles per each
         cpu_cycle();
         clock++;
     }
-    return (clock * 4) / 1000000;
+    return (clock * 4) / 100000;
 }
