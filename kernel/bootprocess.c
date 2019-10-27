@@ -20,13 +20,16 @@ void boot_stage2(){
    printf("Testing timer...");
    waitm(100);
    clear_screen();
-   printf("Ethan booted! Got ");
+   printf("Ethanium booted! Got ");
    printf(inttostr(memorycount()));
    printf("K mem total, ");
    printf(inttostr(lowmem()));
    printf("K lowmem, ");
    printf(inttostr(memorycount()-lowmem()));
    printf("K USABLE extended memory\n");
+   if (memorycount() == 65535){
+       printf("It seems that you have more than 65M of RAM. Ethanium may not work properly\n")
+   }
    printf(inttostr(discoverspeed()));
    printf("MHz CPU speed\n");
    srand(discoverspeed());
