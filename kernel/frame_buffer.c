@@ -117,22 +117,19 @@ void uparrowp()
 
 // left arrow pointer
 void leftarrowp(){
-//  int i = cursor_pos -= 1;
-//  if (i < FB_CELLS){
-//    cursor_pos = 0;
-//    return;
-//  }
+  if (cursor_pos == 0){
+    return;
+  }
   cursor_pos -= 1;
   move_cursor_to_pos(cursor_pos);
 }
 
 // right arrow pointer
 void rightarrowp(){
-//  int i = cursor_pos += 1;
-//  if (i > FB_CELLS){
-//    cursor_pos = 0;
-//    return;
-//  }
+  if (cursor_pos == FB_CELLS){
+    cursor_pos = 0;
+    return;
+}
   cursor_pos += 1;
   move_cursor_to_pos(cursor_pos);
 }
