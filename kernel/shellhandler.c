@@ -3,6 +3,7 @@
 #include <panic.h>
 #include <userapp.h>
 #include <random.h>
+#include <shutdown.h>
 
 char lastcommbuf[FB_CELLS] = "";
 
@@ -23,6 +24,10 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "jibber") == 0){
         dojibberish();
+    }
+    if (strcmp(command, "reboot") == 0){
+        printf("\nRebooting\n");
+        reboot();
     }
     fb_newline();
     printf(">>> ");
