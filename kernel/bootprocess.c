@@ -18,7 +18,7 @@ void boot_stage2(){
    __asm__ volatile("sti");
    printf("OK\n");
    printf("Testing timer...");
-   waitm(100);
+   waitm(30);
    clear_screen();
    printf("Ethanium booted! Got ");
    printf(inttostr(memorycount()));
