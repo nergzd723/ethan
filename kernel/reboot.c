@@ -10,6 +10,6 @@ loop:
     goto loop; /* if a NMI is received, halt again */
 }
 
-void shutdown_qemu_vm(){
+void shutdown(){
     outb(0x604, 0x2000);
 }

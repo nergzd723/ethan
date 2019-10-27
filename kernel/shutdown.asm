@@ -1,23 +1,12 @@
 global shutdown
+;will try to enter v86 mode and shut down with 0x15 int
 [bits 32]
 shutdown:
 	cli
-	mov ds, eax
-	mov es, eax
-	mov fs, eax
-	mov gs, eax
-	mov ss, eax
-	jmp 0:realmode
+	pushfd
+	or dword [esp], (1 << 17)
+	call shutdownint
 
-realmode:
-	mov sp, 0x8000
-	mov ax, 0
-	mov ds, ax
-	mov es, ax
-	mov fs, ax
-	mov gs, ax
-	mov ss, ax
-    call shutdownint
 ;calls BIOS interrupt 15 which SHOULD shutdown the computer
 shutdownint:
     mov ax, 0x1000
@@ -27,4 +16,4 @@ shutdownint:
     mov bx, 0x0001
     mov cx, 0x0003
     int 0x15
-    hlt   
+    hlt
