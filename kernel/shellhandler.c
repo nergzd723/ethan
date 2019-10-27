@@ -7,8 +7,14 @@ char lastcommbuf[FB_CELLS] = "";
 
 void fb_newlinehandler(){
     char* command = lastcommbuf;
+    if (strcmp(command, "randomb")){
+        int a = rand();
+        unsigned char c = a % 256;
+        printf("\nYour random number is\n");
+        printf(inttostr(c));
+    }
     if (strcmp(command, "help") == 0){
-        printf("\nEthan operational. Part of MEOW project.\nAvailable commands: help, panic, jibber");
+        printf("\nEthan operational. Part of MEOW project.\nAvailable commands: help, panic, jibber, randomb");
     }
     if (strcmp(command, "panic") == 0){
         printf("\npanicking");
