@@ -19,6 +19,10 @@ void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
    __asm__ volatile("sti");
    printf("OK\n");
+   printf("Tasking...\n");
+   init_tasking();
+   printf("OK\n");
+   logf("Tasking initialized\n");
    printf("Testing timer...");
    waitm(30);
    clear_screen();
@@ -69,10 +73,6 @@ void boot_stage1(){
    init_timer(TIMER_FREQUENCY);
    printf("OK\n");
    logf("Timer initialized\n");
-   printf("Tasking...\n");
-   init_tasking();
-   printf("OK\n");
-   logf("Tasking initialized\n");
    printf("Entering second stage...\n");
    boot_stage2();
 }
