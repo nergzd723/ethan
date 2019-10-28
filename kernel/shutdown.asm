@@ -1,4 +1,4 @@
-global shutdown
+global shutdownasm
 ;will try to enter v86 mode and shut down with 0x15 int
 [bits 32]
 shutdownasm:
