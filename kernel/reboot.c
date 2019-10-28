@@ -18,7 +18,7 @@ void shutdown_qemu(){
 void shutdown(){
     asm volatile ("cli");
     clear_screen();
-    printf("                   You can now turn your PC off if it doesn`t turn off by itself\n")
+    printf("                   You can now turn your PC off if it doesn`t turn off by itself\n");
     shutdownasm();
     asm volatile ("hlt");
 }
