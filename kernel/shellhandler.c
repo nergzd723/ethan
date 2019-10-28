@@ -22,7 +22,7 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "panic") == 0){
         printf("\npanicking");
-        panic("USER_DEMAND_PANIC";
+        panic("USER_DEMAND_PANIC");
     }
     if (strcmp(command, "jibber") == 0){
         dojibberish();
