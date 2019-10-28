@@ -11,7 +11,7 @@
 #include <frame_buffer.h>
 #include <timer.h>
 
-void panic(char* panicmessage, int paniccode){
+void panic(char* panicmessage){
     cli();
     reset_cursor();
     clear_screen();
@@ -19,7 +19,5 @@ void panic(char* panicmessage, int paniccode){
     printf("                                ");
     printf(panicmessage);
     printf("\n\n\n\n");
-    printf(inttostr(paniccode));
-    printf("\n");
     halt();
 }

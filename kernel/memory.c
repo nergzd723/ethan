@@ -3,9 +3,8 @@
 #include <logger.h>
 #include <stddef.h>
 #include <isr.h>
-#include <io.h>
+#include <panic.h>
 #include <string.h>
-
 
 extern void load_page_directory(uint32_t);
 extern void enable_paging();
@@ -37,6 +36,7 @@ uint32_t bitmap[BITMAP_SIZE];
 
 uint32_t next_page_table;
 
+
 void init_paging(void) {
     /* Register page fault handler */
     register_interrupt_handler(14, page_fault_handler);
@@ -45,10 +45,12 @@ void init_paging(void) {
     for (unsigned int i = 0; i < 1024; i++) {
         page_directory[i] = 0x00000002;
     }
- /* Put initial page tables in page directory */
+ 
+    /* Put initial page tables in page directory */
     page_directory[0] = ((uint32_t) first_page_table) | 3;  // supervisor, r/w, present
     page_directory[1] = ((uint32_t) second_page_table) | 3;
- /* Identity map the kernel and page table reserved areas
+
+    /* Identity map the kernel and page table reserved areas
        We will need to be able to access them later */
     identity_map_range(page_directory, KERNEL_START, KERNEL_END);
     identity_map_range(page_directory, PAGE_TABLE_AREA_START, PAGE_TABLE_AREA_END);
@@ -60,13 +62,12 @@ void init_paging(void) {
        the VGA terminal without immediately page faulting */
     map_page(page_directory, 0xb8000, 0xb8000);
 
-    /* Map a pool of memory for the memory allocator */
-    // TODO:
-
     /* Load the page directory and initalize paging */
     load_page_directory((uint32_t) page_directory);
     enable_paging();
-        // Some test code to test out paging
+
+
+    // Some test code to test out paging
     // Can be deleted later
     uint32_t* random_page = allocate_page_frame(0x801000);
     uint32_t* another_one = allocate_page_frame(0xF000000);
@@ -75,8 +76,8 @@ void init_paging(void) {
     logf("Random value from page: %x\n", *random_page);
     memset(random_page, 0, PAGE_SIZE);
     logf("Should be zero: %x\n", *random_page);
-
 }
+
 void init_page_frame_allocator() {
     /* Clear the bitmap (all pages are unmapped) */
     memset(bitmap, 0, sizeof(bitmap));
@@ -126,6 +127,13 @@ uint32_t* allocate_page_frame(uint32_t virtual_address) {
         /* There are no free pages left */
         panic("Allocator has run out of space!");
     }
+
+    const uint32_t physical_address = ALLOCATOR_AREA_START + (PAGE_SIZE * page_index);
+    map_page(page_directory, virtual_address, physical_address);
+
+    return (uint32_t*) virtual_address;
+}
+
 uint32_t* allocate_page_table() {
     /* Check to make sure we still have more preallocated page tables */
     if (next_page_table >= PAGE_TABLE_AREA_END) {
@@ -146,15 +154,12 @@ void identity_map_range(uint32_t* kernel_page_directory, uint32_t start_address,
 }
 
 void map_page(uint32_t* kernel_page_directory, uint32_t virtual_address, uint32_t physical_address) {
-    const uint32_t physical_address = ALLOCATOR_AREA_START + (PAGE_SIZE * page_index);
-    map_page(page_directory, virtual_address, physical_address);
-
-    return (uint32_t*) virtual_address;
-}
-
     uint32_t page_directory_index = virtual_address >> 22;
     uint32_t page_directory_entry = *(kernel_page_directory + page_directory_index);
+
     if (!(page_directory_entry & 0x1)) {
+        /* Page table is not present so we need to grab a new page table
+           and put it into the correct spot */
         logf("Page table not present for virtual address: %x\n", virtual_address);
         logf("Adding a new page table at page_directory_index: %x\n", page_directory_index);
 
@@ -171,6 +176,11 @@ void map_page(uint32_t* kernel_page_directory, uint32_t virtual_address, uint32_
 
     page_table[page_table_index] = physical_address | 3; // supervisor, r/w, present
 }
+
+void page_fault_handler(context_t* context) {
+    logf("[PANIC] Page fault, hanging\n");
+    while(1);
+}
 unsigned char lowmem(){
     outb(0x70, 0x30);
     return inb(0x71);
@@ -184,9 +194,4 @@ unsigned char himem(){
 //get CMOS memory count
 unsigned short memorycount(){
     return lowmem() | himem() << 8;
-}
-
-void page_fault_handler(context_t* context) {
-    logf("[PANIC] Page fault, hanging\n");
-    while(1);
 }
