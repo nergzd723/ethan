@@ -44,7 +44,7 @@ void init_paging(void) {
 
     /* Register page fault handler */
     register_interrupt_handler(14, page_fault_handler);
-
+    register_interrupt_handler(8, double_fault_handler);
     /* Clear the page directory by marking not present */
     for (unsigned int i = 0; i < 1024; i++) {
         page_directory[i] = 0x00000002;
@@ -183,10 +183,11 @@ void map_page(uint32_t* kernel_page_directory, uint32_t virtual_address, uint32_
 }
 
 void page_fault_handler(context_t* context) {
-    logf("[PANIC] Page fault, hanging\n");
-    while(1);
+    logf("[PANIC] Page fault, trying to resolve\n");
 }
-
+void double_fault_handler(context_t* context){
+    panic("Double fault!");
+}
 /****************************************************
  * Heap Allocator:
  * - A watermark heap alllocator for the time being
