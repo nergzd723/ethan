@@ -15,7 +15,7 @@ all: build
 
 # Run the operating system on qemu
 run: all
-	qemu-system-i386 -m 32M -serial stdio -kernel $(BUILDDIR)/kernel.bin
+	qemu-system-i386 -m 32M -serial stdio -kernel $(BUILDDIR)/kernel.bin -initrd test.tar
 
 monitor: all
 	qemu-system-i386 -m 32M -monitor stdio -kernel $(BUILDDIR)/kernel.bin
