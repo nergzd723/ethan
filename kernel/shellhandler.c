@@ -22,7 +22,7 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "panic") == 0){
         printf("\npanicking");
-        panic("USER_DEMAND_PANIC", 0);
+        panic("USER_DEMAND_PANIC";
     }
     if (strcmp(command, "jibber") == 0){
         dojibberish();
@@ -53,7 +53,7 @@ void charbridge(unsigned char c){
     switch(c)
     {
         case 205:
-            panic("PAUSE/BREAK", 1);
+            panic("PAUSE/BREAK");
             break;
         case 208:
             uparrowp();
