@@ -187,7 +187,8 @@ void map_page(uint32_t* kernel_page_directory, uint32_t virtual_address, uint32_
 }
 
 void page_fault_handler(context_t* context) {
-    logf("[PANIC] Page fault, trying to resolve\n");
+    panic("Page fault, cant resolve!");
+    
 }
 
 /****************************************************
