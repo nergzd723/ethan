@@ -14,31 +14,34 @@ extern void enable_paging();
 
 #define KERNEL_START 0x00100000
 #define KERNEL_END   0x00300000
-#define PAGE_TABLE_AREA_START 0x00300000
-#define PAGE_TABLE_AREA_END 0x00400000
-#define ALLOCATOR_AREA_START 0x00400000
-#define ALLOCATOR_AREA_END 0x00C00000
+#define PAGE_TABLE_AREA_START 0x00500000
+#define PAGE_TABLE_AREA_END 0x00900000
+#define PAGE_FRAME_ALLOCATOR_AREA_START 0x00900000
+#define PAGE_FRAME_ALLOCATOR_AREA_END 0x0F000000
+#define HEAP_ALLOCATOR_AREA_START 0x0F000000
+#define HEAP_ALLOCATOR_AREA_END 0x11000000
 
 #define BIT_SIZE_OF_UINT32 32
 
 void init_page_frame_allocator();
 void init_page_table_allocator();
-uint32_t* allocate_page_frame(uint32_t);
+void* allocate_page_frame(uint32_t);
 void identity_map_range(uint32_t*, uint32_t, uint32_t);
 void map_page(uint32_t*, uint32_t, uint32_t);
 void page_fault_handler(context_t*);
+void init_heap_allocator();
 
-uint32_t page_directory[1024] __attribute__((aligned(PAGE_SIZE)));
-uint32_t first_page_table[1024] __attribute__((aligned(PAGE_SIZE)));
-uint32_t second_page_table[1024] __attribute__((aligned(PAGE_SIZE)));
-
-#define BITMAP_SIZE (ALLOCATOR_AREA_END - ALLOCATOR_AREA_START) / 4096 / 32  // calculate the correct sized bitmap
+#define BITMAP_SIZE (PAGE_FRAME_ALLOCATOR_AREA_END - PAGE_FRAME_ALLOCATOR_AREA_START) / 4096 / 32  // calculate the correct sized bitmap
 uint32_t bitmap[BITMAP_SIZE];
 
 uint32_t next_page_table;
 
+uint32_t heap_current;
+uint32_t heap_mapped;
 
 void init_paging(void) {
+    logf("%x\n",BITMAP_SIZE);
+
     /* Register page fault handler */
     register_interrupt_handler(14, page_fault_handler);
 
@@ -58,6 +61,7 @@ void init_paging(void) {
 
     init_page_frame_allocator();
     init_page_table_allocator();
+    init_heap_allocator();
 
     /* Identity map the VGA buffer so that we can still write to
        the VGA terminal without immediately page faulting */
@@ -68,15 +72,8 @@ void init_paging(void) {
     enable_paging();
 
 
-    // Some test code to test out paging
-    // Can be deleted later
-    uint32_t* random_page = allocate_page_frame(0x801000);
-    uint32_t* another_one = allocate_page_frame(0xF000000);
-    logf("%x\n", random_page);
-    logf("First bitmap entry: %x\n", bitmap[0]);
-    logf("Random value from page: %x\n", *random_page);
-    memset(random_page, 0, PAGE_SIZE);
-    logf("Should be zero: %x\n", *random_page);
+    /* TODO: gotta fix this bug, I don't know why it page faults */
+    // uint32_t* random_page = allocate_page_frame(0x00900000);
 }
 
 void init_page_frame_allocator() {
@@ -84,11 +81,11 @@ void init_page_frame_allocator() {
     memset(bitmap, 0, sizeof(bitmap));
 
     /* Make sure the allocator starts and ends at a page aligned address */
-    if (ALLOCATOR_AREA_START % PAGE_SIZE != 0) {
-        panic("Allocator does not start at a page aligned address!");
+    if (PAGE_FRAME_ALLOCATOR_AREA_START % PAGE_SIZE != 0) {
+        panic("Page Frame Allocator does not start at a page aligned address!");
     }
-    if (ALLOCATOR_AREA_END % PAGE_SIZE != 0) {
-        panic("Allocator does not end at a page aligned address!");
+    if (PAGE_FRAME_ALLOCATOR_AREA_END % PAGE_SIZE != 0) {
+        panic("Page Frame Allocator does not end at a page aligned address!");
     }
 }
 
@@ -97,11 +94,18 @@ void init_page_frame_allocator() {
 void init_page_table_allocator() {
     /* This is a watermark allocator which works for now */
     // TODO: change this from a watermark allocator later
-
+    
+    /* Make sure that the allocator starts and ends at a page aligned address */
+    if (PAGE_TABLE_AREA_START % PAGE_SIZE != 0) {
+        panic("Page Table Allocator does not start at a page aligned address!");
+    }
+    if (PAGE_TABLE_AREA_END % PAGE_SIZE != 0) {
+        panic("Page Table Allocator does not end at a page aligned address!");
+    }
     next_page_table = PAGE_TABLE_AREA_START;
 }
 
-uint32_t* allocate_page_frame(uint32_t virtual_address) {
+void* allocate_page_frame(uint32_t virtual_address) {
     /* Make sure the address is page aligned */
     if (virtual_address % PAGE_SIZE != 0) {
         panic("Trying to allocate page frame at unaligned address!");
@@ -129,13 +133,13 @@ uint32_t* allocate_page_frame(uint32_t virtual_address) {
         panic("Allocator has run out of space!");
     }
 
-    const uint32_t physical_address = ALLOCATOR_AREA_START + (PAGE_SIZE * page_index);
+    const uint32_t physical_address = PAGE_FRAME_ALLOCATOR_AREA_START + (PAGE_SIZE * page_index);
     map_page(page_directory, virtual_address, physical_address);
 
     return (uint32_t*) virtual_address;
 }
 
-uint32_t* allocate_page_table() {
+void* allocate_page_table() {
     /* Check to make sure we still have more preallocated page tables */
     if (next_page_table >= PAGE_TABLE_AREA_END) {
         panic("Page table allocator has run out of space!");
@@ -182,6 +186,49 @@ void page_fault_handler(context_t* context) {
     logf("[PANIC] Page fault, hanging\n");
     while(1);
 }
+
+/****************************************************
+ * Heap Allocator:
+ * - A watermark heap alllocator for the time being
+ * TODO: change this from a watermark allocator later
+ ****************************************************/
+
+void init_heap_allocator() {
+    if (HEAP_ALLOCATOR_AREA_START % 4096 != 0) {
+        panic("Heap allocator does not start at a page aligned address!");
+    }
+
+    if (HEAP_ALLOCATOR_AREA_END % 4096 != 0) {
+        panic("Heap allocator does not end at a page aligned address!");
+    }
+
+    /* Both the current location of the heap and the mapped pointer
+       should start at the same location */
+    heap_current = HEAP_ALLOCATOR_AREA_START;
+    heap_mapped = HEAP_ALLOCATOR_AREA_START;
+}
+
+void* heap_allocate(size_t size) {
+    logf("Heap allocation of size %u bytes at address %x\n", size, heap_current);
+    if (heap_current + size > HEAP_ALLOCATOR_AREA_END) {
+        panic("Heap is overflowing! Cannot allocate!");
+    }
+
+    /* Allocate new pages for the heap on demand */
+    while (heap_current + size > heap_mapped) {
+        allocate_page_frame(heap_mapped);
+        heap_mapped += PAGE_SIZE;
+    }
+
+    /* Clear the memory before allocating */
+    memset(heap_current, 0, size);
+
+    uint32_t ret = heap_current;
+    heap_current += size;
+
+    return (void*) ret;
+}
+
 unsigned char lowmem(){
     outb(0x70, 0x30);
     return inb(0x71);

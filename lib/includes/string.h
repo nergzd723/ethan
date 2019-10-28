@@ -10,5 +10,6 @@ char* strcat(char *dest, const char *src);
 int strcmp(const char *l, const char *r);
 //char* strcatbyte(char dest[], char source);
 char* append(char* s, char c);
+char* strcpy(char* destination, const char* source);
 
 #endif
