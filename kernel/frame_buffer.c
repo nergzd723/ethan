@@ -96,10 +96,10 @@ void move_cursor_to_pos(unsigned short pos)
 // down arrow pointer
 void downarrowp()
 {
-  int i = cursor_pos += 79;
-  if (i > FB_CELLS){
-    return;
-  }
+//  int i = cursor_pos += 79;
+//  if (i > FB_CELLS){
+//    return;
+//  }
   cursor_pos += 79;
   move_cursor_to_pos(cursor_pos);
 }
