@@ -1,1 +1,0 @@
-void boot_stage1();
