@@ -4,6 +4,16 @@
 #include <stdint.h>
 #include <stddef.h>
 
+// Logical markers for memory regions
+#define KERNEL_START 0x00100000
+#define KERNEL_END   0x00300000
+#define PAGE_TABLE_AREA_START 0x00500000
+#define PAGE_TABLE_AREA_END 0x00900000
+#define PAGE_FRAME_ALLOCATOR_AREA_START 0x00900000
+#define PAGE_FRAME_ALLOCATOR_AREA_END 0x0F000000
+#define HEAP_ALLOCATOR_AREA_START 0x0F000000
+#define HEAP_ALLOCATOR_AREA_END 0x11000000
+
 #define PAGE_SIZE 4096
 #define kalloc(a) heap_allocate(a)
 

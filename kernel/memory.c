@@ -10,16 +10,6 @@
 
 #define PAGE_SIZE 4096
 
-// Logical markers for memory regions
-#define KERNEL_START 0x00100000
-#define KERNEL_END   0x00300000
-#define PAGE_TABLE_AREA_START 0x00500000
-#define PAGE_TABLE_AREA_END 0x00900000
-#define PAGE_FRAME_ALLOCATOR_AREA_START 0x00900000
-#define PAGE_FRAME_ALLOCATOR_AREA_END 0x0F000000
-#define HEAP_ALLOCATOR_AREA_START 0x0F000000
-#define HEAP_ALLOCATOR_AREA_END 0x11000000
-
 #define BIT_SIZE_OF_UINT32 32
 #define INTERRUPT_NUMBER_PAGE_FAULT 14
 
@@ -121,6 +111,8 @@ void* page_frame_allocate(uint32_t virtual_address) {
 //-----------------------------------------------------------------------------
 
 void init_page_table_allocator() {
+    
+    identity_map_range(page_directory, PAGE_TABLE_AREA_START, PAGE_TABLE_AREA_END);
     // Clear the page table bitmap (all page tables are unmapped)
     memset(page_table_bitmap, 0, sizeof(page_frame_bitmap));
 

@@ -52,9 +52,18 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
 
    }
 
-   if (mbd->flags & (1 << 7)) {
-      /* Safely read the drive regions */
-      // TODO
+   if (mbd->mods_count <= 0) {
+      panic("Module counter shows no ramdisk present");
+   }
+   // Locate the ramdisk
+   uint32_t initrd_start = *((uint32_t*) mbd->mods_addr);
+   uint32_t initrd_end = *(uint32_t*)(mbd->mods_addr+4);
+   logf("initrd_start: %x\n", initrd_start);
+   logf("initrd_end: %x\n", initrd_end);
+
+   // Make sure the ramdisk does not bleed past the kernel end
+   if (initrd_end > KERNEL_END) {
+      panic("Ramdisk is bleeding past the kernel area!");
    }
    boot_stage1();
    //clear_screen(); really shouldnt
