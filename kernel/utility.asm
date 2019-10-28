@@ -58,16 +58,16 @@ cpu_cycle:
    xor edx,eax
    ret
 ; switch_to_task(process_t* other)
-extern prev
-global switch_to_task
-switch_to_task:
+extern previous_task
+global switch_to_task_stub
+switch_to_task_stub:
    ; -fomit-frame-pointer for this function
    push ebx
    push esi
    push edi
    push ebp
 
-   mov edi, [prev]
+   mov edi, [previous_task]
    mov [edi + 0x18], esp  ; kernel_stack_top = esp
 
    ; Load the state for the next task
@@ -90,4 +90,3 @@ switch_to_task:
    pop ebx
 
    ret   ; Load next task's EIP from its kernel stack
-   

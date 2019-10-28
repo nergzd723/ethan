@@ -11,5 +11,8 @@ int getsecfromboot();
 void wait(int second);
 void waitm(int msec);
 uint32_t getmsecfromboot();
+uint32_t read_timer(void);
+uint32_t elapsed_time(uint32_t start, uint32_t end);
+
 
 #endif
