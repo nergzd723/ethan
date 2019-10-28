@@ -44,12 +44,12 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "meminfo") == 0){
         printf("\n");
-        printf(inttostr(memorycount()));
+        printf(inttostr(lower_memory()+upper_memory()));
         printf("K mem total, ");
-        printf(inttostr(lowmem()));
+        printf(inttostr(lower_memory()));
         printf("K lowmem, ");
-        printf(inttostr(memorycount()-lowmem()));
-        printf("K USABLE extended memory\n");
+        printf(inttostr(upper_memory()));
+        printf("K USABLE extended memory");
     }
     fb_newline();
     printf(">>> ");
