@@ -18,18 +18,14 @@
 #include <boot.h>
 #include "multiboot.h"
 
+uint32_t upper_mem = 0;
+int lower_mem = 0;
 
 uint32_t upper_memory(){
-   if (mbd->flags & MULTIBOOT_INFO_MEMORY) {
-      return mbd->mem_upper;
-   }
-   return 0;
+   return upper_mem;
 }
 int lower_memory(){
-   if (mbd->flags & MULTIBOOT_INFO_MEMORY) {
-      return mbd->mem_lower;
-   }
-   return 0;
+   return lower_mem;
 }
 
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
@@ -45,7 +41,9 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    logf("mbd->flags: %x\n", mbd->flags);
    if (mbd->flags & MULTIBOOT_INFO_MEMORY) {
       logf("mem_lower = %x\n", mbd->mem_lower);
+      lower_mem = mbd->mem_lower;
       logf("mem_upper = %x\n", mbd->mem_upper);
+      upper_mem = mbd->mem_upper;
    }
 
    /* Log a map of the regions of memory */
