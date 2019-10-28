@@ -21,7 +21,7 @@ void boot_stage2(){
    waitm(30);
    clear_screen();
    printf("Ethanium booted! Got ");
-   printf(inttostr(memorycount()));
+   printf(inttostr(upper_memory()+lower_memory()));
    printf("K mem total, ");
    printf(inttostr(lower_memory()));
    printf("K lowmem, ");
