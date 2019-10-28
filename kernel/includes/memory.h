@@ -15,6 +15,8 @@ unsigned char himem();
 uint32_t page_directory[1024] __attribute__((aligned(PAGE_SIZE)));
 uint32_t first_page_table[1024] __attribute__((aligned(PAGE_SIZE)));
 uint32_t second_page_table[1024] __attribute__((aligned(PAGE_SIZE)));
+uint32_t upper_memory();
+int lower_memory();
 
 void init_paging(void);
 void* heap_allocate(size_t size);

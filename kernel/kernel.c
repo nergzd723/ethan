@@ -18,6 +18,20 @@
 #include <boot.h>
 #include "multiboot.h"
 
+
+uint32_t upper_memory(){
+   if (mbd->flags & MULTIBOOT_INFO_MEMORY) {
+      return mbd->mem_upper;
+   }
+   return 0;
+}
+int lower_memory(){
+   if (mbd->flags & MULTIBOOT_INFO_MEMORY) {
+      return mbd->mem_lower;
+   }
+   return 0;
+}
+
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();
    logf("Logger initialized\n");

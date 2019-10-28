@@ -6,6 +6,7 @@
 #include <shutdown.h>
 #include <logger.h>
 #include <cpu_speed.h>
+#include <memory.h>
 
 char lastcommbuf[FB_CELLS] = "";
 
@@ -40,6 +41,15 @@ void fb_newlinehandler(){
     if (strcmp(command, "reboot") == 0){
         logf("\nRebooting\n");
         reboot();
+    }
+    if (strcmp(command, "meminfo") == 0){
+        printf("\n");
+        printf(inttostr(memorycount()));
+        printf("K mem total, ");
+        printf(inttostr(lowmem()));
+        printf("K lowmem, ");
+        printf(inttostr(memorycount()-lowmem()));
+        printf("K USABLE extended memory\n");
     }
     fb_newline();
     printf(">>> ");

@@ -23,11 +23,11 @@ void boot_stage2(){
    printf("Ethanium booted! Got ");
    printf(inttostr(memorycount()));
    printf("K mem total, ");
-   printf(inttostr(lower_memory()));
+   printf(inttostr(lowmem()));
    printf("K lowmem, ");
-   printf(inttostr(upper_memory()));
+   printf(inttostr(memorycount()-lowmem()));
    printf("K USABLE extended memory\n");
-   if (memorycount() > 65535){
+   if (memorycount() == 65535){
        printf("It seems that you have more than 64M of RAM. Ethanium may not work properly\n");
    }
    printf(inttostr(discoverspeed()));
