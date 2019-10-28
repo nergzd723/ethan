@@ -12,6 +12,8 @@
 #include <cpu_speed.h>
 #include <random.h>
 #include <boot.h>
+#include <tasking.h>
+#include <process.h>
 
 void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
