@@ -67,6 +67,10 @@ void boot_stage1(){
    init_timer(TIMER_FREQUENCY);
    printf("OK\n");
    logf("Timer initialized\n");
+   printf("Tasking...\n");
+   init_tasking();
+   printf("OK\n");
+   logf("Tasking initialized\n");
    printf("Entering second stage...\n");
    boot_stage2();
 }

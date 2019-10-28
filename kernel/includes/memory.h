@@ -5,6 +5,7 @@
 #include <stddef.h>
 
 #define PAGE_SIZE 4096
+#define kalloc(a) heap_allocate(a)
 
 unsigned short memorycount();
 unsigned char lowmem();
