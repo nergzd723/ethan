@@ -224,7 +224,7 @@ void* heap_allocate(size_t size) {
     }
 
     /* Clear the memory before allocating */
-    memset((void*), 0, size);
+    memset((void*)heap_current, 0, size);
 
     uint32_t ret = heap_current;
     heap_current += size;
