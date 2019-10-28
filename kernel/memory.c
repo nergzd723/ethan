@@ -39,6 +39,10 @@ uint32_t next_page_table;
 uint32_t heap_current;
 uint32_t heap_mapped;
 
+void double_fault_handler(context_t* context){
+    panic("Double fault!");
+}
+
 void init_paging(void) {
     logf("%x\n",BITMAP_SIZE);
 
@@ -186,9 +190,6 @@ void page_fault_handler(context_t* context) {
     logf("[PANIC] Page fault, trying to resolve\n");
 }
 
-void double_fault_handler(context_t* context){
-    panic("Double fault!");
-}
 /****************************************************
  * Heap Allocator:
  * - A watermark heap alllocator for the time being
@@ -223,7 +224,7 @@ void* heap_allocate(size_t size) {
     }
 
     /* Clear the memory before allocating */
-    memset(heap_current, 0, size);
+    memset((void*), 0, size);
 
     uint32_t ret = heap_current;
     heap_current += size;
