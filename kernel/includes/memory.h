@@ -3,10 +3,8 @@
 
 #include <stdint.h>
 
-#define KERNEL_START_PMA 0x00100000
+#define PAGE_SIZE 4096
 
-uint32_t page_directory[1024] __attribute__((aligned(4096)));
-uint32_t init_page_table[1024] __attribute__((aligned(4096)));
 unsigned short memorycount();
 unsigned char lowmem();
 unsigned char himem();
