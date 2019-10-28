@@ -1,6 +1,8 @@
 #include <keyboard.h>
 #include <shutdown.h>
 #include <io.h>
+#include <frame_buffer.h>
+
 void reboot()
 {
     asm volatile ("cli");
@@ -12,4 +14,11 @@ loop:
 
 void shutdown_qemu(){
     outb(0x604, 0x2/*000*/); //doesnt work
+}
+void shutdown(){
+    asm volatile ("cli");
+    clear_screen();
+    printf("                   You can now turn your PC off if it doesn`t turn off by itself\n")
+    shutdownasm();
+    asm volatile ("hlt");
 }

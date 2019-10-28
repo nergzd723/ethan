@@ -1,7 +1,7 @@
 global shutdown
 ;will try to enter v86 mode and shut down with 0x15 int
 [bits 32]
-shutdown:
+shutdownasm:
 	cli
 	pushfd
 	or dword [esp], (1 << 17)
