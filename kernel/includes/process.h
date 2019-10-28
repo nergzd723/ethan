@@ -8,6 +8,7 @@
 #define RUNNING 0
 #define READY_TO_RUN 1
 #define BLOCKED 2
+#define TERMINATED 3
 typedef struct _process_t {
     uint32_t pid;
     char task_name[MAX_PROCESS_NAME_LENGTH];
