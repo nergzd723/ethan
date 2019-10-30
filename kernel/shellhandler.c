@@ -9,9 +9,39 @@
 #include <memory.h>
 
 char lastcommbuf[FB_CELLS] = "";
+int inputactive = 0;
+char inputbuf[FB_CELLS] = "";
+
+void inputlistener(char* comm){
+    strcpy(inputbuf, comm);
+}
+
+void initinput(){
+    inputactive = 1;
+}
+
+void closeinput(){
+    inputactive = 0;
+}
+
+char* input(){
+    if (inputactive == 1){
+        fb_newline();
+        return inputbuf;
+    }
+    return "";
+}
 
 void fb_newlinehandler(){
     char* command = lastcommbuf;
+    if (inputactive == 1){
+        inputlistener(command);
+        memset(&lastcommbuf[0], 0, sizeof(lastcommbuf));
+        return;
+    }
+    if (strcmp(command, "add") == 0){
+        add();
+    }
     if (strcmp(command, "randomb") == 0){
         int a = rand();
         unsigned char c = a % 256;
