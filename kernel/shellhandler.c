@@ -76,6 +76,12 @@ void fb_newlinehandler(){
         printf(input());
         closeinput();
     }
+    if (strcmp(command, "overflow") == 0){
+        while (1){
+            logf("Let the hellrace begin!");
+            malloc(sizeof(long));
+        }
+    }
     if (strcmp(command, "randomb") == 0){
         int a = rand();
         unsigned char c = a % 256;
