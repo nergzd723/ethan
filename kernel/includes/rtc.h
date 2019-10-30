@@ -1,6 +1,8 @@
 #ifndef _RTC_H_
 #define _RTC_H_
 
+time_t global_time;
+
 typedef struct {
     unsigned char second;
     unsigned char minute;

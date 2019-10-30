@@ -8,7 +8,7 @@
 #include <cpu_speed.h>
 #include <memory.h>
 #include <rtc.h>
-time_t* current_time;
+time_t* current_time = &global_time;
 
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
