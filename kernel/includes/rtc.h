@@ -1,8 +1,6 @@
 #ifndef _RTC_H_
 #define _RTC_H_
 
-time_t global_time;
-
 typedef struct {
     unsigned char second;
     unsigned char minute;
@@ -13,6 +11,7 @@ typedef struct {
     unsigned char year;
 } time_t;
 
+time_t global_time;
 
 extern void gettime(time_t* time);
 extern void rtc_install(void);
