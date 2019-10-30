@@ -2,6 +2,9 @@
 #include <stdbool.h>
 #include <string.h>
 #include <isr.h>
+#include <string.h>
+#include <io.h>
+
 
 time_t global_time;
 bool bcd;
@@ -61,5 +64,5 @@ void rtc_install(void)
     bcd     =  !(status & 0x04); // check if data type is BCD
     write_register(0x0B, status);
     read_register(0x0C);
-    register_interrupt_handler(8, rtc_handler);
+    register_interrupt_handler(8, &rtc_handler);
 }
