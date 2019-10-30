@@ -159,7 +159,7 @@ void fb_write_byte(uint8_t b) {
   // Stop the cursor from going off the screen
   // TODO: advance the screen
   if (cursor_pos < FB_CELLS) {
-    move_cursor_to_pos(cursor_pos);
+    move_cursor_to_pos(cursor_pos++);
   }
   else{
     clear_screen();
