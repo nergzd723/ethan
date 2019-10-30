@@ -10,10 +10,11 @@
 #include <rtc.h>
 #include <cpuid.h>
 #include <stdbool.h>
+#include <liballoc.h>
 
 bool paging = false;
 
-time_t* current_time;
+time_t* current_time = malloc(sizeof(time_t));
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
 char inputbuf[FB_CELLS] = "";
@@ -54,7 +55,7 @@ void fb_newlinehandler(){
     if (strcmp(command, "add") == 0){
         add();
     }
-    if (strcmp(command, "paging") == 0){
+    if (false)/*(strcmp(command, "paging") == 0)*/{
         if (paging){
             printf("\nPaging off");
             logf("\nRebooting\n");
