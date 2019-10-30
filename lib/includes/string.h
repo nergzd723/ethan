@@ -11,6 +11,6 @@ int strcmp(const char *l, const char *r);
 //char* strcatbyte(char dest[], char source);
 char* append(char* s, char c);
 char* strcpy(char* destination, const char* source);
-void atoi(char *str, int* a);
-
+int atoi (const char * str);
+int isdigit(char c);
 #endif

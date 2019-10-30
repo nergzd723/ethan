@@ -1,12 +1,13 @@
 #include <string.h>
 
-void atoi(char *str, int* a)
-{
-	int k = 0;
-	while(*str)
-	{
-		k = (k<<3)+(k<<1)+(*str)-'0';
-		str++;
-	}
-	*a = k;
+int isdigit(char c) {
+  return c >= '0' && c <= '9';
 }
+
+int atoi (const char * str) {
+  int value = 0;
+  while(isdigit(*str)) {
+    value *= 10;
+    value += (*str)-'0';
+    str++;
+  }
