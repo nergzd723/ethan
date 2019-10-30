@@ -43,6 +43,9 @@ void double_fault_handler(context_t* context){
     panic("Double fault!");
 }
 
+int liballoc_free(void* ptr, int m){
+    return 0;
+}
 void init_paging(void) {
     logf("%x\n",BITMAP_SIZE);
 
@@ -189,6 +192,21 @@ void map_page(uint32_t* kernel_page_directory, uint32_t virtual_address, uint32_
 void page_fault_handler(context_t* context) {
     panic("Page fault, cant resolve!");
     
+}
+
+int liballoc_lock()
+{
+	return 0;
+}
+
+int liballoc_unlock()
+{
+	return 0;
+}
+
+void* liballoc_alloc(int size)
+{
+	return heap_allocate((uintptr_t) size);
 }
 
 /****************************************************
