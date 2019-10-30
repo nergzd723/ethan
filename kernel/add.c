@@ -16,4 +16,5 @@ void add(){
     printf("\n");
     printf(inttostr(i2+i1));
     printf("\n");
+    closeinput();
 }
