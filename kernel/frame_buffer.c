@@ -154,7 +154,7 @@ void fb_write_byte(uint8_t b) {
     fb_newline();
     return;
   }
-  fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
+  fb_write_cell(cursor_pos, b, FB_LIGHT_GREY, FB_BLACK);
   cursor_pos++;
   // Stop the cursor from going off the screen
   // TODO: advance the screen
