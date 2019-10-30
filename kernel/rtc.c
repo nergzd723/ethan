@@ -30,7 +30,7 @@ void gettime(time_t *time)
     memcpy(time, &global_time, sizeof(time_t));
 }
 
-void rtc_handler(struct context_t* r)
+void rtc_handler(context_t* context)
 {
     if(read_register(0x0C) & 0x10){
         if(bcd){
