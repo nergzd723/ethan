@@ -76,12 +76,13 @@ void fb_newlinehandler(){
         printf(inttostr(current_time->month));
         printf("-");
         printf(inttostr(current_time->year));
-        printf(" , ");
+        printf(", ");
         printf(inttostr(current_time->hour));
         printf(":");
         printf(inttostr(current_time->minute));
         printf(":");
         printf(inttostr(current_time->second));
+        printf("UTC");
     } 
     if (strcmp(command, "jibber") == 0){
         dojibberish();
