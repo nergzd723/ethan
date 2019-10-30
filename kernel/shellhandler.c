@@ -14,7 +14,6 @@
 
 bool paging = false;
 
-time_t* current_time = (time_t*)malloc(sizeof(time_t));
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
 char inputbuf[FB_CELLS] = "";
@@ -91,6 +90,7 @@ void fb_newlinehandler(){
         panic("USER_DEMAND_PANIC");
     }
     if (strcmp(command, "time") == 0){
+        time_t* current_time = (time_t*)malloc(sizeof(time_t));
         gettime(current_time);
         printf("\nIt is ");
         printf(inttostr(current_time->day_of_month));
