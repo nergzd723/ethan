@@ -11,6 +11,7 @@
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
 char inputbuf[FB_CELLS] = "";
+int inputpending = 0;
 
 void inputlistener(char* comm){
     strcpy(inputbuf, comm);
@@ -26,6 +27,7 @@ void closeinput(){
 
 char* input(){
     if (inputactive == 1){
+
         printf("\n");
         return inputbuf;
     }
@@ -35,8 +37,13 @@ char* input(){
 void fb_newlinehandler(){
     char* command = lastcommbuf;
     if (inputactive == 1){
+        if (inputpending == 0){
+            inputpending = 1;
+            return;
+        }
         inputlistener(command);
         memset(&lastcommbuf[0], 0, sizeof(lastcommbuf));
+        inputpending = 0;
         return;
     }
     if (strcmp(command, "add") == 0){
