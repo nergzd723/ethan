@@ -152,6 +152,5 @@ void CpuDetect()
 
         printf("CPU Name: ");
         printf(p);
-        printf("\n");
     }
 }

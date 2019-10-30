@@ -53,6 +53,7 @@ void fb_newlinehandler(){
         add();
     }
     if (strcmp(command, "cpuid") == 0){
+        printf("\n");
         CpuDetect();
     }
     if (strcmp(command, "input")== 0){
