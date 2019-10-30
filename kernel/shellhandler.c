@@ -26,7 +26,7 @@ void closeinput(){
 
 char* input(){
     if (inputactive == 1){
-        fb_newline();
+        printf("\n");
         return inputbuf;
     }
     return "";
