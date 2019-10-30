@@ -64,5 +64,5 @@ void rtc_install(void)
     bcd     =  !(status & 0x04); // check if data type is BCD
     write_register(0x0B, status);
     read_register(0x0C);
-    register_interrupt_handler(8, &rtc_handler);
+    register_interrupt_handler(40, &rtc_handler);
 }
