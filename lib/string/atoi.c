@@ -11,3 +11,4 @@ int atoi (const char * str) {
     value += (*str)-'0';
     str++;
   }
+}
