@@ -3,6 +3,7 @@
 #include <frame_buffer.h>
 
 void dojibberish(){
+    asm volatile("sti");
     clear_screen();
     while(1){
         waitm(1);
