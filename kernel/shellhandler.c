@@ -60,6 +60,7 @@ void fb_newlinehandler(){
             disable_paging();
         }
         else{
+            paging = true;
             printf("\nPaging on. Warning: things go wrong!");
             init_paging();
         }
