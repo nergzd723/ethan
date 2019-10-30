@@ -49,6 +49,11 @@ void fb_newlinehandler(){
     if (strcmp(command, "add") == 0){
         add();
     }
+    if (strcmp(command, "input")== 0){
+        initinput();
+        printf(input());
+        closeinput();
+    }
     if (strcmp(command, "randomb") == 0){
         int a = rand();
         unsigned char c = a % 256;
