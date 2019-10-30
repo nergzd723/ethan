@@ -13,4 +13,5 @@ char* append(char* s, char c);
 char* strcpy(char* destination, const char* source);
 int atoi (const char * str);
 int isdigit(char c);
+void* memcpy(void* restrict dstptr, const void* restrict srcptr, size_t size);
 #endif
