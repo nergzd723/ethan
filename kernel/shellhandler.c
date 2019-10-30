@@ -56,9 +56,11 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "paging") == 0){
         if (paging){
+            printf("\nPaging off");
             disable_paging();
         }
         else{
+            printf("\nPaging on. Warning: things go wrong!");
             init_paging();
         }
     }
