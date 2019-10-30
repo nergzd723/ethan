@@ -2,7 +2,7 @@
 C_SOURCES = $(wildcard $(KERNELDIR)/*.c lib/*/*.c)
 ASM_SOURCES = $(KERNELDIR)/utility.asm
 HEADERS = $(wildcard $(KERNELDIR)/*.h)
-CComp := "~/i386-unknown-elf/bin/i386-unknown-elf-gcc"
+CComp = ~/i386-unknown-elf/bin/i386-unknown-elf-gcc
 
 BUILDDIR = build
 KERNELDIR = kernel
