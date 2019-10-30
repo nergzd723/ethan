@@ -60,8 +60,8 @@ void boot_stage1(){
     printf("OK\n");
     logf("Keyboard intialized\n");
     logf("IDT and irq handlers operational\n");
-   printf("Initializing paging...\n");
-   init_paging();
+   //printf("Initializing paging...\n"); only problems.... for now
+   //init_paging();
    printf("OK\n");
    logf("Paging initialized\n");
    printf("Timer...\n");

@@ -11,8 +11,6 @@ typedef struct {
     unsigned char year;
 } time_t;
 
-time_t global_time;
-
 extern void gettime(time_t* time);
 extern void rtc_install(void);
 

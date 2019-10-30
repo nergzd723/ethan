@@ -5,7 +5,7 @@
 #include <string.h>
 #include <io.h>
 
-
+time_t global_time;
 bool bcd;
 unsigned char read_register(unsigned char reg)
 {
