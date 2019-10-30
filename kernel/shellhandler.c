@@ -14,7 +14,7 @@
 
 bool paging = false;
 
-time_t* current_time = malloc(sizeof(time_t));
+time_t* current_time = (time_t*)malloc(sizeof(time_t));
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
 char inputbuf[FB_CELLS] = "";
