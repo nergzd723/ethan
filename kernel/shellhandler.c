@@ -71,14 +71,20 @@ void fb_newlinehandler(){
         printf("\n");
         CpuDetect();
     }
+    if (strcmp(command, "zerodiv") == 0){
+        int i = 0;
+        int b = 1;
+        int d = b/i;
+        printf("\nRetuned from zero division exception");
+    }
     if (strcmp(command, "input")== 0){
         initinput();
         printf(input());
         closeinput();
     }
     if (strcmp(command, "overflow") == 0){
+        logf("Let the hellrace begin!");
         while (1){
-            logf("Let the hellrace begin!");
             malloc(sizeof(long));
         }
     }
