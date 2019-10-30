@@ -10,10 +10,10 @@
 #include <rtc.h>
 #include <cpuid.h>
 #include <stdbool.h>
+#include <liballoc.h>
 
 bool paging = false;
 
-time_t* current_time;
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
 char inputbuf[FB_CELLS] = "";
@@ -54,7 +54,7 @@ void fb_newlinehandler(){
     if (strcmp(command, "add") == 0){
         add();
     }
-    if (strcmp(command, "paging") == 0){
+    if (false)/*(strcmp(command, "paging") == 0)*/{
         if (paging){
             printf("\nPaging off");
             logf("\nRebooting\n");
@@ -76,6 +76,12 @@ void fb_newlinehandler(){
         printf(input());
         closeinput();
     }
+    if (strcmp(command, "overflow") == 0){
+        while (1){
+            logf("Let the hellrace begin!");
+            malloc(sizeof(long));
+        }
+    }
     if (strcmp(command, "randomb") == 0){
         int a = rand();
         unsigned char c = a % 256;
@@ -90,6 +96,7 @@ void fb_newlinehandler(){
         panic("USER_DEMAND_PANIC");
     }
     if (strcmp(command, "time") == 0){
+        time_t* current_time = (time_t*)malloc(sizeof(time_t));
         gettime(current_time);
         printf("\nIt is ");
         printf(inttostr(current_time->day_of_month));
