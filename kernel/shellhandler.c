@@ -7,6 +7,8 @@
 #include <logger.h>
 #include <cpu_speed.h>
 #include <memory.h>
+#include <rtc.h>
+time_t* current_time;
 
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
@@ -27,7 +29,6 @@ void closeinput(){
 
 char* input(){
     if (inputactive == 1){
-
         printf("\n");
         return inputbuf;
     }
@@ -67,6 +68,21 @@ void fb_newlinehandler(){
         printf("\npanicking");
         panic("USER_DEMAND_PANIC");
     }
+    if (strcmp(command, "time") == 0){
+        gettime(current_time);
+        printf("\nIt is ");
+        printf(inttostr(current_time->day_of_month));
+        printf("-");
+        printf(inttostr(current_time->month));
+        printf("-");
+        printf(inttostr(current_time->year));
+        printf(" , ");
+        printf(inttostr(current_time->hour));
+        printf(":");
+        printf(inttostr(current_time->minute));
+        printf(":");
+        printf(inttostr(current_time->second));
+    } 
     if (strcmp(command, "jibber") == 0){
         dojibberish();
     }

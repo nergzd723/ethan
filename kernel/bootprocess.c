@@ -12,6 +12,7 @@
 #include <cpu_speed.h>
 #include <random.h>
 #include <boot.h>
+#include <rtc.h>
 
 void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
@@ -67,6 +68,9 @@ void boot_stage1(){
    init_timer(TIMER_FREQUENCY);
    printf("OK\n");
    logf("Timer initialized\n");
+   printf("Time-of-day clock...\n");
+   rtc_install();
+   printf("OK\n");
    printf("Entering second stage...\n");
    boot_stage2();
 }
