@@ -8,6 +8,8 @@
 #include <cpu_speed.h>
 #include <memory.h>
 #include <rtc.h>
+#include <cpuid.h>
+
 time_t* current_time;
 
 char lastcommbuf[FB_CELLS] = "";
@@ -49,6 +51,9 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "add") == 0){
         add();
+    }
+    if (strcmp(command, "cpuid") == 0){
+        CpuDetect();
     }
     if (strcmp(command, "input")== 0){
         initinput();
