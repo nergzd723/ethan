@@ -9,9 +9,11 @@
 #include <memory.h>
 #include <rtc.h>
 #include <cpuid.h>
+#include <stdbool.h>
+
+bool paging = false;
 
 time_t* current_time;
-
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
 char inputbuf[FB_CELLS] = "";
@@ -52,6 +54,15 @@ void fb_newlinehandler(){
     if (strcmp(command, "add") == 0){
         add();
     }
+    if (strcmp(command, "paging") == 0){
+        if (paging){
+            disable_paging();
+        }
+        else{
+            init_paging();
+        }
+    }
+    
     if (strcmp(command, "cpuid") == 0){
         printf("\n");
         CpuDetect();
