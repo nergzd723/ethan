@@ -4,7 +4,7 @@
 #include <logger.h>
 #include <stdint.h>
 
-uint64_t tick = 0;
+uint32_t tick = 0;
 int sec = 0;
 uint32_t msec = 0;
 
