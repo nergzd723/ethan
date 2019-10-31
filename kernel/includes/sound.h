@@ -20,9 +20,9 @@
 #define A7 3500
 #define B7 3950
 #define HEX 1
-#define OCTAL 2
-#define QUADRO 4
-#define DOUBLE 7
-#define LONG 10
+#define OCTAL 4
+#define QUADRO 8
+#define DOUBLE 16
+#define LONG 32
 void beep();
 void happy();
