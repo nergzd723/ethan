@@ -137,6 +137,7 @@ void fb_newlinehandler(){
                   H---C-----C---H\n\
                       |     |\n\
                       H     H\n");
+        printf("\nCodename: Fluffy Flaafy");
     }
     if (strcmp(command, "reboot") == 0){
         logf("\nRebooting\n");
