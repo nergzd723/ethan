@@ -204,6 +204,14 @@ int liballoc_unlock()
 	return 0;
 }
 
+void disable_paging(void)
+{
+    asm volatile("movq %cr0, %rax\n\t"
+        "movq $0x7FFFFFFEFFFFFFFF, %rbx\n\t"
+        "and  %rbx, %rax\n\t"
+        "movq %rax, %cr0\n\t");
+}
+
 void* liballoc_alloc(int size)
 {
 	return heap_allocate((uintptr_t) size);

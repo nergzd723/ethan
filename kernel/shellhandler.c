@@ -13,7 +13,7 @@
 #include <stdbool.h>
 #include <liballoc.h>
 
-bool paging = false;
+bool paging = true;
 
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
@@ -61,15 +61,16 @@ void fb_newlinehandler(){
     if (strcmp(command, "hb") == 0){
         happy();
     }
-    if (false)/*(strcmp(command, "paging") == 0)*/{
+    if (strcmp(command, "paging") == 0){
         if (paging){
             printf("\nPaging off");
-            logf("\nRebooting\n");
-            reboot();
+            disable_paging();
+            logf("Paging off?\n");
+            paging = false;
         }
         else{
             paging = true;
-            printf("\nPaging on. Warning: things go wrong!");
+            printf("\nPaging on.");
             init_paging();
         }
     }
