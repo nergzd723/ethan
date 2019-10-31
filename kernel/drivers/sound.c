@@ -31,7 +31,15 @@ static void playnote(uint32_t freq, uint32_t time){
 	waitm(time);
 	nosound();
 }
-
+void happy(){
+	playnote(C6, 100);
+	playnote(D6, 100);
+	playnote(E6, 100);
+	playnote(F6, 100);
+	playnote(G6, 100);
+	playnote(A6, 100);
+	playnote(B6, 100);
+}
  //Make a beep
  void beep() {
 	 asm volatile("sti");

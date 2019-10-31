@@ -6,3 +6,4 @@
 #define A6 1760
 #define B6 1975
 void beep();
+void happy();
