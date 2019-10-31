@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <io.h>
 #include <timer.h>
+#include <sound.h>
 
 //Play sound using built in speaker
 static void play_sound(uint32_t nFrequence) {
@@ -25,14 +26,44 @@ static void nosound() {
 	uint8_t tmp = inb(0x61) & 0xFC;
 
 	outb(0x61, tmp);
- }
+}
+
+//Make people happy
+void happy() {
+    // i fucking dont know WHY DOES STI TURN OFF????
+    asm volatile("sti");
+	play_sound(G6);
+	waitm(10);
+    play_sound(G6);
+	waitm(3);
+    play_sound(A6);
+	waitm(10);
+    play_sound(G6);
+    waitm(3);
+    play_sound(C6);
+    waitm(3);
+    play_sound(B6);
+	waitm(5);
+    play_sound(G6);
+	waitm(10);
+    play_sound(G6);
+	waitm(3);
+    play_sound(A6);
+	waitm(10);
+    play_sound(G6);
+    waitm(3);
+    play_sound(D6);
+    waitm(3);
+    play_sound(C6);
+	waitm(5);
+ 	nosound();
+}
 
 //Make a beep
 void beep() {
     // i fucking dont know WHY DOES STI TURN OFF????
     asm volatile("sti");
-	 play_sound(1000);
-	 waitm(10);
- 	 nosound();
-         //set_PIT_2(old_frequency);
+	play_sound(1000);
+	waitm(5);
+ 	nosound();
 }

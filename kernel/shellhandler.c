@@ -58,6 +58,9 @@ void fb_newlinehandler(){
     if (strcmp(command, "beep") == 0){
         beep();
     }
+    if (strcmp(command, "hb") == 0){
+        happy();
+    }
     if (false)/*(strcmp(command, "paging") == 0)*/{
         if (paging){
             printf("\nPaging off");
