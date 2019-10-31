@@ -6,6 +6,14 @@
 
 bool sound_blaster = false;
 
+unsigned short read_DSP(){
+    return inb(DSP_READ);
+}
+
+void write_DSP(unsigned char byte){
+    outb(DSP_WRITE, byte);
+}
+
 void reset_DSP(void) {
           outb(DSP_RESET, 1);
           sleep(3); //wait 3  microseconds
@@ -14,14 +22,6 @@ void reset_DSP(void) {
           if(read_DSP()==0xAA) { 
                     sound_blaster=true; 
           }
-}
-
-unsigned short read_DSP(){
-    return inb(DSP_READ);
-}
-
-void write_DSP(unsigned char byte){
-    outb(DSP_WRITE, byte);
 }
 
 
@@ -37,7 +37,12 @@ void sb16_init(void) {
 
           //get DSP version
           write_DSP(DSP_CMD_VERSION);
-          sb16_version_major=read_DSP();
-          sb16_version_minor=read_DSP();
+          int sb16_version_major=read_DSP();
+          int sb16_version_minor=read_DSP();
+          logf("Soundblaster v");
+          logf(sb16_version_major);
+          logf(".");
+          logf(sb16_version_minor);
+          logf("\n");
  
 }
