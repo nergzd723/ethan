@@ -4,6 +4,7 @@
 #include <sound.h>
 
  static void play_sound(uint32_t nFrequence) {
+	asm volatile("sti");
  	uint32_t Div;
  	uint8_t tmp;
  
