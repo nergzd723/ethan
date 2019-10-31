@@ -4,7 +4,7 @@
 #include <logger.h>
 #include <stdint.h>
 
-uint32_t tick = 0;
+uint64_t tick = 0;
 int sec = 0;
 uint32_t msec = 0;
 
@@ -16,7 +16,6 @@ static void timer_callback(context_t* context)
    }
    if (tick % TIMER_FREQUENCY == 0){
       sec++;
-      tick = 0;
    }
 }
 
@@ -26,6 +25,11 @@ uint32_t getmsecfromboot(){
 
 int getsecfromboot(){
    return sec;
+}
+void sleep(uint32_t microsecond){
+   int olds = tick;
+   while ((tick-olds) != microsecond){}
+   return;
 }
 
 //wait millisecond

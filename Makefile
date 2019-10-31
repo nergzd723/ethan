@@ -1,5 +1,5 @@
 # Automatically generate lists of sources using wildcards.
-C_SOURCES = $(wildcard $(KERNELDIR)/*.c lib/*/*.c)
+C_SOURCES = $(wildcard $(KERNELDIR)/*.c lib/*/*.c $(KERNELDIR)/drivers/*.c)
 ASM_SOURCES = $(KERNELDIR)/utility.asm
 HEADERS = $(wildcard $(KERNELDIR)/*.h)
 CComp = ~/i386-unknown-elf/bin/i386-unknown-elf-gcc
@@ -7,7 +7,7 @@ CComp = ~/i386-unknown-elf/bin/i386-unknown-elf-gcc
 BUILDDIR = build
 KERNELDIR = kernel
 
-CFLAGS := -nostdlib -ffreestanding -g -Wall -Wextra
+CFLAGS = -nostdlib -ffreestanding -g -Wall -Wextra
 
 OBJS = ${C_SOURCES:.c=.o}
 
