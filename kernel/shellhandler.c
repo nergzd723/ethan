@@ -121,9 +121,6 @@ void fb_newlinehandler(){
     if (strcmp(command, "jibber") == 0){
         dojibberish();
     }
-    if (strcmp(command, "pagedmp") == 0){
-        dump_array();
-    }
     if (strcmp(command, "shutdown") == 0){
         shutdown();
     }

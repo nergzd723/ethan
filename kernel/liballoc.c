@@ -10,7 +10,6 @@
 #define MAXCOMPLETE		5
 #define MAXEXP	32
 #define MINEXP	8	
-#define DEBUG
 #define MODE_BEST			0
 #define MODE_INSTANT		1
 
@@ -99,6 +98,7 @@ static void* 	liballoc_memcpy(void* s1, const void* s2, size_t n)
   return s1;
 }
 
+#ifdef DEBUG
 void dump_array()
 {
 	int i = 0;
@@ -128,7 +128,7 @@ void dump_array()
 	logf("'*' denotes a split to the left/right of a tag\n");
 	printf("\nArray dumped to kernel log");
 }
-
+#endif
 
 
 
