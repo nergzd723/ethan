@@ -19,8 +19,11 @@ void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
    __asm__ volatile("sti");
    printf("OK\n");
-   printf("Testing timer...");
+   printf("Testing timer...\n");
    waitm(30);
+   printf("SoundBlaster16...\n");
+   sb16_init();
+   printf("OK\n");
    clear_screen();
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));
@@ -71,9 +74,6 @@ void boot_stage1(){
    logf("Timer initialized\n");
    printf("Time-of-day clock...\n");
    rtc_install();
-   printf("OK\n");
-   printf("SoundBlaster16...\n");
-   sb16_init();
    printf("OK\n");
    printf("Entering second stage...\n");
    boot_stage2();
