@@ -32,30 +32,22 @@ static void nosound() {
 void happy() {
     // i fucking dont know WHY DOES STI TURN OFF????
     asm volatile("sti");
-	play_sound(G6);
+	play_sound(C6);
 	waitm(10);
-    play_sound(G6);
+    play_sound(D6);
 	waitm(10);
     play_sound(E6);
-	waitm(15);
-    play_sound(D6);
-    waitm(10);
-    play_sound(G6);
-    waitm(10);
+	waitm(10);
     play_sound(F6);
-	waitm(10);
+    waitm(10);
     play_sound(G6);
-	waitm(10);
-    play_sound(G6);
-	waitm(3);
+    waitm(10);
     play_sound(A6);
 	waitm(10);
+    play_sound(B6);
+	waitm(10);
     play_sound(G6);
-    waitm(3);
-    play_sound(D6);
-    waitm(3);
-    play_sound(C6);
-	waitm(5);
+    waitm(10);
  	nosound();
 }
 
