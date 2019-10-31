@@ -1,5 +1,6 @@
 #include <liballoc.h>
 #include <stddef.h>
+#include <frame_buffer.h>
 
 /**  Durand's Ridiculously Amazing Super Duper Memory functions.  */
 
@@ -9,15 +10,11 @@
 #define MAXCOMPLETE		5
 #define MAXEXP	32
 #define MINEXP	8	
-
+#define DEBUG
 #define MODE_BEST			0
 #define MODE_INSTANT		1
 
 #define MODE	MODE_BEST
-
-#ifdef DEBUG
-#include <stdio.h>
-#endif
 
 
 struct boundary_tag* l_freePages[MAXEXP];		//< Allowing for 2^MAXEXP blocks
@@ -132,7 +129,6 @@ static void dump_array()
 		}
 
 	printf("'*' denotes a split to the left/right of a tag\n");
-	fflush( stdout );
 }
 #endif
 
