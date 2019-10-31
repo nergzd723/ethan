@@ -57,10 +57,10 @@ void happy(){
 	playnote(F5, QUADRO);
 	playnote(C6, QUADRO);
 	playnote(C6, QUADRO);
-	playnote(B6, QUADRO);
-	playnote(G6, QUADRO);
-	playnote(A6, QUADRO);
-	playnote(G6, DOUBLE);
+	playnote(B5, QUADRO);
+	playnote(G5, QUADRO);
+	playnote(A5, QUADRO);
+	playnote(G5, DOUBLE);
 }
  //Make a beep
  void beep() {
