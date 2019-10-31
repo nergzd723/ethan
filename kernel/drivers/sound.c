@@ -57,6 +57,5 @@ void happy(){
 }
  //Make a beep
  void beep() {
-	 asm volatile("sti");
  	 playnote(C6, 100);
  }
