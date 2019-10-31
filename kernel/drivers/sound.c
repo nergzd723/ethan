@@ -36,25 +36,25 @@ void pause(uint32_t time){
 	waitm(time);
 }
 void happy(){
-	playnote(D5, OCTAL);
-	playnote(D5, OCTAL);
+	playnote(D5, QUADRO);
+	playnote(D5, QUADRO);
 	playnote(E5, QUADRO);
 	playnote(D5, QUADRO);
 	playnote(G5, QUADRO);
 	playnote(F5, DOUBLE);
-	playnote(D5, OCTAL);
-	playnote(D5, OCTAL);
+	playnote(D5, QUADRO);
+	playnote(D5, QUADRO);
 	playnote(E5, QUADRO);
 	playnote(D5, QUADRO);
 	playnote(A5, QUADRO);
 	playnote(G5, DOUBLE);
-	playnote(D5, OCTAL);
-	playnote(D5, OCTAL);
-	playnote(D7, OCTAL);
-	playnote(B5, OCTAL);
-	playnote(A5, OCTAL);
-	playnote(G5, OCTAL);
-	playnote(F5, OCTAL);
+	playnote(D5, QUADRO);
+	playnote(D5, QUADRO);
+	playnote(D7, QUADRO);
+	playnote(B5, QUADRO);
+	playnote(A5, QUADRO);
+	playnote(G5, QUADRO);
+	playnote(F5, QUADRO);
 }
  //Make a beep
  void beep() {

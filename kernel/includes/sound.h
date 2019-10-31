@@ -20,7 +20,7 @@
 #define A7 3500
 #define B7 3950
 #define HEX 6
-#define OCTAL 10
+#define OCTAL 15
 #define QUADRO 16
 #define DOUBLE 24
 #define LONG 40
