@@ -59,7 +59,7 @@ void fb_newlinehandler(){
         beep();
     }
     if (strcmp(command, "hb") == 0){
-        happy();
+        beep();
     }
     if (false)/*(strcmp(command, "paging") == 0)*/{
         if (paging){
