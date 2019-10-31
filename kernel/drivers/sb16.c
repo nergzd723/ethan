@@ -16,7 +16,7 @@ void write_DSP(unsigned char byte){
 
 void reset_DSP(void) {
           outb(DSP_RESET, 1);
-          sleep(3); //wait 3  microseconds
+          waitm(3); //wait 3  microseconds
           outb(DSP_RESET, 0);
  
           if(read_DSP()==0xAA) { 
