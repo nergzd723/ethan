@@ -32,7 +32,7 @@ void beep() {
     // i fucking dont know WHY DOES STI TURN OFF????
     asm volatile("sti");
 	 play_sound(1000);
-	 waitm(100);
+	 waitm(1);
  	 nosound();
          //set_PIT_2(old_frequency);
 }
