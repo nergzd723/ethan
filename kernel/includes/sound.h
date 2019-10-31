@@ -19,10 +19,10 @@
 #define G7 3135
 #define A7 3500
 #define B7 3950
-#define HEX 4
-#define OCTAL 6
-#define QUADRO 12
-#define DOUBLE 18
-#define LONG 36
+#define HEX 6
+#define OCTAL 10
+#define QUADRO 16
+#define DOUBLE 24
+#define LONG 40
 void beep();
 void happy();
