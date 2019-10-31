@@ -1,4 +1,6 @@
 #include <stdint.h>
+#include <io.h>
+#include <timer.h>
 
 //Play sound using built in speaker
 static void play_sound(uint32_t nFrequence) {
@@ -28,7 +30,7 @@ static void nosound() {
 //Make a beep
 void beep() {
 	 play_sound(1000);
-	 timer_wait(10);
+	 waitm(100);
  	 nosound();
          //set_PIT_2(old_frequency);
 }
