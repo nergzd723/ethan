@@ -32,28 +32,29 @@ static void playnote(uint32_t freq, uint32_t time){
 	waitm(time);
 	nosound();
 }
+void pause(uint32_t time){
+	waitm(time);
+}
 void happy(){
-	playnote(C5, 1);
-	playnote(D5, 1);
-	playnote(E5, 1);
-	playnote(F5, 1);
-	playnote(G5, 1);
-	playnote(A5, 1);
-	playnote(B5, 1);
-	playnote(C6, 1);
-	playnote(D6, 1);
-	playnote(E6, 1);
-	playnote(F6, 1);
-	playnote(G6, 1);
-	playnote(A6, 1);
-	playnote(B6, 1);
-	playnote(C7, 1);
-	playnote(D7, 1);
-	playnote(E7, 1);
-	playnote(F7, 1);
-	playnote(G7, 1);
-	playnote(A7, 1);
-	playnote(B7, 1);
+	playnote(D5, OCTAL);
+	playnote(D5, OCTAL);
+	playnote(E5, QUADRO);
+	playnote(D5, QUADRO);
+	playnote(G5, QUADRO);
+	playnote(F5, DOUBLE);
+	playnote(D5, OCTAL);
+	playnote(D5, OCTAL);
+	playnote(E5, QUADRO);
+	playnote(D5, QUADRO);
+	playnote(A5, QUADRO);
+	playnote(G5, DOUBLE);
+	playnote(D5, OCTAL);
+	playnote(D5, OCTAL);
+	playnote(D7, OCTAL);
+	playnote(B5, OCTAL);
+	playnote(A5, OCTAL);
+	playnote(G5, OCTAL);
+	playnote(F5, OCTAL);
 }
  //Make a beep
  void beep() {
