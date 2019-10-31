@@ -100,8 +100,6 @@ static void* 	liballoc_memcpy(void* s1, const void* s2, size_t n)
 }
 
  
-
-#ifdef DEBUG
 static void dump_array()
 {
 	int i = 0;
@@ -130,7 +128,6 @@ static void dump_array()
 
 	printf("'*' denotes a split to the left/right of a tag\n");
 }
-#endif
 
 
 
