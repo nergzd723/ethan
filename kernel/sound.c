@@ -33,11 +33,11 @@ void happy() {
     // i fucking dont know WHY DOES STI TURN OFF????
     asm volatile("sti");
 	play_sound(G6);
-	waitm(10);
+	waitm(25);
     play_sound(G6);
-	waitm(3);
-    play_sound(A6);
 	waitm(10);
+    play_sound(A6);
+	waitm(25);
     play_sound(G6);
     waitm(3);
     play_sound(C6);
