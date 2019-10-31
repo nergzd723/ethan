@@ -114,7 +114,7 @@ void fb_newlinehandler(){
         current_time = (time_t*)malloc(sizeof(time_t));
         }
         else{
-            current_time = &current_time;
+            time_t* current_time;
         }
         gettime(current_time);
         printf("\nIt is ");
