@@ -206,10 +206,10 @@ int liballoc_unlock()
 
 void disable_paging(void)
 {
-    asm volatile("movq %cr0, %eax\n\t"
-        "movq $0x7FFFFFFEFFFFFFFF, %ebx\n\t"
+    asm volatile("mov %cr0, %eax\n\t"
+        "mov $0x7FFFFFFEFFFFFFFF, %ebx\n\t"
         "and  %ebx, %eax\n\t"
-        "movq %eax, %cr0\n\t");
+        "mov %eax, %cr0\n\t");
 }
 
 void* liballoc_alloc(int size)
