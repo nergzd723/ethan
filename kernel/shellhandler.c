@@ -113,6 +113,9 @@ void fb_newlinehandler(){
         if (paging){
         current_time = (time_t*)malloc(sizeof(time_t));
         }
+        else{
+            current_time = &current_time;
+        }
         gettime(current_time);
         printf("\nIt is ");
         printf(inttostr(current_time->day_of_month));
