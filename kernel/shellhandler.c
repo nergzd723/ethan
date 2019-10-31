@@ -8,6 +8,7 @@
 #include <cpu_speed.h>
 #include <memory.h>
 #include <rtc.h>
+#include <sound.h>
 #include <cpuid.h>
 #include <stdbool.h>
 #include <liballoc.h>
@@ -53,6 +54,9 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "add") == 0){
         add();
+    }
+    if (strcmp(command, "beep") == 0){
+        beep();
     }
     if (false)/*(strcmp(command, "paging") == 0)*/{
         if (paging){
