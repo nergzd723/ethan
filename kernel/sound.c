@@ -29,6 +29,8 @@ static void nosound() {
 
 //Make a beep
 void beep() {
+    // i fucking dont know WHY DOES STI TURN OFF????
+    asm volatile("sti");
 	 play_sound(1000);
 	 waitm(100);
  	 nosound();
