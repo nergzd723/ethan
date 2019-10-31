@@ -104,29 +104,31 @@ void dump_array()
 	int i = 0;
 	struct boundary_tag *tag = NULL;
 
-	printf("------ Free pages array ---------\n");
-	printf("System memory allocated: %i\n", l_allocated );
-	printf("Memory in used (malloc'ed): %i\n", l_inuse );
+	logf("------ Free pages array ---------\n");
+	logf("System memory allocated: %i\n", l_allocated );
+	logf("Memory in used (malloc'ed): %i\n", l_inuse );
 
 		for ( i = 0; i < MAXEXP; i++ )
 		{
-			printf("%.2i(%i): ",i, l_completePages[i] );
+			logf("%.2i(%i): ",i, l_completePages[i] );
 	
 			tag = l_freePages[ i ];
 			while ( tag != NULL )
 			{
-				if ( tag->split_left  != NULL  ) printf("*");
-				printf("%i", tag->real_size );
-				if ( tag->split_right != NULL  ) printf("*");
+				if ( tag->split_left  != NULL  ) logf("*");
+				logf("%i", tag->real_size );
+				if ( tag->split_right != NULL  ) logf("*");
 	
-				printf(" ");
+				logf(" ");
 				tag = tag->next;
 			}
-			printf("\n");
+			logf("\n");
 		}
 
-	printf("'*' denotes a split to the left/right of a tag\n");
+	logf("'*' denotes a split to the left/right of a tag\n");
+	printf("\nArray dumped to kernel log");
 }
+
 
 
 
