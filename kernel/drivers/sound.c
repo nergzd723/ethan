@@ -55,6 +55,12 @@ void happy(){
 	playnote(A5, QUADRO);
 	playnote(G5, QUADRO);
 	playnote(F5, QUADRO);
+	playnote(C5, QUADRO);
+	playnote(C5, QUADRO);
+	playnote(B5, QUADRO);
+	playnote(G5, QUADRO);
+	playnote(A5, QUADRO);
+	playnote(G5, DOUBLE);
 }
  //Make a beep
  void beep() {
