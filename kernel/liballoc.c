@@ -99,8 +99,7 @@ static void* 	liballoc_memcpy(void* s1, const void* s2, size_t n)
   return s1;
 }
 
- 
-static void dump_array()
+void dump_array()
 {
 	int i = 0;
 	struct boundary_tag *tag = NULL;

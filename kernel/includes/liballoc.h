@@ -39,7 +39,7 @@ struct	boundary_tag
 	struct boundary_tag *prev;	//< Linked list info.
 };
 
-static void dump_array();
+extern void dump_array();
  
 
 /** This function is supposed to lock the memory data structures. It
