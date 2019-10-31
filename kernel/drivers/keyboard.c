@@ -18,6 +18,7 @@
 
 unsigned char keymap[2][KEYMAP_SIZE];
 int shift = 0;   // > 1 if the shift key is pressed
+int ctrl = 0;
 
 void process_key_press(uint8_t scan_code) {
     /* Figure out which map we need to use based
