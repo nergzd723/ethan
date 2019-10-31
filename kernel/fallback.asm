@@ -82,7 +82,7 @@ section .text
         mov  ecx, regs16_t_size                ; set copy size to our struct size
         mov  esp, edi                          ; save destination to as 16bit stack offset
         rep  movsb                             ; do the actual copy (32bit stack to 16bit stack)
-        jmp  word CODE16:REBASE(p_mode16)      ; switch to 16bit selector (16bit protected mode)
+        jmp CODE16:REBASE(p_mode16)      ; switch to 16bit selector (16bit protected mode)
     p_mode16: use16
         mov  ax, DATA16                        ; get our 16bit data selector
         mov  ds, ax                            ; set ds to 16bit selector
@@ -124,9 +124,9 @@ section .text
         mov  eax, cr0                          ; get cr0 so we can modify it
         inc  eax                               ; set PE bit to turn on protected mode
         mov  cr0, eax                          ; set cr0 to result
-        jmp  dword CODE32:REBASE(p_mode32)     ; switch to 32bit selector (32bit protected mode)
+        jmp CODE32:REBASE(p_mode32)     ; switch to 32bit selector (32bit protected mode)
     p_mode32: use32
-        mov  ax, DATA32                        ; get our 32bit data selector
+        mov  ax, DATA32                      ; get our 32bit data selector
         mov  ds, ax                            ; reset ds selector
         mov  es, ax                            ; reset es selector
         mov  fs, ax                            ; reset fs selector
@@ -221,4 +221,3 @@ section .text
         dd gdt16_base                          ; table base address
          
     int32_end:                                 ; end marker (so we can copy the code)
-	
