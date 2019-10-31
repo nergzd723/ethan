@@ -15,6 +15,7 @@ static void timer_callback(context_t* context)
       msec++;
    }
    if (tick % TIMER_FREQUENCY == 0){
+      tick = 0;
       sec++;
    }
 }
@@ -25,12 +26,6 @@ uint32_t getmsecfromboot(){
 
 int getsecfromboot(){
    return sec;
-}
-
-void sleep(uint32_t microsecond){
-   int olds = tick;
-   while ((tick-olds) != microsecond){}
-   return;
 }
 
 //wait millisecond
