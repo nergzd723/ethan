@@ -1,5 +1,6 @@
 #include <liballoc.h>
 #include <stddef.h>
+#include <frame_buffer.h>
 
 /**  Durand's Ridiculously Amazing Super Duper Memory functions.  */
 
@@ -9,15 +10,10 @@
 #define MAXCOMPLETE		5
 #define MAXEXP	32
 #define MINEXP	8	
-
 #define MODE_BEST			0
 #define MODE_INSTANT		1
 
 #define MODE	MODE_BEST
-
-#ifdef DEBUG
-#include <stdio.h>
-#endif
 
 
 struct boundary_tag* l_freePages[MAXEXP];		//< Allowing for 2^MAXEXP blocks
@@ -102,37 +98,35 @@ static void* 	liballoc_memcpy(void* s1, const void* s2, size_t n)
   return s1;
 }
 
- 
-
 #ifdef DEBUG
-static void dump_array()
+void dump_array()
 {
 	int i = 0;
 	struct boundary_tag *tag = NULL;
 
-	printf("------ Free pages array ---------\n");
-	printf("System memory allocated: %i\n", l_allocated );
-	printf("Memory in used (malloc'ed): %i\n", l_inuse );
+	logf("------ Free pages array ---------\n");
+	logf("System memory allocated: %i\n", l_allocated );
+	logf("Memory in used (malloc'ed): %i\n", l_inuse );
 
 		for ( i = 0; i < MAXEXP; i++ )
 		{
-			printf("%.2i(%i): ",i, l_completePages[i] );
+			logf("%.2i(%i): ",i, l_completePages[i] );
 	
 			tag = l_freePages[ i ];
 			while ( tag != NULL )
 			{
-				if ( tag->split_left  != NULL  ) printf("*");
-				printf("%i", tag->real_size );
-				if ( tag->split_right != NULL  ) printf("*");
+				if ( tag->split_left  != NULL  ) logf("*");
+				logf("%i", tag->real_size );
+				if ( tag->split_right != NULL  ) logf("*");
 	
-				printf(" ");
+				logf(" ");
 				tag = tag->next;
 			}
-			printf("\n");
+			logf("\n");
 		}
 
-	printf("'*' denotes a split to the left/right of a tag\n");
-	fflush( stdout );
+	logf("'*' denotes a split to the left/right of a tag\n");
+	printf("\nArray dumped to kernel log");
 }
 #endif
 

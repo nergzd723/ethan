@@ -8,6 +8,7 @@
 #include <cpu_speed.h>
 #include <memory.h>
 #include <rtc.h>
+#include <sound.h>
 #include <cpuid.h>
 #include <stdbool.h>
 #include <liballoc.h>
@@ -54,6 +55,12 @@ void fb_newlinehandler(){
     if (strcmp(command, "add") == 0){
         add();
     }
+    if (strcmp(command, "beep") == 0){
+        beep();
+    }
+    if (strcmp(command, "hb") == 0){
+        happy();
+    }
     if (false)/*(strcmp(command, "paging") == 0)*/{
         if (paging){
             printf("\nPaging off");
@@ -71,14 +78,20 @@ void fb_newlinehandler(){
         printf("\n");
         CpuDetect();
     }
+    if (strcmp(command, "zerodiv") == 0){
+        int i = 0;
+        int b = 1;
+        int d = b/i;
+        printf("\nRetuned from zero division exception");
+    }
     if (strcmp(command, "input")== 0){
         initinput();
         printf(input());
         closeinput();
     }
     if (strcmp(command, "overflow") == 0){
+        logf("Let the hellrace begin!");
         while (1){
-            logf("Let the hellrace begin!");
             malloc(sizeof(long));
         }
     }
