@@ -6,6 +6,7 @@
 //test
 void gfx_test()
 {
+    asm volatile("sti");
     int y;
     regs16_t regs;
      
