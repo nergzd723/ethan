@@ -13,6 +13,7 @@
 #include <random.h>
 #include <boot.h>
 #include <rtc.h>
+#include <sb16.h>
 
 void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
@@ -70,6 +71,9 @@ void boot_stage1(){
    logf("Timer initialized\n");
    printf("Time-of-day clock...\n");
    rtc_install();
+   printf("OK\n");
+   printf("SoundBlaster16...\n");
+   sb16_init();
    printf("OK\n");
    printf("Entering second stage...\n");
    boot_stage2();

@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define TIMER_FREQUENCY 1000000
+#define TIMER_FREQUENCY 1000
 #define MILLISECOND 1000
 
 void init_timer(uint32_t frequency);

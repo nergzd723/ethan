@@ -39,10 +39,7 @@ void sb16_init(void) {
           write_DSP(DSP_CMD_VERSION);
           int sb16_version_major=read_DSP();
           int sb16_version_minor=read_DSP();
-          logf("Soundblaster v");
-          logf(sb16_version_major);
-          logf(".");
-          logf(sb16_version_minor);
+          logf("Soundblaster initialized!");
           logf("\n");
  
 }
