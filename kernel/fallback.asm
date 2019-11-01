@@ -184,7 +184,7 @@ padding:
     db 0x0
 asm_gdt_entries:
     ; 8 gdt entries
-    resb 64
+    db 0x8
 asm_gdt_ptr:
     dd 0x00000000
     dd 0x00000000
@@ -192,7 +192,7 @@ asm_idt_ptr:
     dd 0x00000000
     dd 0x00000000
 asm_in_reg_ptr:
-    resw 14
+    db 0x15
 asm_out_reg_ptr:
     dd 0xaaaaaaaa
     dd 0xaaaaaaaa
