@@ -48,18 +48,17 @@ struc regs16_t
 	.ef resw 1
 endstruc
 
-%define INT32_BASE                             0x7C00
-%define REBASE(x)                              (((x) - reloc) + INT32_BASE)
-%define GDTENTRY(x)                            ((x) << 3)
-%define CODE32                                 GDTENTRY(1)	; 0x08
-%define DATA32                                 GDTENTRY(2)	; 0x10
-%define CODE16                                 GDTENTRY(3)	; 0x18
-%define DATA16                                 GDTENTRY(4)	; 0x20
-%define STACK16                                (INT32_BASE - regs16_t_size)
-
+%define INT32_BASE                         0x7C00
+%define REBASE(x)                          (((x) - reloc) + INT32_BASE)
+%define GDTENTRY(x)                        ((x) << 3)
+%define CODE32                             GDTENTRY(1)	; 0x08
+%define DATA32                             GDTENTRY(2)	; 0x10
+%define CODE16                             GDTENTRY(3)	; 0x18
+%define DATA16                             GDTENTRY(4)	; 0x20
+%define STACK16                            (INT32_BASE - regs16_t_size)
 
 section .text
-	int32: use32                               ; by Napalm
+	int32: use32                             ; by Napalm
 	_int32:
 		cli                                    ; disable interrupts
 		pusha                                  ; save register state to 32bit stack
@@ -69,7 +68,7 @@ section .text
 		cld                                    ; clear direction flag (so we copy forward)
 		rep  movsb                             ; do the actual copy (relocate code to low 16bit space)
 		jmp INT32_BASE                         ; jump to new code location
-	reloc: use32                               ; by Napalm
+	reloc: use32                             ; by Napalm
 		mov  [REBASE(stack32_ptr)], esp        ; save 32bit stack pointer
 		sidt [REBASE(idt32_ptr)]               ; save 32bit idt pointer
 		sgdt [REBASE(gdt32_ptr)]               ; save 32bit gdt pointer
@@ -145,7 +144,7 @@ section .text
 		sti                                    ; enable interrupts
 		ret                                    ; return to caller
 		
-	resetpic:                                  ; reset's 8259 master and slave pic vectors
+	resetpic:                                ; reset's 8259 master and slave pic vectors
 		push ax                                ; expects bh = master vector, bl = slave vector
 		mov  al, 0x11                          ; 0x11 = ICW1_INIT | ICW1_ICW4
 		out  0x20, al                          ; send ICW1 to master pic
@@ -164,61 +163,60 @@ section .text
 		pop  ax                                ; restore ax from stack
 		ret                                    ; return to caller
 		
-	stack32_ptr:                               ; address in 32bit stack after we
+	stack32_ptr:                             ; address in 32bit stack after we
 		dd 0x00000000                          ;   save all general purpose registers
 		
-	idt32_ptr:                                 ; IDT table pointer for 32bit access
+	idt32_ptr:                               ; IDT table pointer for 32bit access
 		dw 0x0000                              ; table limit (size)
-		dd 0x00128040                          ; table base address
+		dd 0x00000000                          ; table base address
 		
-	gdt32_ptr:                                 ; GDT table pointer for 32bit access
+	gdt32_ptr:                               ; GDT table pointer for 32bit access
 		dw 0x0000                              ; table limit (size)
-		dd 0x0012f020                          ; table base address
+		dd 0x00000000                          ; table base address
 		
-	idt16_ptr:                                 ; IDT table pointer for 16bit access
+	idt16_ptr:                               ; IDT table pointer for 16bit access
 		dw 0x03FF                              ; table limit (size)
 		dd 0x00000000                          ; table base address
 		
-	gdt16_base:                                ; GDT descriptor table
+	gdt16_base:                              ; GDT descriptor table
 		.null:                                 ; 0x00 - null segment descriptor
-			dd 0x00000000                      ; must be left zero'd
-			dd 0x00000000                      ; must be left zero'd
+			dd 0x00000000                        ; must be left zero'd
+			dd 0x00000000                        ; must be left zero'd
 			
 		.code32:                               ; 0x01 - 32bit code segment descriptor 0xFFFFFFFF
-			dw 0xFFFF                          ; limit  0:15
-			dw 0x0000                          ; base   0:15
-			db 0x00                            ; base  16:23
-			db 0x9A                            ; present, iopl/0, code, execute/read
-			db 0xCF                            ; 4Kbyte granularity, 32bit selector; limit 16:19
-			db 0x00                            ; base  24:31
+			dw 0xFFFF                            ; limit  0:15
+			dw 0x0000                            ; base   0:15
+			db 0x00                              ; base  16:23
+			db 0x9A                              ; present, iopl/0, code, execute/read
+			db 0xCF                              ; 4Kbyte granularity, 32bit selector; limit 16:19
+			db 0x00                              ; base  24:31
 			
 		.data32:                               ; 0x02 - 32bit data segment descriptor 0xFFFFFFFF
-			dw 0xFFFF                          ; limit  0:15
-			dw 0x0000                          ; base   0:15
-			db 0x00                            ; base  16:23
-			db 0x92                            ; present, iopl/0, data, read/write
-			db 0xCF                            ; 4Kbyte granularity, 32bit selector; limit 16:19
-			db 0x00                            ; base  24:31
+			dw 0xFFFF                            ; limit  0:15
+			dw 0x0000                            ; base   0:15
+			db 0x00                              ; base  16:23
+			db 0x92                              ; present, iopl/0, data, read/write
+			db 0xCF                              ; 4Kbyte granularity, 32bit selector; limit 16:19
+			db 0x00                              ; base  24:31
 			
 		.code16:                               ; 0x03 - 16bit code segment descriptor 0x000FFFFF
-			dw 0xFFFF                          ; limit  0:15
-			dw 0x0000                          ; base   0:15
-			db 0x00                            ; base  16:23
-			db 0x9A                            ; present, iopl/0, code, execute/read
-			db 0x0F                            ; 1Byte granularity, 16bit selector; limit 16:19
-			db 0x00                            ; base  24:31
+			dw 0xFFFF                            ; limit  0:15
+			dw 0x0000                            ; base   0:15
+			db 0x00                              ; base  16:23
+			db 0x9A                              ; present, iopl/0, code, execute/read
+			db 0x0F                              ; 1Byte granularity, 16bit selector; limit 16:19
+			db 0x00                              ; base  24:31
 			
 		.data16:                               ; 0x04 - 16bit data segment descriptor 0x000FFFFF
-			dw 0xFFFF                          ; limit  0:15
-			dw 0x0000                          ; base   0:15
-			db 0x00                            ; base  16:23
-			db 0x92                            ; present, iopl/0, data, read/write
-			db 0x0F                            ; 1Byte granularity, 16bit selector; limit 16:19
-			db 0x00                            ; base  24:31
+			dw 0xFFFF                            ; limit  0:15
+			dw 0x0000                            ; base   0:15
+			db 0x00                              ; base  16:23
+			db 0x92                              ; present, iopl/0, data, read/write
+			db 0x0F                              ; 1Byte granularity, 16bit selector; limit 16:19
+			db 0x00                              ; base  24:31
 			
-	gdt16_ptr:                                 ; GDT table pointer for 16bit access
+	gdt16_ptr:                               ; GDT table pointer for 16bit access
 		dw gdt16_ptr - gdt16_base - 1          ; table limit (size)
 		dd gdt16_base                          ; table base address
 		
-	int32_end:                                 ; end marker (so we can copy the code)
-	
+	int32_end:                               ; end marker (so we can copy the code)
