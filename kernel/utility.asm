@@ -34,7 +34,7 @@ global entering_v86
 ; you should declare this function as :
 ; extern void entering_v86(uint32_t ss, uint32_t esp, uint32_t cs, uint32_t eip);
 entering_v86:
-   mov epb, esp               ; save stack pointer
+   mov ebp, esp               ; save stack pointer
 
    push dword  [ebp+4]        ; ss
    push dword  [ebp+8]        ; esp
