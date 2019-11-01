@@ -6,6 +6,7 @@
 #include <gdt.h>
 #include <idt.h>
 
+
 idt_ptr_t real_idt_ptr;
 idt_ptr_t real_gdt_ptr;
 
@@ -18,9 +19,9 @@ void (*rebased_bios32_helper)() = (void*)0x7c00;
  * */
 void bios32_init() {
     // 16bit code segment
-    gdt_set_entry(6, 0, 0xffffffff, 0x9A, 0x0f);
+    gdt_set_gate(6, 0, 0xffffffff, 0x9A, 0x0f);
     // 16bit data segment
-    gdt_set_entry(7, 0, 0xffffffff, 0x92, 0x0f);
+    gdt_set_gate(7, 0, 0xffffffff, 0x92, 0x0f);
     // gdt ptr
     real_gdt_ptr.base = (uint32_t)gdt_entries;
     real_gdt_ptr.limit = sizeof(gdt_entries) - 1;
@@ -67,6 +68,6 @@ void bios32_service(uint8_t int_num, register16_t * in_reg, register16_t * out_r
     memcpy(out_reg, t, sizeof(register16_t));
 
     // Re-initialize the gdt and idt, otherwise bad thing will happen....
-    gdt_init();
-    idt_init();
+    init_gdt();
+    init_idt();
 }

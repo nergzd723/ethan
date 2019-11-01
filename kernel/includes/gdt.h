@@ -20,7 +20,9 @@ struct _gdt_ptr {       // also known as a pseudo-descriptor
 typedef struct _gdt_ptr gdt_ptr_t;
 
 void init_gdt();
-
+static void gdt_set_gate(int32_t num, uint32_t base, uint32_t limit, 
+                         uint32_t access, uint32_t granularity);
+                         
 #define GDT_NUM_ENTRIES 5
 gdt_ptr_t gdt_ptr;
 gdt_entry_t gdt_entries[GDT_NUM_ENTRIES];

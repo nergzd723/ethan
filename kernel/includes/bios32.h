@@ -1,5 +1,6 @@
 #ifndef BIOS32_H
 #define BIOS32_H
+#include <stdint.h>
 
 extern void bios32_helper();
 extern void bios32_helper_end();
