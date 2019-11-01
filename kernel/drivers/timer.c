@@ -15,8 +15,8 @@ static void timer_callback(context_t* context)
       msec++;
    }
    if (tick % TIMER_FREQUENCY == 0){
-      sec++;
       tick = 0;
+      sec++;
    }
 }
 

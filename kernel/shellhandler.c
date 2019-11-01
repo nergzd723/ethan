@@ -12,9 +12,10 @@
 #include <cpuid.h>
 #include <stdbool.h>
 #include <liballoc.h>
+#include <gfx.h>
 
-bool paging = false;
-
+bool paging = true;
+time_t* current_time;
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
 char inputbuf[FB_CELLS] = "";
@@ -61,15 +62,23 @@ void fb_newlinehandler(){
     if (strcmp(command, "hb") == 0){
         happy();
     }
-    if (false)/*(strcmp(command, "paging") == 0)*/{
+    if (strcmp(command, "gfx") == 0){
+        disable_paging();
+        paging = false;
+        gfx_test();
+        init_paging();
+        paging = true;
+    }
+    if (strcmp(command, "paging") == 0){
         if (paging){
             printf("\nPaging off");
-            logf("\nRebooting\n");
-            reboot();
+            disable_paging();
+            logf("Paging off?\n");
+            paging = false;
         }
         else{
             paging = true;
-            printf("\nPaging on. Warning: things go wrong!");
+            printf("\nPaging on.");
             init_paging();
         }
     }
@@ -109,7 +118,12 @@ void fb_newlinehandler(){
         panic("USER_DEMAND_PANIC");
     }
     if (strcmp(command, "time") == 0){
-        time_t* current_time = (time_t*)malloc(sizeof(time_t));
+        if (paging){
+        current_time = (time_t*)malloc(sizeof(time_t));
+        }
+        else{
+            time_t* current_time;
+        }
         gettime(current_time);
         printf("\nIt is ");
         printf(inttostr(current_time->day_of_month));
@@ -137,6 +151,7 @@ void fb_newlinehandler(){
                   H---C-----C---H\n\
                       |     |\n\
                       H     H\n");
+        printf("\nCodename: Fluffy Flaafy");
     }
     if (strcmp(command, "reboot") == 0){
         logf("\nRebooting\n");

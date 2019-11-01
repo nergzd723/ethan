@@ -18,7 +18,7 @@ uint32_t second_page_table[1024] __attribute__((aligned(PAGE_SIZE)));
 uint32_t upper_memory();
 int lower_memory();
 
-void disable_paging();
+void disable_paging(void);
 void init_paging(void);
 void* heap_allocate(size_t size);
 

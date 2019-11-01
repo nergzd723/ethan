@@ -22,7 +22,7 @@ align 4
 section .bss
 align 4
 kernel_stack_bottom: equ $          ; Create a 16KB stack for the kernel
-	resb 16384 ; 16 KB
+	resb  131072; 128 KB
 kernel_stack_top:
 
 ;--------------------

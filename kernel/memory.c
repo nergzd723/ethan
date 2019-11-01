@@ -13,7 +13,7 @@ extern void enable_paging();
 #define PAGE_SIZE 4096
 
 #define KERNEL_START 0x00100000
-#define KERNEL_END   0x00300000
+#define KERNEL_END   0x01000000
 #define PAGE_TABLE_AREA_START 0x00500000
 #define PAGE_TABLE_AREA_END 0x05000000
 #define PAGE_FRAME_ALLOCATOR_AREA_START 0x00900000
@@ -202,6 +202,17 @@ int liballoc_lock()
 int liballoc_unlock()
 {
 	return 0;
+}
+
+void disable_paging(void)
+{
+    asm volatile(
+        "mov  %%cr0, %%eax        \n\t"
+        "btr  $31, %%eax          \n\t"   // reset (clear) bit 31
+        "mov  %%eax, %%cr0        \n\t"
+        ::
+        : "eax", "memory"
+     );
 }
 
 void* liballoc_alloc(int size)

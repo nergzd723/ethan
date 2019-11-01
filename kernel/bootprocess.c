@@ -13,13 +13,17 @@
 #include <random.h>
 #include <boot.h>
 #include <rtc.h>
+#include <sb16.h>
 
 void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
    __asm__ volatile("sti");
    printf("OK\n");
-   printf("Testing timer...");
+   printf("Testing timer...\n");
    waitm(30);
+   printf("SoundBlaster16...\n");
+   sb16_init();
+   printf("OK\n");
    clear_screen();
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));

@@ -11,5 +11,4 @@ int getsecfromboot();
 void wait(int second);
 void waitm(int msec);
 uint32_t getmsecfromboot();
-
 #endif
