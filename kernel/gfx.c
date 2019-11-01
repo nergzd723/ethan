@@ -7,8 +7,7 @@
 void vesa_set_mode(uint32_t mode) {
     register16_t reg_in = {0};
     register16_t reg_out = {0};
-    reg_in.ax = 0x4F02;
-    reg_in.bx = mode;
+    reg_in.ax = 0x0013;
     bios32_service(BIOS_GRAPHICS_SERVICE, &reg_in, &reg_out);
 }
 
