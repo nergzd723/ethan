@@ -13,6 +13,7 @@
 #include <stdbool.h>
 #include <liballoc.h>
 #include <gfx.h>
+#include <v8086m.h>
 
 bool paging = true;
 time_t* current_time;
@@ -65,7 +66,7 @@ void fb_newlinehandler(){
     if (strcmp(command, "gfx") == 0){
         disable_paging();
         paging = false;
-        demo_gfx();
+        entering_v86(0,0,0,0);
         init_paging();
         paging = true;
     }
