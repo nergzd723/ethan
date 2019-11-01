@@ -1,8 +1,9 @@
 # Automatically generate lists of sources using wildcards.
 C_SOURCES = $(wildcard $(KERNELDIR)/*.c lib/*/*.c $(KERNELDIR)/drivers/*.c)
+CPP_SOURCES = $(wildcard $(KERNELDIR)/*.cpp lib/*/*.cpp $(KERNELDIR)/drivers/*.cpp)
 ASM_SOURCES = $(KERNELDIR)/utility.asm
 HEADERS = $(wildcard $(KERNELDIR)/*.h)
-CC = ~/i386-unknown-elf/bin/i386-unknown-elf-gcc
+CC = ~/i686-elf/bin/i386-unknown-elf-gcc
 
 BUILDDIR = build
 KERNELDIR = kernel
@@ -26,7 +27,6 @@ debug: all
 
 build: asm_objects linker.ld
 	$(CC) -g -I lib/includes -I kernel/includes $(C_SOURCES) $(BUILDDIR)/*.o -o $(BUILDDIR)/kernel.bin -nostdlib -ffreestanding -T linker.ld
-
 asm_objects:
 	mkdir -p build
 	nasm -f elf32 $(KERNELDIR)/boot.asm -o $(BUILDDIR)/boot.o
