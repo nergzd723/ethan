@@ -14,7 +14,7 @@
 #include <boot.h>
 #include <rtc.h>
 #include <sb16.h>
-#include <bios32.h>
+#include <v8086m.h>
 
 void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
@@ -25,7 +25,6 @@ void boot_stage2(){
    printf("SoundBlaster16...\n");
    sb16_init();
    printf("OK\n");
-   bios32_init();
    clear_screen();
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));
