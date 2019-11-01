@@ -12,7 +12,7 @@ void staralligns()
         a = rand();
         starnumber = a % FB_CELLS;
         for (int i = 0; i<starnumber; i++){
-            fb_write_cell(a%FB_CELLS, '.', FB_WHITE, FB_BLACK); 
+            fb_write_cell(i%FB_CELLS, '.', FB_WHITE, FB_BLACK); 
         }
         waitm(70);
         clear_screen();
