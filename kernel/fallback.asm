@@ -169,11 +169,11 @@ section .text
 		
 	idt32_ptr:                                 ; IDT table pointer for 32bit access
 		dw 0x0000                              ; table limit (size)
-		dd 0x00000000                          ; table base address
+		dd 0x00128040                          ; table base address
 		
 	gdt32_ptr:                                 ; GDT table pointer for 32bit access
 		dw 0x0000                              ; table limit (size)
-		dd 0x00000000                          ; table base address
+		dd 0x0012f020                          ; table base address
 		
 	idt16_ptr:                                 ; IDT table pointer for 16bit access
 		dw 0x03FF                              ; table limit (size)
@@ -221,3 +221,4 @@ section .text
 		dd gdt16_base                          ; table base address
 		
 	int32_end:                                 ; end marker (so we can copy the code)
+	
