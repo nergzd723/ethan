@@ -64,6 +64,7 @@ void fb_newlinehandler(){
         happy();
     }
     if (strcmp(command, "gfx") == 0){
+        asm volatile("sti");
         disable_paging();
         paging = false;
         entering_v86(0,0,0,0);
