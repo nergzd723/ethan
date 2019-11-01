@@ -65,7 +65,7 @@ void fb_newlinehandler(){
     if (strcmp(command, "gfx") == 0){
         disable_paging();
         paging = false;
-        gfx_test();
+        demo_gfx();
         init_paging();
         paging = true;
     }

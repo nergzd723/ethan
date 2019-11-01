@@ -1,1 +1,1 @@
-void gfx_test();
+void demo_gfx();
