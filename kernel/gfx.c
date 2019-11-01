@@ -6,13 +6,13 @@
 //test
 void gfx_test()
 {
-    asm volatile("sti");
-    int y;
-    regs16_t regs;
+//    asm volatile("sti");
+//    int y;
+//    regs16_t regs;
      
     // switch to 320x200x256 graphics mode
-    regs.ax = 0x0013;
-    int32(0x10, &regs);
+//    regs.ax = 0x0013;
+//    int32(0x10, &regs);
 //     
 //    // full screen with blue color (1)
 //    memset((char *)0xA0000, 1, (320*200));

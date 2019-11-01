@@ -27,8 +27,8 @@ void init_gdt()
     gdt_flush((uint32_t) &gdt_ptr);
 }
 
-static void gdt_set_gate(int32_t num, uint32_t base, uint32_t limit, 
-                         uint32_t access, uint32_t granularity) {
+static void gdt_set_gate(int32_t num, uint32_t base, uint32_t limit, uint32_t access, uint32_t granularity) 
+{
     gdt_entries[num].base_low    = (base & 0xFFFF);
     gdt_entries[num].base_middle = (base >> 16) & 0xFF;
     gdt_entries[num].base_high   = (base >> 24) & 0xFF;

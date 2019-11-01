@@ -10,6 +10,8 @@
 idt_ptr_t real_idt_ptr;
 idt_ptr_t real_gdt_ptr;
 
+static void gdt_set_gate(int32_t num, uint32_t base, uint32_t limit, uint32_t access, uint32_t granularity);
+
 void (*rebased_bios32_helper)() = (void*)0x7c00;
 
 /*
