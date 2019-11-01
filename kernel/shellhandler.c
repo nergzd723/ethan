@@ -21,6 +21,8 @@ char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
 char inputbuf[FB_CELLS] = "";
 int inputpending = 0;
+bool getcharflag = false;
+char gcbuf = '\0';
 
 void inputlistener(char* comm){
     strcpy(inputbuf, comm);
@@ -32,6 +34,15 @@ void initinput(){
 
 void closeinput(){
     inputactive = 0;
+}
+
+char getchar(){
+    getcharflag = false;
+    return gcbuf;
+}
+
+void initgetchar(){
+    getcharflag = true;
 }
 
 char* input(){
@@ -177,6 +188,10 @@ void fb_newlinehandler(){
 
 void charbridge(unsigned char c){
     int len = strlen(lastcommbuf);
+    if (getcharflag){
+        gcbuf = c;
+        return;
+    }
     switch(c)
     {
         case 205:

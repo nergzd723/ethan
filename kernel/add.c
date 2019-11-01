@@ -3,18 +3,15 @@
 #include <string.h>
 
 void add(){
-    initinput();
-    char* n1 = input();
-    char* n2 = input();
-    int i1, i2;
-    i1 = atoi(n1);
-    i2 = atoi(n2);
+    initgetchar();
+    char n1 = getchar();
+    initgetchar();
+    char n2 = getchar();
     printf("Done calculating! N1 ");
     printf(n1);
     printf(" N2 ");
     printf(n2);
     printf("\n");
-    printf(inttostr(i2+i1));
+    printf(inttostr(n2+n1));
     printf("\n");
-    closeinput();
 }
