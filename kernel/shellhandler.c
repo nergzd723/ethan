@@ -67,7 +67,7 @@ void fb_newlinehandler(){
         asm volatile("sti");
         disable_paging();
         paging = false;
-        entering_v86(0,0,0,0);
+        entering_v86(0xDEADBEEF,0xDEADBEEF,0xDEADBEEF,0xDEADBEEF);
         init_paging();
         paging = true;
     }
