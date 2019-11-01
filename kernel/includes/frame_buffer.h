@@ -37,5 +37,6 @@ void uparrowp();
 void leftarrowp();
 void rightarrowp();
 void reset_cursor();
+void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg);
 
 #endif /* INCLUDE_FRAME_BUFFER_H */

@@ -74,6 +74,9 @@ void fb_newlinehandler(){
     if (strcmp(command, "hb") == 0){
         happy();
     }
+    if (strcmp(command, "star") == 0){
+        staralligns();
+    }
     if (strcmp(command, "gfx") == 0){
         asm volatile("sti");
         disable_paging();

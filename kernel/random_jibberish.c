@@ -6,6 +6,6 @@ void dojibberish(){
     asm volatile("sti");
     clear_screen();
     while(1){
-        printf(inttostr(rand()));
+        fb_write_cell(rand()%FB_CELLS, inttostr(rand()%128), FB_GREEN, FB_BLACK);
     }
 }
