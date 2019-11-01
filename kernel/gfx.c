@@ -14,7 +14,6 @@ void vesa_set_mode(uint32_t mode) {
 //test
 void gfx_test()
 {
-    asm volatile("sti");
     vesa_set_mode(0x144 | 0x4000);
     pic_send_eoi(0x28);
     return;
