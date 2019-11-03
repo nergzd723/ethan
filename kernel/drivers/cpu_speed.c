@@ -1,6 +1,7 @@
 #include <cpu_speed.h>
 #include <timer.h>
 #include <io.h>
+#include <stdint.h>
 
 int discoverspeed(){
     uint64_t rdtsc1 = rdtsc();
