@@ -15,6 +15,15 @@ static inline uint8_t inb(uint16_t port) {
     return ret;
 }
 
+//get cpu uptime in ticks
+static inline uint64_t rdtsc()
+{
+    uint64_t ret;
+    asm volatile ( "rdtsc" : "=A"(ret) );
+    return ret;
+}
+
+
 //clear interrupts
 static inline void cli(void){
     asm volatile( "cli" );

@@ -2,12 +2,9 @@
 #include <timer.h>
 
 int discoverspeed(){
-    uint32_t hsec = getmsecfromboot();
-    uint32_t clock = 0;
-    while(getmsecfromboot() - hsec != 10){
-        //15 cycles per each
-        cpu_cycle();
-        clock++;
-    }
-    return (clock * 240) / 100000;
+    uint64_t rtdsc1 = rdtsc();
+    waitm(10);
+    uint64_t rtdsc2 = rtdsc();
+    uint8_t clock = (rtdsc2-rtdsc1)/100/1000;
+    return clock;
 }
