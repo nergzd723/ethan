@@ -1,4 +1,5 @@
 #include <smbios.h>
+#include <string.h>
 
 bool smbios_detected=false;
 uint16_t cpuMHZ;
