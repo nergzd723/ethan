@@ -15,6 +15,7 @@
 #include <rtc.h>
 #include <sb16.h>
 #include <v8086m.h>
+#include <smbios.h>
 
 void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
@@ -36,9 +37,9 @@ void boot_stage2(){
    if (memorycount() > 65535){
        printf("It seems that you have more than 64M of RAM. Ethanium may not work properly\n");
    }
-   printf(inttostr(discoverspeed()));
+   printf(inttostr(detectCPUSpeed()));
    printf("MHz CPU speed\n");
-   srand(discoverspeed());
+   srand(detectCPUSpeed());
    logf("Random seeded to CPU speed\n");
    printf(">>> ");
 }
