@@ -42,6 +42,8 @@ void boot_stage2(){
    srand(detectCPUSpeed());
    logf("Random seeded to CPU speed\n");
    printf(">>> ");
+   init_paging();
+   logf("Paging initialized\n");
 }
 
 //first stage of booting, init core
@@ -66,10 +68,6 @@ void boot_stage1(){
     printf("OK\n");
     logf("Keyboard intialized\n");
     logf("IDT and irq handlers operational\n");
-   printf("Initializing paging...\n"); //only problems.... for now
-   init_paging();
-   printf("OK\n");
-   logf("Paging initialized\n");
    printf("Timer...\n");
    init_timer(TIMER_FREQUENCY);
    printf("OK\n");
