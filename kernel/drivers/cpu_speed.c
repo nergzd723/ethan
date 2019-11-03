@@ -3,9 +3,9 @@
 #include <io.h>
 
 int discoverspeed(){
-    uint64_t rtdsc1 = rdtsc();
+    uint64_t rdtsc1 = rdtsc();
     waitm(10);
-    uint64_t rtdsc2 = rtdsc();
-    uint8_t clock = (rtdsc2-rtdsc1)/100/1000;
+    uint64_t rdtsc2 = rdtsc();
+    uint8_t clock = (rdtsc2-rdtsc1)/100/1000;
     return clock;
 }
