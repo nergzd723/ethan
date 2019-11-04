@@ -13,6 +13,7 @@
 #include <stdbool.h>
 #include <liballoc.h>
 #include <gfx.h>
+#include <liballoc.h>
 #include <v8086m.h>
 
 bool paging = true;
