@@ -16,6 +16,7 @@
 #include <sb16.h>
 #include <v8086m.h>
 #include <smbios.h>
+#include <string.h>
 
 void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
