@@ -1,9 +1,11 @@
 #include <timer.h>
 #include <random.h>
 #include <frame_buffer.h>
+#include <io.h>
 
 void dojibberish(){
     asm volatile("sti");
+    scall();
     clear_screen();
     int a;
     while(1){
