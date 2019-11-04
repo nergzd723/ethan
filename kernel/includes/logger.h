@@ -4,5 +4,6 @@
 void init_logger();
 void put_serial(const char a); // TODO: I only need logger.c to see this, what is the best way to do that?
 void logf(const char* format, ...);
-
+typedef char logger_t[UINT64_MAX];
+logger_t* returnlog();
 #endif

@@ -117,7 +117,7 @@ void fb_newlinehandler(){
     if (strcmp(command, "overflow") == 0){
         logf("Let the hellrace begin!");
         while (1){
-            malloc(sizeof(long));
+            malloc(sizeof(logger_t));
         }
     }
     if (strcmp(command, "randomb") == 0){
@@ -160,6 +160,10 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "shutdown") == 0){
         shutdown();
+    }
+    if (strcmp(command, "syslog") == 0){
+        logger_t* log = (logger_t*)malloc(sizeof(logger_t));
+        printf(log);
     }
     if (strcmp(command, "version") == 0){
         printf("\nEthanium -            H     H\n\

@@ -11,10 +11,11 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <logger.h>
-#include <tty.h>
+#include <string.h>
 
 #define COM1_BASE 0x3f8   /* COM1 */
 
+logger_t* log;
 extern void print_serial_hex(const uint32_t n);
  
 static void init_serial_com1();
@@ -23,6 +24,9 @@ void put_serial(const char a);
 static void print_serial(const char *s);
 static void print_serial_unsigned_decimal(uint32_t n);
 
+logger_t* returnlog(){
+    return log;
+}
 void init_logger() {
     init_serial_com1();
 }
@@ -30,7 +34,9 @@ void init_logger() {
 void logf(const char* format, ...) {
     va_list parameters;
     va_start(parameters, format);
-
+    log = (logger_t*)malloc(sizeof(logger_t));
+    log = strcat(log, format);
+    log = append(log, '\n');
     while (*format != '\0') {
         if (format[0] != '%') {
             put_serial(format[0]);
