@@ -13,7 +13,9 @@
 #include <logger.h>
 #include <string.h>
 
+void     *malloc(size_t);				//< The standard function.
 #define COM1_BASE 0x3f8   /* COM1 */
+
 
 logger_t* log;
 extern void print_serial_hex(const uint32_t n);
@@ -34,9 +36,6 @@ void init_logger() {
 void logf(const char* format, ...) {
     va_list parameters;
     va_start(parameters, format);
-    log = (logger_t*)malloc(sizeof(logger_t));
-    log = strcat(log, format);
-    log = append(log, '\n');
     while (*format != '\0') {
         if (format[0] != '%') {
             put_serial(format[0]);
