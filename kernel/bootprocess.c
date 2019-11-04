@@ -29,7 +29,6 @@ void boot_stage2(){
    sb16_init();
    printf("OK\n");
    clear_screen();
-   __init_done = true;
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));
    printf("K mem total, ");
@@ -47,6 +46,7 @@ void boot_stage2(){
    printf(">>> ");
    init_paging();
    logf("Paging initialized\n");
+    __init_done = true;
 }
 
 //first stage of booting, init core
