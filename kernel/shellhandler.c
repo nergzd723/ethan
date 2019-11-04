@@ -162,10 +162,6 @@ void fb_newlinehandler(){
     if (strcmp(command, "shutdown") == 0){
         shutdown();
     }
-    if (strcmp(command, "syslog") == 0){
-        logger_t* log = (logger_t*)malloc(sizeof(logger_t));
-        printf(log);
-    }
     if (strcmp(command, "version") == 0){
         printf("\nEthanium -            H     H\n\
                       |     |\n\
