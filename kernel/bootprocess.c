@@ -28,7 +28,9 @@ void boot_stage2(){
    printf("SoundBlaster16...\n");
    sb16_init();
    printf("OK\n");
-   clear_screen();
+   init_paging();
+   logf("Paging initialized\n");
+    clear_screen();
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));
    printf("K mem total, ");
@@ -44,8 +46,6 @@ void boot_stage2(){
    srand(discoverspeed());
    logf("Random seeded to CPU speed\n");
    printf(">>> ");
-   init_paging();
-   logf("Paging initialized\n");
     __init_done = true;
 }
 
