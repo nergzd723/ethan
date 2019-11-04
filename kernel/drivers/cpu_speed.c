@@ -11,6 +11,6 @@ int discoverspeed(){
     uint64_t rdtsc1 = rdtsc();
     waitm(10);
     uint64_t rdtsc2 = rdtsc();
-    clock = (rdtsc1-rdtsc2)/5/1000;
+    clock = (rdtsc1-rdtsc2)/1000/1000;
     return clock;
 }
