@@ -15,6 +15,7 @@
 #include <gfx.h>
 #include <liballoc.h>
 #include <v8086m.h>
+#include <real.h>
 
 bool paging = true;
 time_t* current_time;
@@ -160,7 +161,7 @@ void fb_newlinehandler(){
         dojibberish();
     }
     if (strcmp(command, "shutdown") == 0){
-        shutdown();
+        real();
     }
     if (strcmp(command, "version") == 0){
         printf("\nEthanium -            H     H\n\

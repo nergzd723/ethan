@@ -27,7 +27,7 @@
  
 static void playnote(uint32_t freq, uint32_t time){
 	play_sound(freq);
-	waitm(time);
+	pause(time);
 	nosound();
 }
 void pause(uint32_t time){

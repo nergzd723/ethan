@@ -29,6 +29,7 @@ static void print_serial_unsigned_decimal(uint32_t n);
 logger_t* returnlog(){
     return log;
 }
+
 void init_logger() {
     init_serial_com1();
 }
