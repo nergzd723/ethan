@@ -16,6 +16,7 @@
 #include <liballoc.h>
 #include <v8086m.h>
 #include <real.h>
+#include <syscall.h>
 
 bool paging = true;
 time_t* current_time;
@@ -183,6 +184,10 @@ void fb_newlinehandler(){
         printf("K lowmem, ");
         printf(inttostr(upper_memory()));
         printf("K USABLE extended memory");
+    }
+    if (strcmp(command, "syscall") == 0){
+        scall();
+        printf("HUGGIES?");
     }
     fb_newline();
     printf(">>> ");

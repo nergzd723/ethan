@@ -72,7 +72,8 @@ cpu_cycle:
    xor eax,edx
    xor edx,eax
    ret
+   
 global scall
 scall:
-   int 0x95
-   ret
+   int 149
+   iret

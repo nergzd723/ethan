@@ -2,7 +2,8 @@
 #include <logger.h>
 
 void syscall_handler(){
-    logf("Syscall!\n");
+    logf("something")
+    for(;;);
 }
 
 void install_syscall_handler(){
