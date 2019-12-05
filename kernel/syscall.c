@@ -2,7 +2,7 @@
 #include <logger.h>
 
 void syscall_handler(){
-    logf("something")
+    logf("something");
     for(;;);
 }
 

@@ -27,10 +27,10 @@
  
 static void playnote(uint32_t freq, uint32_t time){
 	play_sound(freq);
-	pause(time);
+	spause(time);
 	nosound();
 }
-void pause(uint32_t time){
+void spause(uint32_t time){
 	waitm(time);
 }
 void happy(){
