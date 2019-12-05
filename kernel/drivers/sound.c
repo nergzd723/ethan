@@ -27,11 +27,8 @@
  
 static void playnote(uint32_t freq, uint32_t time){
 	play_sound(freq);
-	spause(time);
-	nosound();
-}
-void spause(uint32_t time){
 	waitm(time);
+	nosound();
 }
 void happy(){
 	playnote(D5, QUADRO);

@@ -162,7 +162,7 @@ void fb_newlinehandler(){
         dojibberish();
     }
     if (strcmp(command, "shutdown") == 0){
-        real();
+        shutdown();
     }
     if (strcmp(command, "version") == 0){
         printf("\nEthanium -            H     H\n\
