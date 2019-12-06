@@ -8,7 +8,7 @@ isr_t interrupt_handlers[256];
 
 void isr_handler(context_t* context) {
     logf("Received interrupt: %x\n", context->int_no);
-    if(context->int_no == 19){
+    if(context->int_no == 0x00000019){
         syscall_handler(context);
     }
     if (interrupt_handlers[context->int_no] != 0) {
