@@ -28,6 +28,12 @@ static inline void write_eax(int eaxyz)
     asm volatile ( "mov %%eax, %0" : "=r"(eaxyz) );
 }
 
+static inline void
+outw (unsigned short int __value, unsigned short int __port)
+{
+  asm volatile ("outw %w0,%w1": :"a" (__value), "Nd" (__port));
+}
+
 //clear interrupts
 static inline void cli(void){
     asm volatile( "cli" );
