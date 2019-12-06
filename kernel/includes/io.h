@@ -34,6 +34,14 @@ outw (unsigned short int __value, unsigned short int __port)
   asm volatile ("outw %w0,%w1": :"a" (__value), "Nd" (__port));
 }
 
+static inline unsigned short int
+inw (unsigned short int __port)
+{
+  unsigned short _v;
+  asm volatile ("inw %w1,%0":"=a" (_v):"Nd" (__port));
+  return _v;
+}
+
 //clear interrupts
 static inline void cli(void){
     asm volatile( "cli" );

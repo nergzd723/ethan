@@ -17,6 +17,7 @@
 #include <liballoc.h>
 #include <v8086m.h>
 #include <real.h>
+#include <acpi.h>
 #include <syscall.h>
 
 bool paging = true;
@@ -163,7 +164,7 @@ void fb_newlinehandler(){
         dojibberish();
     }
     if (strcmp(command, "shutdown") == 0){
-        shutdown();
+        acpiPowerOff();
     }
     if (strcmp(command, "version") == 0){
         printf("\nEthanium -            H     H\n\
