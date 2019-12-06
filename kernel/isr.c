@@ -2,12 +2,15 @@
 #include <tty.h>
 #include <logger.h>
 #include <pic.h>
+#include <syscall.h>
 
 isr_t interrupt_handlers[256];
 
 void isr_handler(context_t* context) {
     logf("Received interrupt: %x\n", context->int_no);
-
+    if(context->int_no == 19){
+        syscall_handler(context);
+    }
     if (interrupt_handlers[context->int_no] != 0) {
         isr_t handler = interrupt_handlers[context->int_no];
         handler(context);
