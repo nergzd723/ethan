@@ -146,6 +146,7 @@ int acpiCheckHeader(unsigned int *ptr, char *sig)
 
 int acpiEnable(void)
 {
+    wait(5);
    // check if acpi is enabled
    if ( (inw((unsigned int) PM1a_CNT) &SCI_EN) == 0 )
    {
@@ -166,7 +167,7 @@ int acpiEnable(void)
             {
                if ( (inw((unsigned int) PM1b_CNT) &SCI_EN) == 1 )
                   break;
-               waitticks(50);
+               waitticks(10);
             }
          if (i<300) {
             logf("enabled acpi.\n");
