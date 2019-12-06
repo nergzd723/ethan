@@ -159,14 +159,14 @@ int acpiEnable(void)
          {
             if ( (inw((unsigned int) PM1a_CNT) &SCI_EN) == 1 )
                break;
-            waitm(5);
+            waitm(50);
          }
          if (PM1b_CNT != 0)
             for (; i<350; i++ )
             {
                if ( (inw((unsigned int) PM1b_CNT) &SCI_EN) == 1 )
                   break;
-               waitm(5);
+               waitm(50);
             }
          if (i<150) {
             logf("enabled acpi.\n");
