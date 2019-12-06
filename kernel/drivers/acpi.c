@@ -155,14 +155,14 @@ int acpiEnable(void)
          outb((unsigned int) SMI_CMD, ACPI_ENABLE); // send acpi enable command
          // give 3 seconds time to enable acpi
          int i;
-         for (i=0; i<150; i++ )
+         for (i=0; i<300; i++ )
          {
             if ( (inw((unsigned int) PM1a_CNT) &SCI_EN) == 1 )
                break;
             waitm(2);
          }
          if (PM1b_CNT != 0)
-            for (; i<150; i++ )
+            for (; i<300; i++ )
             {
                if ( (inw((unsigned int) PM1b_CNT) &SCI_EN) == 1 )
                   break;

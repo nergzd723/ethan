@@ -27,8 +27,6 @@ void boot_stage2(){
     printf("ACPI...\n");
     acpiEnable();
     printf("OK\n");
-   printf("Testing timer...\n");
-   waitm(30);
    printf("SoundBlaster16...\n");
    sb16_init();
    printf("OK\n");
