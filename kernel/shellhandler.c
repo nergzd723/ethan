@@ -164,6 +164,7 @@ void fb_newlinehandler(){
         dojibberish();
     }
     if (strcmp(command, "shutdown") == 0){
+        asm volatile("sti");
         acpiPowerOff();
     }
     if (strcmp(command, "version") == 0){
