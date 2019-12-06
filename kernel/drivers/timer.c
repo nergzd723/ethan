@@ -26,11 +26,13 @@ uint32_t getmsecfromboot(){
 int getsecfromboot(){
    return sec;
 }
+
 void waitticks(uint32_t ticks){
    int olds = tick;
    while ((tick-olds) != ticks){}  
-   return
+   return;
 }
+
 //wait millisecond
 void waitm(int ms){
    int olds = msec;
