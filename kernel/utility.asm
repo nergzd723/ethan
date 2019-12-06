@@ -72,6 +72,11 @@ cpu_cycle:
    xor eax,edx
    xor edx,eax
    ret
+
+global writeshittoeax
+writeshittoeax:
+   mov eax, 0x1
+   ret
    
 global scall
 scall:

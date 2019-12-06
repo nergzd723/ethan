@@ -187,7 +187,7 @@ void fb_newlinehandler(){
         printf("K USABLE extended memory");
     }
     if (strcmp(command, "syscall") == 0){
-        write_eax(0x001);
+        writeshittoeax();
         scall();
         printf("HUGGIES?");
     }
