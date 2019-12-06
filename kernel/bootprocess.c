@@ -17,6 +17,7 @@
 #include <v8086m.h>
 #include <smbios.h>
 #include <string.h>
+#include <acpi.h>
 #include <sysinit.h>
 
 void boot_stage2(){
@@ -103,6 +104,9 @@ void boot_stage1(){
 	}
 	smb_ep = (struct SMBIOSEntryPoint*)mem;
 	logf("SMBIOS found at 0x%08x.");
+    printf("OK\n");
+    printf("ACPI...\n");
+    acpiEnable();
     printf("OK\n");
    printf("Entering second stage...\n");
    boot_stage2();

@@ -8,6 +8,7 @@
 #include <io.h>
 #include <stdint.h>
 #include <timer.h>
+#include <logger.h>
 
 
 
@@ -77,9 +78,9 @@ unsigned int *acpiCheckRSDPtr(unsigned int *ptr)
       if (check == 0) {
          /*
           if (desc->Revision == 0)
-            printf("acpi 1");
+            logf("acpi 1");
          else
-            printf("acpi 2");
+            logf("acpi 2");
          */
          return (unsigned int *) rsdp->RsdtAddress;
       }
@@ -168,18 +169,18 @@ int acpiEnable(void)
                waitm(2);
             }
          if (i<150) {
-            printf("enabled acpi.\n");
+            logf("enabled acpi.\n");
             return 0;
          } else {
-            printf("couldn't enable acpi.\n");
+            logf("couldn't enable acpi.\n");
             return -1;
          }
       } else {
-         printf("no known way to enable acpi.\n");
+         logf("no known way to enable acpi.\n");
          return -1;
       }
    } else {
-      //printf("acpi was already enabled.\n");
+      logf("acpi was already enabled.\n");
       return 0;
    }
 }
@@ -267,20 +268,20 @@ int initAcpi(void)
 
                      return 0;
                   } else {
-                     printf("\\_S5 parse error.\n");
+                     logf("\\_S5 parse error.\n");
                   }
                } else {
-                  printf("\\_S5 not present.\n");
+                  logf("\\_S5 not present.\n");
                }
             } else {
-               printf("DSDT invalid.\n");
+               logf("DSDT invalid.\n");
             }
          }
          ptr++;
       }
-      printf("no valid FACP present.\n");
+      logf("no valid FACP present.\n");
    } else {
-      printf("no acpi.\n");
+      logf("no acpi.\n");
    }
 
    return -1;
@@ -290,10 +291,6 @@ int initAcpi(void)
 
 void acpiPowerOff(void)
 {
-   // SCI_EN is set to 1 if acpi shutdown is possible
-   if (SCI_EN == 0)
-      return;
-
    acpiEnable();
 
    // send the shutdown command
@@ -301,5 +298,5 @@ void acpiPowerOff(void)
    if ( PM1b_CNT != 0 )
       outw((unsigned int) PM1b_CNT, SLP_TYPb | SLP_EN );
 
-   printf("acpi poweroff failed.\n");
+   logf("acpi poweroff failed.\n");
 }
