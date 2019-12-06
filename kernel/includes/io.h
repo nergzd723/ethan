@@ -23,9 +23,9 @@ static inline uint64_t rdtsc()
     return ret;
 }
 
-static inline void write_eax(int eax)
+static inline void write_eax(int eaxyz)
 {
-    asm volatile ( "mov %0, %%eax" : "=r"(eax) );
+    asm volatile ( "mov %%eax, %0" : "=r"(eaxyz) );
 }
 
 //clear interrupts
