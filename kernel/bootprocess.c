@@ -24,6 +24,9 @@ void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
    __asm__ volatile("sti");
    printf("OK\n");
+    printf("ACPI...\n");
+    acpiEnable();
+    printf("OK\n");
    printf("Testing timer...\n");
    waitm(30);
    printf("SoundBlaster16...\n");
@@ -104,9 +107,6 @@ void boot_stage1(){
 	}
 	smb_ep = (struct SMBIOSEntryPoint*)mem;
 	logf("SMBIOS found at 0x%08x.");
-    printf("OK\n");
-    printf("ACPI...\n");
-    acpiEnable();
     printf("OK\n");
    printf("Entering second stage...\n");
    boot_stage2();
