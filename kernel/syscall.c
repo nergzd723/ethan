@@ -8,7 +8,7 @@ void syscall_handler(context_t* cpustate)
     logf("syscall: got a call: %x\n", cpustate->eax);
     switch (cpustate->eax)
     {
-    case 1:
+    case 0x001:
         printf("\nIndeed\n");
         break;
     

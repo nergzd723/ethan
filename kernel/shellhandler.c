@@ -4,6 +4,7 @@
 #include <userapp.h>
 #include <random.h>
 #include <shutdown.h>
+#include <io.h>
 #include <logger.h>
 #include <cpu_speed.h>
 #include <memory.h>
@@ -186,6 +187,7 @@ void fb_newlinehandler(){
         printf("K USABLE extended memory");
     }
     if (strcmp(command, "syscall") == 0){
+        write_eax(0x001);
         scall();
         printf("HUGGIES?");
     }
