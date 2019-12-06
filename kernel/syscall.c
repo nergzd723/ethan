@@ -7,5 +7,5 @@ void syscall_handler(){
 }
 
 void install_syscall_handler(){
-    register_interrupt_handler(36, &syscall_handler);
+    register_interrupt_handler(25, &syscall_handler);
 }

@@ -75,5 +75,5 @@ cpu_cycle:
    
 global scall
 scall:
-   int 36
+   int 25
    ret
