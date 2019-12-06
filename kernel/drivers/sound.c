@@ -3,7 +3,7 @@
 #include <timer.h>
 #include <sound.h>
 
- static void play_sound(uint32_t nFrequence) {
+static void play_sound(uint32_t nFrequence) {
 	asm volatile("sti");
  	uint32_t Div;
  	uint8_t tmp;
@@ -30,6 +30,11 @@ static void playnote(uint32_t freq, uint32_t time){
 	waitm(time);
 	nosound();
 }
+
+void pause(uint32_t time){
+	waitm(time);
+}
+
 void happy(){
 	playnote(D5, QUADRO);
 	playnote(D5, QUADRO);

@@ -75,5 +75,4 @@ cpu_cycle:
    
 global scall
 scall:
-   int 149
-   iret
+   int 47
