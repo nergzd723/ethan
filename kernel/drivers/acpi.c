@@ -6,49 +6,50 @@
 #include <frame_buffer.h>
 #include <string.h>
 #include <io.h>
+#include <stdint.h>
 #include <timer.h>
 
 
 
-dword *SMI_CMD;
-byte ACPI_ENABLE;
-byte ACPI_DISABLE;
-dword *PM1a_CNT;
-dword *PM1b_CNT;
-word SLP_TYPa;
-word SLP_TYPb;
-word SLP_EN;
-word SCI_EN;
-byte PM1_CNT_LEN;
+uint32_t *SMI_CMD;
+uint8_t ACPI_ENABLE;
+uint8_t ACPI_DISABLE;
+uint32_t *PM1a_CNT;
+uint32_t *PM1b_CNT;
+uint16_t SLP_TYPa;
+uint16_t SLP_TYPb;
+uint16_t SLP_EN;
+uint16_t SCI_EN;
+uint8_t PM1_CNT_LEN;
 
 
 
 struct RSDPtr
 {
-   byte Signature[8];
-   byte CheckSum;
-   byte OemID[6];
-   byte Revision;
-   dword *RsdtAddress;
+   uint8_t Signature[8];
+   uint8_t CheckSum;
+   uint8_t OemID[6];
+   uint8_t Revision;
+   uint32_t *RsdtAddress;
 };
 
 
 
 struct FACP
 {
-   byte Signature[4];
-   dword Length;
-   byte unneded1[40 - 8];
-   dword *DSDT;
-   byte unneded2[48 - 44];
-   dword *SMI_CMD;
-   byte ACPI_ENABLE;
-   byte ACPI_DISABLE;
-   byte unneded3[64 - 54];
-   dword *PM1a_CNT_BLK;
-   dword *PM1b_CNT_BLK;
-   byte unneded4[89 - 72];
-   byte PM1_CNT_LEN;
+   uint8_t Signature[4];
+   uint32_t Length;
+   uint8_t unneded1[40 - 8];
+   uint32_t *DSDT;
+   uint8_t unneded2[48 - 44];
+   uint32_t *SMI_CMD;
+   uint8_t ACPI_ENABLE;
+   uint8_t ACPI_DISABLE;
+   uint8_t unneded3[64 - 54];
+   uint32_t *PM1a_CNT_BLK;
+   uint32_t *PM1b_CNT_BLK;
+   uint8_t unneded4[89 - 72];
+   uint8_t PM1_CNT_LEN;
 };
 
 
@@ -58,14 +59,14 @@ unsigned int *acpiCheckRSDPtr(unsigned int *ptr)
 {
    char *sig = "RSD PTR ";
    struct RSDPtr *rsdp = (struct RSDPtr *) ptr;
-   byte *bptr;
-   byte check = 0;
+   uint8_t *bptr;
+   uint8_t check = 0;
    int i;
 
    if (memcmp(sig, rsdp, 8) == 0)
    {
       // check checksum rsdpd
-      bptr = (byte *) ptr;
+      bptr = (uint8_t *) ptr;
       for (i=0; i<sizeof(struct RSDPtr); i++)
       {
          check += *bptr;
@@ -186,7 +187,7 @@ int acpiEnable(void)
 
 
 //
-// bytecode of the \_S5 object
+// uint8_tcode of the \_S5 object
 // -----------------------------------------
 //        | (optional) |    |    |    |   
 // NameOP | \          | _  | S  | 5  | _
@@ -194,14 +195,14 @@ int acpiEnable(void)
 //
 // -----------------------------------------------------------------------------------------------------------
 //           |           |              | ( SLP_TYPa   ) | ( SLP_TYPb   ) | ( Reserved   ) | (Reserved    )
-// PackageOP | PkgLength | NumElements  | byteprefix Num | byteprefix Num | byteprefix Num | byteprefix Num
+// PackageOP | PkgLength | NumElements  | uint8_tprefix Num | uint8_tprefix Num | uint8_tprefix Num | uint8_tprefix Num
 // 12        | 0A        | 04           | 0A         05  | 0A          05 | 0A         05  | 0A         05
 //
 //----this-structure-was-also-seen----------------------
 // PackageOP | PkgLength | NumElements |
 // 12        | 06        | 04          | 00 00 00 00
 //
-// (Pkglength bit 6-7 encode additional PkgLength bytes [shouldn't be the case here])
+// (Pkglength bit 6-7 encode additional PkgLength uint8_ts [shouldn't be the case here])
 //
 int initAcpi(void)
 {
@@ -243,12 +244,12 @@ int initAcpi(void)
                      S5Addr += ((*S5Addr &0xC0)>>6) +2;   // calculate PkgLength size
 
                      if (*S5Addr == 0x0A)
-                        S5Addr++;   // skip byteprefix
+                        S5Addr++;   // skip uint8_tprefix
                      SLP_TYPa = *(S5Addr)<<10;
                      S5Addr++;
 
                      if (*S5Addr == 0x0A)
-                        S5Addr++;   // skip byteprefix
+                        S5Addr++;   // skip uint8_tprefix
                      SLP_TYPb = *(S5Addr)<<10;
 
                      SMI_CMD = facp->SMI_CMD;
