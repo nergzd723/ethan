@@ -5,7 +5,7 @@
 
 void syscall_handler(context_t* cpustate)
 {
-    logf("syscall: got a call: %x", cpustate->eax);
+    logf("syscall: got a call: %x\n", cpustate->eax);
     switch (cpustate->eax)
     {
     case 1:
@@ -13,11 +13,11 @@ void syscall_handler(context_t* cpustate)
         break;
     
     default:
-        logf("syscall: bad syscall");
+        logf("syscall: bad syscall\n");
         break;
     }
 }
 
 void install_syscall_handler(){
-    register_interrupt_handler(19, &syscall_handler);
+    register_interrupt_handler(25, &syscall_handler);
 }
