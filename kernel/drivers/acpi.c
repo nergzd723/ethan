@@ -149,6 +149,9 @@ int acpiEnable(void)
    // check if acpi is enabled
    if ( (inw((unsigned int) PM1a_CNT) &SCI_EN) == 0 )
    {
+      // check if acpi can be enabled
+      if (SMI_CMD != 0 && ACPI_ENABLE != 0)
+      {
          outb((unsigned int) SMI_CMD, ACPI_ENABLE); // send acpi enable command
          // give 3 seconds time to enable acpi
          int i;
@@ -173,7 +176,7 @@ int acpiEnable(void)
             return -1;
          }
       }
-   else {
+   } else {
       logf("acpi was already enabled.\n");
       return 0;
    }
