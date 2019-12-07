@@ -189,9 +189,10 @@ void map_page(uint32_t* kernel_page_directory, uint32_t virtual_address, uint32_
     page_table[page_table_index] = physical_address | 3; // supervisor, r/w, present
 }
 
-void page_fault_handler(context_t* context) {
-    panic("Page fault, cant resolve!");
-    
+void page_fault_handler(context_t* context)
+{
+    disable_paging();
+    enable_paging();
 }
 
 int liballoc_lock()
