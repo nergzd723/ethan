@@ -29,7 +29,6 @@ void boot_stage2(){
     printf("ACPI...\n");
    initAcpi();
    printf("OK\n");
-   init_paging();
    logf("Paging initialized\n");
     clear_screen();
    printf("Ethanium booted! Got ");
@@ -51,6 +50,7 @@ void boot_stage2(){
    logf("Random seeded to CPU speed\n");
    printf(">>> ");
    __init_done = true;
+    init_paging();
 }
 
 //first stage of booting, init core
