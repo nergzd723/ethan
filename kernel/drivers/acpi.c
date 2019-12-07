@@ -54,7 +54,6 @@ struct FACP
 };
 
 
-
 // check if the given address has a valid header
 unsigned int *acpiCheckRSDPtr(unsigned int *ptr)
 {
@@ -155,29 +154,32 @@ int acpiEnable(void)
          outb((unsigned int) SMI_CMD, ACPI_ENABLE); // send acpi enable command
          // give 3 seconds time to enable acpi
          int i;
-         for (i=0; i<3; i++ )
+         for (i=0; i<300; i++ )
          {
             if ( (inw((unsigned int) PM1a_CNT) &SCI_EN) == 1 )
                break;
-            wait(1);
+            waitm(10);
          }
          if (PM1b_CNT != 0)
-            for (; i<3; i++ )
+            for (; i<300; i++ )
             {
                if ( (inw((unsigned int) PM1b_CNT) &SCI_EN) == 1 )
                   break;
-               wait(1);
+               waitm(10);
             }
-         if (i<3) {
+         if (i<300) {
             logf("enabled acpi.\n");
             return 0;
          } else {
             logf("couldn't enable acpi.\n");
             return -1;
          }
+      } else {
+         logf("no known way to enable acpi.\n");
+         return -1;
       }
    } else {
-      logf("acpi was already enabled.\n");
+      //logf("acpi was already enabled.\n");
       return 0;
    }
 }
@@ -185,7 +187,7 @@ int acpiEnable(void)
 
 
 //
-// uint8_tcode of the \_S5 object
+// bytecode of the \_S5 object
 // -----------------------------------------
 //        | (optional) |    |    |    |   
 // NameOP | \          | _  | S  | 5  | _
@@ -193,14 +195,14 @@ int acpiEnable(void)
 //
 // -----------------------------------------------------------------------------------------------------------
 //           |           |              | ( SLP_TYPa   ) | ( SLP_TYPb   ) | ( Reserved   ) | (Reserved    )
-// PackageOP | PkgLength | NumElements  | uint8_tprefix Num | uint8_tprefix Num | uint8_tprefix Num | uint8_tprefix Num
+// PackageOP | PkgLength | NumElements  | byteprefix Num | byteprefix Num | byteprefix Num | byteprefix Num
 // 12        | 0A        | 04           | 0A         05  | 0A          05 | 0A         05  | 0A         05
 //
 //----this-structure-was-also-seen----------------------
 // PackageOP | PkgLength | NumElements |
 // 12        | 06        | 04          | 00 00 00 00
 //
-// (Pkglength bit 6-7 encode additional PkgLength uint8_ts [shouldn't be the case here])
+// (Pkglength bit 6-7 encode additional PkgLength bytes [shouldn't be the case here])
 //
 int initAcpi(void)
 {
@@ -242,12 +244,12 @@ int initAcpi(void)
                      S5Addr += ((*S5Addr &0xC0)>>6) +2;   // calculate PkgLength size
 
                      if (*S5Addr == 0x0A)
-                        S5Addr++;   // skip uint8_tprefix
+                        S5Addr++;   // skip byteprefix
                      SLP_TYPa = *(S5Addr)<<10;
                      S5Addr++;
 
                      if (*S5Addr == 0x0A)
-                        S5Addr++;   // skip uint8_tprefix
+                        S5Addr++;   // skip byteprefix
                      SLP_TYPb = *(S5Addr)<<10;
 
                      SMI_CMD = facp->SMI_CMD;
@@ -288,6 +290,10 @@ int initAcpi(void)
 
 void acpiPowerOff(void)
 {
+   // SCI_EN is set to 1 if acpi shutdown is possible
+   if (SCI_EN == 0)
+      return;
+
    acpiEnable();
 
    // send the shutdown command
