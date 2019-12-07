@@ -26,4 +26,4 @@
 #define LONG 64
 void beep();
 void happy();
-static void nosound();
+void nosound();
