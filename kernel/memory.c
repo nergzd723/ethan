@@ -192,6 +192,7 @@ void map_page(uint32_t* kernel_page_directory, uint32_t virtual_address, uint32_
 
 void page_fault_handler(context_t* context)
 {
+    asm volatile ("sti");
     disable_paging();
     printf("Page fault! Unloaded page tables and disabled paging");
 }
