@@ -50,7 +50,7 @@ void boot_stage2(){
    logf("Random seeded to CPU speed\n");
    printf(">>> ");
    __init_done = true;
-    init_paging();
+   init_paging();
 }
 
 //first stage of booting, init core

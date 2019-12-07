@@ -12,6 +12,7 @@
 #include <sound.h>
 #include <cpuid.h>
 #include <stdbool.h>
+#include <boot.h>
 #include <liballoc.h>
 #include <gfx.h>
 #include <liballoc.h>
@@ -34,8 +35,14 @@ void reset_shell()
 {
     clear_screen();
     memset(&lastcommbuf[0], 0, sizeof(lastcommbuf));
-    printf(">>>");
+    printf(">>> ");
     for(;;);
+}
+void reinit(){
+    disable_paging();
+    asm volatile ("cli")
+    clear_screen();
+    boot_stage1();
 }
 void inputlistener(char* comm){
     strcpy(inputbuf, comm);
@@ -89,6 +96,9 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "star") == 0){
         staralligns();
+    }
+    if (strcmp(command, "reinit") == 0){
+        reinit();
     }
     if (strcmp(command, "gfx") == 0){
         asm volatile("sti");
