@@ -28,18 +28,15 @@ static inline void write_eax(int eaxyz)
     asm volatile ( "mov %%eax, %0" : "=r"(eaxyz) );
 }
 
-static inline void
-outw (unsigned short int __value, unsigned short int __port)
+static inline void outw (uint16_t val, uint16_t port)
 {
-  asm volatile ("outw %w0,%w1": :"a" (__value), "Nd" (__port));
+    asm volatile ( "outw %0, %1" : : "a"(val), "Nd"(port) );
 }
 
-static inline unsigned short int
-inw (unsigned short int __port)
-{
-  unsigned short _v;
-  asm volatile ("inw %w1,%0":"=a" (_v):"Nd" (__port));
-  return _v;
+static inline uint16_t inw(uint16_t port){
+    uint16_t ret;
+    asm volatile ( "inw %1, %0" : "=a"(ret) : "Nd"(port) );
+    return ret;
 }
 
 //clear interrupts
