@@ -94,7 +94,7 @@ void fb_newlinehandler(){
         if (paging){
             printf("\nPaging off");
             disable_paging();
-            logf("Paging off?\n");
+            logf("Paging off\n");
             paging = false;
         }
         else{

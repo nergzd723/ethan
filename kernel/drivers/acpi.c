@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <timer.h>
 #include <logger.h>
-
+#include <memory.h>
 
 
 uint32_t *SMI_CMD;
@@ -293,9 +293,10 @@ void acpiPowerOff(void)
    // SCI_EN is set to 1 if acpi shutdown is possible
    if (SCI_EN == 0)
       return;
-
-   acpiEnable();
    asm volatile ("cli");
+   disable_paging();
+   initAcpi();
+   acpiEnable();
    // send the shutdown command
    outw((unsigned int) PM1a_CNT, SLP_TYPa | SLP_EN );
    if ( PM1b_CNT != 0 )
