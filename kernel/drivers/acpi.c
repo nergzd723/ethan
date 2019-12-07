@@ -295,7 +295,7 @@ void acpiPowerOff(void)
       return;
 
    acpiEnable();
-
+   asm volatile ("cli");
    // send the shutdown command
    outw((unsigned int) PM1a_CNT, SLP_TYPa | SLP_EN );
    if ( PM1b_CNT != 0 )
