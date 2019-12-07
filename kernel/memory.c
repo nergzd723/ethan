@@ -5,6 +5,7 @@
 #include <isr.h>
 #include <panic.h>
 #include <string.h>
+#include <frame_buffer.h>
 #include <io.h>
 
 extern void load_page_directory(uint32_t);
@@ -192,7 +193,7 @@ void map_page(uint32_t* kernel_page_directory, uint32_t virtual_address, uint32_
 void page_fault_handler(context_t* context)
 {
     disable_paging();
-    enable_paging();
+    printf("Page fault! Unloaded page tables and disabled paging");
 }
 
 int liballoc_lock()
