@@ -23,10 +23,7 @@ static inline uint64_t rdtsc()
     return ret;
 }
 
-static inline void write_eax(int eaxyz)
-{
-    __asm__ __volatile__("mov %%eax, %0" : "=a"(eaxyz));
-}
+extern void write_eax(int eaxyz);
 
 static inline void outw (uint16_t port, uint16_t val)
 {

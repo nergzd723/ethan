@@ -82,6 +82,14 @@ global scall
 scall:
    int 25
    ret
+   
+global write_eax
+write_eax:
+   push ebp
+   mov ebp, esp
+   mov eax, [ebp+8]
+   pop ebp
+   ret
 
 global resetact
 resetact:

@@ -57,7 +57,7 @@ void process_key_press(uint8_t scan_code) {
     {
         if (scan_code == 0x2c)
         {
-            resetact();
+            write_eax(6451819);
             scall();
         }
     }
