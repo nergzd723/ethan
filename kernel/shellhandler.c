@@ -140,7 +140,7 @@ void fb_newlinehandler(){
     if (strcmp(command, "overflow") == 0){
         logf("Let the hellrace begin!");
         while (1){
-            malloc(sizeof(logger_t));
+            malloc(sizeof(uint8_t));
         }
     }
     if (strcmp(command, "randomb") == 0){
