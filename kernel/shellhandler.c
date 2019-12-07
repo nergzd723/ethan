@@ -40,7 +40,7 @@ void reset_shell()
 }
 void reinit(){
     disable_paging();
-    asm volatile ("cli")
+    asm volatile ("cli");
     clear_screen();
     boot_stage1();
 }
