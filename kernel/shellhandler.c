@@ -39,6 +39,7 @@ void reset_shell()
     for(;;);
 }
 void reinit(){
+    nosound();
     disable_paging();
     asm volatile ("cli");
     clear_screen();
