@@ -29,7 +29,6 @@ void boot_stage2(){
     printf("ACPI...\n");
    initAcpi();
    printf("OK\n");
-   printf("OK\n");
    init_paging();
    logf("Paging initialized\n");
     clear_screen();
@@ -40,9 +39,9 @@ void boot_stage2(){
    printf("K lowmem, ");
    printf(inttostr(upper_memory()));
    printf("K USABLE extended memory\n");
-   printf("Running on ")
+   printf("Running on ");
    printf(detectBIOSVendor());
-   printf(" machine\n")
+   printf(" machine\n");
    if (memorycount() > 65535){
        printf("It seems that you have more than 64M of RAM. Ethanium may not work properly\n");
    }
