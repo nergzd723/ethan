@@ -13,7 +13,7 @@ loop:
 }
 
 void shutdown_qemu_vm(){
-    outw(0x604, 0x2000); //doesnt work
+    outw(0x604, 0x2000); //does work
 }
 
 void shutdown(){

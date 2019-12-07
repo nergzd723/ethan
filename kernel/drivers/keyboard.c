@@ -8,6 +8,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <shell.h>
+#include <syscall.h>
 #include <defines.h>
 
 // https://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html
@@ -56,7 +57,7 @@ void process_key_press(uint8_t scan_code) {
     {
         if (scan_code == 0x2c)
         {
-            write_eax(6451819);
+            resetact();
             scall();
         }
     }

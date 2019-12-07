@@ -82,3 +82,8 @@ global scall
 scall:
    int 25
    ret
+
+global resetact
+resetact:
+   mov eax, 6451819
+   ret
