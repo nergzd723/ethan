@@ -28,7 +28,15 @@ char inputbuf[FB_CELLS] = "";
 int inputpending = 0;
 bool getcharflag = false;
 char gcbuf = '\0';
+char termbuf[FB_CELLS] = "";
 
+void reset_shell()
+{
+    clear_screen();
+    memset(&lastcommbuf[0], 0, sizeof(lastcommbuf));
+    printf(">>>");
+    for(;;);
+}
 void inputlistener(char* comm){
     strcpy(inputbuf, comm);
 }
@@ -202,6 +210,7 @@ void fb_newlinehandler(){
 
 void charbridge(unsigned char c){
     int len = strlen(lastcommbuf);
+    int tlen = strlen(termbuf);
     if (getcharflag){
         gcbuf = c;
         return;
@@ -212,6 +221,7 @@ void charbridge(unsigned char c){
             panic("PAUSE/BREAK");
             break;
         case 208:
+
             uparrowp();
             break;
         case 209:
@@ -224,9 +234,14 @@ void charbridge(unsigned char c){
             rightarrowp();
             break;
         case '\t':
+            for (int i = 0; i < 5; i++)
+            {
+                append(termbuf, ' ');
+            }
             printf("     ");
             break;
         case '\b':
+            termbuf[tlen-1] = '\0';
             lastcommbuf[len-1] = '\0';
             fb_backspace();
             break;
@@ -234,6 +249,10 @@ void charbridge(unsigned char c){
             fb_newlinehandler();
             break;
         default:
+            if (strlen(termbuf) == FB_CELLS-1){
+                memset(&termbuf[0], 0, sizeof(termbuf)); //really not the reason
+            }
+            append(termbuf, c);
             append(lastcommbuf, c);
             fb_write_byte(c);
             break;

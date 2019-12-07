@@ -1,6 +1,7 @@
 #include <isr.h>
 #include <logger.h>
 #include <frame_buffer.h>
+#include <shell.h>
 #include <logger.h>
 
 void syscall_handler(context_t* cpustate)
@@ -9,15 +10,13 @@ void syscall_handler(context_t* cpustate)
     switch (cpustate->eax)
     {
     case 6451819:
-        logf("syscall: trying to breakthrough to shell!");
-        clear_screen();
-        printf("Process closed");
         asm volatile ("sti");
-        for(;;);
-    case 0x001:
+        printf("Process closed");
+        logf("syscall: trying to breakthrough to shell!");
+        reset_shell();
+    case 0x1:
         printf("\nIndeed\n");
         break;
-    
     default:
         logf("syscall: bad syscall\n");
         break;
