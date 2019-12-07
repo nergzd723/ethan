@@ -8,6 +8,11 @@ void syscall_handler(context_t* cpustate)
     logf("syscall: got a call: %x\n", cpustate->eax);
     switch (cpustate->eax)
     {
+    case 'brk':
+        logf("syscall: trying to breakthrough to shell!");
+        clear_screen();
+        printf("Process closed");
+        for(;;);
     case 0x001:
         printf("\nIndeed\n");
         break;

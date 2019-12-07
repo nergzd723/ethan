@@ -26,10 +26,16 @@ void process_key_press(uint8_t scan_code) {
     unsigned int modifier;
     if (shift > 0) {
         modifier = SHIFT;
-    } else {
+    }
+    else
+    {
         modifier = NORMAL;
     }
-
+    
+    if (scan_code == 0x1D){
+        ctrl++;
+        return;
+    }
     if (scan_code == 0x2a || scan_code == 0x36) {
         /* A SHIFT is being pressed */
         shift++;
@@ -46,7 +52,14 @@ void process_key_press(uint8_t scan_code) {
 
     /* It's safe to convert to a character */
     char c = keymap[modifier][scan_code];
-
+    if(ctrl > 0)
+    {
+        if (scan_code == 0x2c)
+        {
+            write_eax('brk');
+            scall();
+        }
+    }
     // TODO: add to the character buffer
     // But for now, let's just print to the screen
     charbridge(c);
