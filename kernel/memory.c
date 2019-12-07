@@ -194,7 +194,8 @@ void page_fault_handler(context_t* context)
 {
     asm volatile ("sti");
     disable_paging();
-    printf("Page fault! Unloaded page tables and disabled paging");
+    printf("\nPage fault! Unloaded page tables and disabled paging\n");
+    for(;;);
 }
 
 int liballoc_lock()
