@@ -28,7 +28,7 @@ static inline void write_eax(int eaxyz)
     asm volatile ( "mov %%eax, %0" : "=r"(eaxyz) );
 }
 
-static inline void outw (uint16_t val, uint16_t port)
+static inline void outw (uint16_t port, uint16_t val)
 {
     asm volatile ( "outw %0, %1" : : "a"(val), "Nd"(port) );
 }
