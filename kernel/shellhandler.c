@@ -164,8 +164,7 @@ void fb_newlinehandler(){
         dojibberish();
     }
     if (strcmp(command, "shutdown") == 0){
-        asm volatile("sti");
-        //shutdown_qemu_vm();
+        shutdown_qemu_vm();
         acpiPowerOff();
     }
     if (strcmp(command, "version") == 0){
