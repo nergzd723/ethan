@@ -40,15 +40,18 @@ void boot_stage2(){
    printf("K lowmem, ");
    printf(inttostr(upper_memory()));
    printf("K USABLE extended memory\n");
+   printf("Running on ")
+   printf(detectBIOSVendor());
+   printf(" machine\n")
    if (memorycount() > 65535){
        printf("It seems that you have more than 64M of RAM. Ethanium may not work properly\n");
    }
-   printf(inttostr(discoverspeed()));
+   printf(inttostr(detectCPUSpeed()));
    printf("MHz CPU speed\n");
    srand(discoverspeed());
    logf("Random seeded to CPU speed\n");
    printf(">>> ");
-    __init_done = true;
+   __init_done = true;
 }
 
 //first stage of booting, init core
