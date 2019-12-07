@@ -1,15 +1,14 @@
 #include <string.h>
 
-int memcmp(const void *s1, const void *s2, size_t n)                    /* Length to compare. */
+int memcmp(const void *s1, const void *s2, size_t n)    
 {
-    unsigned char u1, u2;
-
-    for ( ; n-- ; s1++, s2++) {
-    u1 = * (unsigned char *) s1;
-    u2 = * (unsigned char *) s2;
-    if ( u1 != u2) {
-        return (u1-u2);
-    }
-    }
-    return 0;
+    const unsigned char* a = (const unsigned char*) s1;
+	const unsigned char* b = (const unsigned char*) s2;
+	for (size_t i = 0; i < n; i++) {
+		if (a[i] < b[i])
+			return -1;
+		else if (b[i] < a[i])
+			return 1;
+	}
+	return 0;
 }

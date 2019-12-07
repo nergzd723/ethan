@@ -29,6 +29,9 @@ void boot_stage2(){
    printf("OK\n");
    init_paging();
    logf("Paging initialized\n");
+   printf("ACPI...\n");
+   initAcpi();
+   printf("OK\n");
     clear_screen();
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));
