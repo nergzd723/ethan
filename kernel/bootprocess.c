@@ -43,13 +43,14 @@ void boot_stage2(){
    if (memorycount() > 65535){
        printf("It seems that you have more than 64M of RAM. Ethanium may not work properly\n");
    }
-   printf(inttostr(detectCPUSpeed()));
-   printf("MHz CPU speed\n");
-   srand(discoverspeed());
+   //printf(inttostr(detectCPUSpeed()));
+   //printf("MHz CPU speed\n");
+   //srand(discoverspeed());
    logf("Random seeded to CPU speed\n");
    printf(">>> ");
    __init_done = true;
    init_paging();
+   asm volatile("sti");
 }
 
 //first stage of booting, init core
