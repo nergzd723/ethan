@@ -90,6 +90,14 @@ write_eax:
    mov eax, [ebp+8]
    pop ebp
    ret
+   
+global write_edx
+write_edx:
+   push ebp
+   mov ebp, esp
+   mov edx, [ebp+8]
+   pop ebp
+   ret
 
 global resetact
 resetact:
