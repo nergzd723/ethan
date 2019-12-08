@@ -10,8 +10,8 @@ void syscall_handler(context_t* cpustate)
     switch (cpustate->eax)
     {
     case 7828067:
-        char a = cpustate->edx;
-        printf(a);
+        logf("syscall: wrstr, edx = %d", cpustate->edx);
+        printf(cpustate->edx);
         break;
     case 6451819:
         asm volatile ("sti");
