@@ -12,6 +12,7 @@
 #include <sound.h>
 #include <cpuid.h>
 #include <stdbool.h>
+#include <fall.h>
 #include <boot.h>
 #include <liballoc.h>
 #include <gfx.h>
@@ -88,6 +89,9 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "add") == 0){
         add();
+    }
+    if (strcmp(command, "fall") == 0){
+        fall();
     }
     if (strcmp(command, "beep") == 0){
         beep();
