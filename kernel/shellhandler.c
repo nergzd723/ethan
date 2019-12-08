@@ -115,7 +115,6 @@ void fb_newlinehandler(){
         regs.ax = 0x0013;
         int32(0x10, &regs);
         memset((char *)0xA0000, 1, (320*200));
-        asm volatile("sti");
         regs.ax = 0x0003;
         int32(0x10, &regs);
         reinit();
