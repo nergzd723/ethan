@@ -9,5 +9,6 @@ void dojibberish(){
     while(1){
         fb_write_cell(rand()%FB_CELLS, rand(), FB_GREEN, FB_BLACK);
         move_cursor_to_pos(rand()%FB_CELLS);
+        srand(rand());
     }
 }
