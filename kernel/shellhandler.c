@@ -101,11 +101,6 @@ void fb_newlinehandler(){
     if (strcmp(command, "reinit") == 0){
         reinit();
     }
-    if (strcmp(command, "callwr") == 0){
-        write_eax(7828067);
-        write_edx("b");
-        scall();
-    }
     if (strcmp(command, "gfx") == 0){
         asm volatile("sti");
         disable_paging();

@@ -9,10 +9,6 @@ void syscall_handler(context_t* cpustate)
     logf("syscall: got a call: %x\n", cpustate->eax);
     switch (cpustate->eax)
     {
-    case 7828067:
-        logf("syscall: wrstr, edx = %d", cpustate->edx);
-        printf(cpustate->edx);
-        break;
     case 6451819:
         asm volatile ("sti");
         printf("Process closed");
