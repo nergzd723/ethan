@@ -10,9 +10,8 @@ void syscall_handler(context_t* cpustate)
     switch (cpustate->eax)
     {
     case 7828067:
-        int *a = cpustate->edx;
-        char* val = *a;
-        printf(val);
+        char *a = cpustate->edx;
+        printf(a);
         break;
     case 6451819:
         asm volatile ("sti");
