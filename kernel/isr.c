@@ -11,9 +11,6 @@ void isr_handler(context_t* context) {
     if(context->int_no == 0x00000019){
         syscall_handler(context);
     }
-    if(context->int_no == 0x00000039){
-        return;
-    }
     if (interrupt_handlers[context->int_no] != 0) {
         isr_t handler = interrupt_handlers[context->int_no];
         handler(context);
@@ -28,6 +25,9 @@ void irq_handler(context_t* context) {
     pic_send_eoi(context->int_no - 32);
 
     if (interrupt_handlers[context->int_no] == 0) {
+        if (context->int_no == 39){
+            return;
+        }
         logf("[PANIC] Unhandled IRQ: %x\n", context->int_no - 32);
         while(1); // TODO: change this to panic
     }
