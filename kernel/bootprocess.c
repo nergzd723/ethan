@@ -24,9 +24,9 @@ void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
    printf("OK\n");
    printf("SoundBlaster16...\n");
-   sb16_init();
+   //sb16_init();
     printf("ACPI...\n");
-   initAcpi();
+   //initAcpi();
    printf("OK\n");
    logf("Paging initialized\n");
     clear_screen();
