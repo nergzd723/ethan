@@ -80,7 +80,7 @@ writeshittoeax:
    
 global scall
 scall:
-   int 0x25
+   int 0x19
    ret
    
 global write_eax
@@ -103,7 +103,7 @@ global wrstr
 wrstr:
   mov eax, 7828067
   mov ebx, [esp+4]
-  int 0x25
+  int 0x19
   ret
 
 global resetact
