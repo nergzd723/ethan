@@ -1,6 +1,6 @@
 use32
-global fall
-fall:
+global .fall
+.fall:
    cli
    mov eax, cr0
    and eax, 0x7FFFFFFF      ; disable paging
