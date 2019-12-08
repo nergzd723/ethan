@@ -7,8 +7,8 @@ void dojibberish(){
     asm volatile("sti");
     clear_screen();
     while(1){
-        fb_write_cell(rand()%FB_CELLS, rand(), FB_GREEN, FB_BLACK);
-        move_cursor_to_pos(rand()%FB_CELLS);
-        srand(rand());
+        for(int cell = 0; cell<FB_CELLS; cell++){
+            fb_write_cell(cell, rand(), FB_GREEN, FB_BLACK);
+        }
     }
 }
