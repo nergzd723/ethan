@@ -11,6 +11,9 @@ void isr_handler(context_t* context) {
     if(context->int_no == 0x00000019){
         syscall_handler(context);
     }
+    if(context->int_no == 0x00000039){
+        return;
+    }
     if (interrupt_handlers[context->int_no] != 0) {
         isr_t handler = interrupt_handlers[context->int_no];
         handler(context);
