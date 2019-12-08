@@ -22,7 +22,6 @@
 
 void boot_stage2(){
    printf("Enabling hardware interrupts...\n");
-   __asm__ volatile("sti");
    printf("OK\n");
    printf("SoundBlaster16...\n");
    sb16_init();
