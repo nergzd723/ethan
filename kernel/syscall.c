@@ -10,7 +10,7 @@ void syscall_handler(context_t* cpustate)
     switch (cpustate->eax)
     {
     case 7828067:
-        char *a = cpustate->edx;
+        char **a = cpustate->edx;
         printf(a);
         break;
     case 6451819:

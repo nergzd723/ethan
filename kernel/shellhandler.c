@@ -102,7 +102,7 @@ void fb_newlinehandler(){
         reinit();
     }
     if (strcmp(command, "callwr") == 0){
-        char* mam = "syscalled\n";
+        char** mam = "syscalled\n";
         write_eax(7828067);
         write_edx(&mam);
         scall();
