@@ -14,9 +14,11 @@
 #include <stdbool.h>
 #include <fall.h>
 #include <boot.h>
+#include <isr.h>
 #include <liballoc.h>
 #include <gfx.h>
 #include <liballoc.h>
+#include <timer.h>
 #include <v8086m.h>
 #include <real.h>
 #include <acpi.h>
@@ -106,11 +108,17 @@ void fb_newlinehandler(){
         reinit();
     }
     if (strcmp(command, "gfx") == 0){
-        asm volatile("sti");
         disable_paging();
         paging = false;
-        entering_v86(0xDEADBEEF,0xDEADBEEF,0xDEADBEEF,0xDEADBEEF);
-        init_paging();
+        regs16_t regs;
+        regs.ax = 0x0013;
+        int32(0x10, &regs);
+        memset((char *)0xA0000, 1, (320*200));
+        asm volatile("sti");
+        wait(3);
+        regs.ax = 0x0003;
+        int32(0x10, &regs);
+        reinit();
         paging = true;
     }
     if (strcmp(command, "paging") == 0){
