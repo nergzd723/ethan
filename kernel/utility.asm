@@ -80,7 +80,7 @@ writeshittoeax:
    
 global scall
 scall:
-   int 25
+   int 0x25
    ret
    
 global write_eax
@@ -93,6 +93,14 @@ write_eax:
    
 global write_edx
 write_edx:
+   push ebp
+   mov ebp, esp
+   mov edx, [ebp+8]
+   pop ebp
+   ret
+
+global write_ebx
+write_ebx:
    push ebp
    mov ebp, esp
    mov edx, [ebp+8]
