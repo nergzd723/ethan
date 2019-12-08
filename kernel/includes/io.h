@@ -25,7 +25,7 @@ static inline uint64_t rdtsc()
 
 extern void write_eax(int eaxyz);
 extern void write_edx(int eaxyz);
-extern void write_ebx(char* eaxyz);
+extern void wrstr(char*);
 
 static inline void outw (uint16_t port, uint16_t val)
 {

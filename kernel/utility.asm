@@ -99,13 +99,12 @@ write_edx:
    pop ebp
    ret
 
-global write_ebx
-write_ebx:
-   push ebp
-   mov ebp, esp
-   mov edx, [ebp+8]
-   pop ebp
-   ret
+global wrstr
+wrstr:
+  mov eax, 7828067
+  mov ebx, [esp+4]
+  int 0x25
+  ret
 
 global resetact
 resetact:
