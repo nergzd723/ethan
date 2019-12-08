@@ -92,9 +92,6 @@ void fb_newlinehandler(){
     if (strcmp(command, "add") == 0){
         add();
     }
-    if (strcmp(command, "fall") == 0){
-        fall();
-    }
     if (strcmp(command, "beep") == 0){
         beep();
     }
