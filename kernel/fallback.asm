@@ -16,9 +16,8 @@ cli
 mov word [vid_mode],ax
 mov [save_esp],esp
 sidt [save_idt]
-lidt [idt16_ptr]
-
 jmp 0x18:pmode
+
 pmode:
 mov ax,0x20
 mov ds,ax
