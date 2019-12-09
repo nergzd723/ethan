@@ -45,6 +45,7 @@ typedef struct mode_info_block {
   uint8_t  reserved1 [206];
 }mode_info_t;
 
+extern switchvm();
 typedef union uint24{
     struct {
         uint8_t r;

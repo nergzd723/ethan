@@ -15,6 +15,7 @@
 #include <fall.h>
 #include <boot.h>
 #include <isr.h>
+#include <vesa.h>
 #include <liballoc.h>
 #include <gfx.h>
 #include <liballoc.h>
@@ -110,12 +111,8 @@ void fb_newlinehandler(){
     if (strcmp(command, "gfx") == 0){
         disable_paging();
         paging = false;
-        regs16_t regs;
-        regs.ax = 0x0013;
-        int32(0x10, &regs);
+        switchvm();
         memset((char *)0xA0000, 1, (320*200));
-        regs.ax = 0x0003;
-        int32(0x10, &regs);
         reinit();
         paging = true;
     }
