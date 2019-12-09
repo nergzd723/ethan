@@ -6,7 +6,7 @@
 #include <logger.h>
 #include <stdbool.h>
 bool textmode = true;
-void textmode(){
+void textmodes(){
   textmode = true;
 }
 void vmode(){

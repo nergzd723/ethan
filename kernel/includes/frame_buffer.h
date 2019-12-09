@@ -25,7 +25,7 @@
 #define FB_LIGHT_BROWN 14
 #define FB_WHITE 15
 
-void textmode();
+void textmodes();
 void vmode();
 bool getmode();
 void clear_screen();
