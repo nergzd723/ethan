@@ -3,7 +3,7 @@
 #include <string.h>
 #include <frame_buffer.h>
 #include <sysinit.h>
-#define	_vmemwr(DS,DO,S,N) memcpy((void *)(DS) * 16 + (DO), S, N)
+#define	_vmemwr(DS,DO,S,N) memcpy((DS) * 16 + (DO), S, N)
 
 static unsigned char g_8x8_font[2048] =
 {
@@ -340,7 +340,7 @@ assume: chain-4 addressing already off */
 /* write font 0 */
 	for(i = 0; i < 256; i++)
 	{
-	    vmemwr(16384u * 0 + i * 32, buf, font_height);
+	    _vmemwr(get_fb_seg(), 16384u * 0 + i * 32, buf, font_height);
 		buf += font_height;
 	}
 /* restore registers */
