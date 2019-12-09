@@ -68,7 +68,9 @@ void boot_stage2(){
    initAcpi();
    printf("OK\n");
    logf("Paging initialized\n");
-    clear_screen();
+   clear_screen();
+   logf("90x30 text mode applying\n");
+   write_regs(g_90x30_text);
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));
    printf("K mem total, ");
@@ -86,7 +88,6 @@ void boot_stage2(){
    printf("MHz CPU speed\n");
    srand(discoverspeed());
    logf("Random seeded to CPU speed\n");
-   write_regs(g_90x30_text);
    printf(">>> ");
    __init_done = true;
    init_paging();

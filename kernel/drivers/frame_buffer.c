@@ -100,17 +100,17 @@ void downarrowp()
 //  if (i > FB_CELLS){
 //    return;
 //  }
-  cursor_pos += 79;
+  cursor_pos += FB_COLS-1;
   move_cursor_to_pos(cursor_pos);
 }
 // up arrow pointer
 void uparrowp()
 {
-  int i = cursor_pos - 79;
+  int i = cursor_pos - FB_COLS-1;
   if (i < 0){
     return;
   } 
-  cursor_pos -= 79;
+  cursor_pos -= FB_COLS-1;
   move_cursor_to_pos(cursor_pos);
 }
 
@@ -135,8 +135,8 @@ void rightarrowp(){
 //\n like func
 void fb_newline()
 {
-  cursor_pos += 80;
-  int a = cursor_pos % 80;
+  cursor_pos += FB_COLS;
+  int a = cursor_pos % FB_COLS;
   cursor_pos -= a;
   if (cursor_pos > FB_CELLS){
     cursor_pos = 0;
