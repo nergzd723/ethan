@@ -2,6 +2,7 @@
 #include <vga.h>
 #include <string.h>
 #include <frame_buffer.h>
+#define	_vmemwr(DS,DO,S,N)	memcpy((char *)((DS) * 16 + (DO)), S, N)
 
 static unsigned char g_8x8_font[2048] =
 {
@@ -310,7 +311,7 @@ assume: chain-4 addressing already off */
 /* write font 0 */
 	for(i = 0; i < 256; i++)
 	{
-		memcpy(16384u * 0 + i * 32, buf, font_height);
+		vmemwr(16384u * 0 + i * 32, buf, font_height);
 		buf += font_height;
 	}
 /* restore registers */
