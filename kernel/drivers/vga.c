@@ -3,7 +3,7 @@
 #include <string.h>
 #include <frame_buffer.h>
 #include <sysinit.h>
-#define	_vmemwr(DS,DO,S,N) memcpy((char *)(DS) * 16 + (DO), S, N)
+#define	_vmemwr(DS,DO,S,N) memcpy((void *)(DS) * 16 + (DO), S, N)
 
 static unsigned char g_8x8_font[2048] =
 {
