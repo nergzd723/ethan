@@ -1,6 +1,5 @@
 #include <stdint.h>
 #include <string.h>
-#include <tty.h>
 #include <idt.h>
 
 extern void idt_flush(uint32_t);

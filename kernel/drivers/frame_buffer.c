@@ -284,7 +284,7 @@ void drawchar_transparent(unsigned char c, int x, int y, int fgcolor)
 }
 void clear_screen_a(){
     for (int i = 0; i < 640*480; i++){
-        drawchar_transparent(' ', i%640, i/640, FB_BLACK, FB_BLACK);
+        drawchar_transparent(' ', i%640, i/640, FB_BLACK);
     }
 }
 

@@ -1,5 +1,4 @@
 #include <isr.h>
-#include <tty.h>
 #include <logger.h>
 #include <pic.h>
 #include <syscall.h>
