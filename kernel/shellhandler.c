@@ -28,24 +28,13 @@
 
 bool paging = true;
 time_t* current_time;
-if (ninetyxsixty){
-    char lastcommbuf[90*60] = "";
-    int inputactive = 0;
-    char inputbuf[90*60] = "";
-    int inputpending = 0;
-    bool getcharflag = false;
-    char gcbuf = '\0';
-    char termbuf[90*60] = "";
-}
-else{
-    char lastcommbuf[80*25] = "";
+char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;
-char inputbuf[80*25] = "";
+char inputbuf[FB_CELLS] = "";
 int inputpending = 0;
 bool getcharflag = false;
 char gcbuf = '\0';
-char termbuf[80*25] = "";
-}
+char termbuf[FB_CELLS] = "";
 
 void reset_shell()
 {
