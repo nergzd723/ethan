@@ -22,18 +22,30 @@
 #include <timer.h>
 #include <v8086m.h>
 #include <real.h>
+#include <sysinit.h>
 #include <acpi.h>
 #include <syscall.h>
 
 bool paging = true;
 time_t* current_time;
-char lastcommbuf[FB_CELLS] = "";
+if (ninetyxsixty){
+    char lastcommbuf[90*60] = "";
+    int inputactive = 0;
+    char inputbuf[90*60] = "";
+    int inputpending = 0;
+    bool getcharflag = false;
+    char gcbuf = '\0';
+    char termbuf[90*60] = "";
+}
+else{
+    char lastcommbuf[80*25] = "";
 int inputactive = 0;
-char inputbuf[FB_CELLS] = "";
+char inputbuf[80*25] = "";
 int inputpending = 0;
 bool getcharflag = false;
 char gcbuf = '\0';
-char termbuf[FB_CELLS] = "";
+char termbuf[80*25] = "";
+}
 
 void reset_shell()
 {
