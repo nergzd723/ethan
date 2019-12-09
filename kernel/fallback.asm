@@ -5,7 +5,6 @@
 ; hours of frustration to get this to work right
 
 [bits 32]
-[org 0xfe00]
 global switchvm
 switchvm:
 jmp vid_start
