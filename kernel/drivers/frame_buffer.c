@@ -135,8 +135,13 @@ void rightarrowp(){
 //\n like func
 void fb_newline()
 {
-  cursor_pos += FB_COLS;
   int a = cursor_pos % FB_COLS;
+  if(a == FB_COLS-1){
+    cursor_pos = 0;
+    move_cursor_to_pos(cursor_pos);
+    return;
+  }
+  cursor_pos += FB_COLS;
   cursor_pos -= a;
   if (cursor_pos > FB_CELLS){
     cursor_pos = 0;
