@@ -3,7 +3,7 @@
 #include <string.h>
 #include <frame_buffer.h>
 #include <sysinit.h>
-#define	vmemwr(DS,DO,S,N) memcpy((char *)(DS) * 16 + (DO), S, N)
+#define	_vmemwr(DS,DO,S,N) memcpy((char *)(DS) * 16 + (DO), S, N)
 
 static unsigned char g_8x8_font[2048] =
 {
@@ -265,6 +265,36 @@ static unsigned char g_8x8_font[2048] =
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
+static unsigned get_fb_seg()
+{
+	unsigned seg;
+
+	outb(VGA_GC_INDEX, 6);
+	seg = inb(VGA_GC_DATA);
+	seg >>= 2;
+	seg &= 3;
+	switch(seg)
+	{
+	case 0:
+	case 1:
+		seg = 0xA000;
+		break;
+	case 2:
+		seg = 0xB000;
+		vga_mem = (unsigned long*)0xB0000;
+		break;
+	case 3:
+		seg = 0xB800;
+		vga_mem = (unsigned long*)0xB8000;
+		break;
+	}
+	return seg;
+}
+
+static void vmemwr(unsigned dst_off, unsigned char *src, unsigned count)
+{
+	_vmemwr(get_fb_seg(), dst_off, src, count);
+}
 static void set_plane(unsigned p)
 {
 	unsigned char pmask;
@@ -375,8 +405,6 @@ void write_regs(unsigned char *regs)
 /* lock 16-color palette and unblank display */
 	(void)inb(VGA_INSTAT_READ);
 	outb(VGA_AC_INDEX, 0x20);
-    FB_COLS = 90;
-    FB_ROWS = 60;
     write_font(g_8x8_font, 8);
     scall(6451819);
     ninetyxsixty = true;
