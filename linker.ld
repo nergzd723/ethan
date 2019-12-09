@@ -2,7 +2,7 @@ ENTRY(start)
 KERNEL_START_PMA = 0x00100000;
 SECTIONS {
 	. = KERNEL_START_PMA;
-	.text ALIGN (0x1000) :
+	.text BLOCK(16K) : ALIGN(4K)
 	{
         *(.multiboot)
 		*(.text)
