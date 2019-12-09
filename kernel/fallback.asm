@@ -16,6 +16,7 @@ cli
 mov word [vid_mode],ax
 mov [save_esp],esp
 sidt [save_idt]
+lidt[idt16_ptr]
 jmp 0x18:pmode
 
 pmode:
@@ -97,9 +98,9 @@ mov ss,ax
 mov dword esp,[save_esp]
 lidt [save_idt]
 ret
-
 idt16_ptr:                                 ; IDT table pointer for 16bit access
         dw 0x03FF                              ; table limit (size)
-        dd 0x00000000                          ; table base address
+        dd 0x0000                          ; table base address
+        dw 0x0000
 
 times 512-($-$$) db 0
