@@ -4,7 +4,6 @@
 ; dont be fooled by how simple this looks, it took lots of 
 ; hours of frustration to get this to work right
 
-[bits 32]
 global switchvm
 switchvm:
 jmp vid_start
@@ -32,7 +31,6 @@ dec eax
 mov cr0,eax
 jmp 0:realmode1
 
-[bits 16]
 realmode1:
 xor ax,ax
 mov ds,ax
@@ -90,7 +88,6 @@ inc eax
 mov cr0,eax
 jmp 0x8:pm1
 
-[bits 32]
 pm1:
 mov eax,0x10
 mov ds,ax
