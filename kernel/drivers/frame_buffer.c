@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 
-char *fb = (char *) 0x000A0000;
+char *fbp = (char *) 0x000A0000;
 
 void fillrect(pixel_t* first_pos, pixel_t* second_pos){
     unsigned bast = first_pos->xpos-second_pos->xpos;
@@ -11,15 +11,15 @@ void fillrect(pixel_t* first_pos, pixel_t* second_pos){
 
 void putpixelc(int color, int xpos, int ypos) {
     unsigned where = xpos*4 + ypos*2560;
-    fb[where] = color & 255;              // BLUE
-    fb[where + 1] = (color >> 8) & 255;   // GREEN
-    fb[where + 2] = (color >> 16) & 255;  // RED
+    fbp[where] = color & 255;              // BLUE
+    fbp[where + 1] = (color >> 8) & 255;   // GREEN
+    fbp[where + 2] = (color >> 16) & 255;  // RED
 }
 void putpixel(pixel_t* pixel) {
     unsigned where = pixel->xpos*4 + pixel->ypos*2560;
-    fb[where] = pixel->color & 255;              // BLUE
-    fb[where + 1] = (pixel->color >> 8) & 255;   // GREEN
-    fb[where + 2] = (pixel->color >> 16) & 255;  // RED
+    fbp[where] = pixel->color & 255;              // BLUE
+    fbp[where + 1] = (pixel->color >> 8) & 255;   // GREEN
+    fbp[where + 2] = (pixel->color >> 16) & 255;  // RED
 }
 
 uint32_t cursor_pos_a = 0;
