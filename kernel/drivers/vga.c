@@ -2,7 +2,6 @@
 #include <vga.h>
 #include <string.h>
 #include <frame_buffer.h>
-#include <sysinit.h>
 #define	_vmemwr(DS,DO,S,N) memcpy((DS) * 16 + (DO), S, N)
 
 static unsigned char g_8x8_font[2048] =
@@ -405,5 +404,4 @@ void write_regs(unsigned char *regs)
 	outb(VGA_AC_INDEX, 0x20);
     write_font(g_8x8_font, 8);
     scall(6451819);
-    ninetyxsixty = true;
 }
