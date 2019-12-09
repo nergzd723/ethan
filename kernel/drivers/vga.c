@@ -281,11 +281,9 @@ static unsigned get_fb_seg()
 		break;
 	case 2:
 		seg = 0xB000;
-		vga_mem = (unsigned long*)0xB0000;
 		break;
 	case 3:
 		seg = 0xB800;
-		vga_mem = (unsigned long*)0xB8000;
 		break;
 	}
 	return seg;
