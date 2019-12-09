@@ -6,6 +6,7 @@
 #include <shutdown.h>
 #include <io.h>
 #include <logger.h>
+#include <vga.h>
 #include <cpu_speed.h>
 #include <memory.h>
 #include <rtc.h>
@@ -109,10 +110,7 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "gfx") == 0){
         disable_paging();
-        paging = false;
-        switchvm();
-        memset((char *)0xA0000, 1, (320*200));
-        reinit();
+        write_regs(g_90x60_text);
         paging = true;
     }
     if (strcmp(command, "paging") == 0){
