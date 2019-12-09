@@ -12,6 +12,7 @@
 #include <cpu_speed.h>
 #include <random.h>
 #include <boot.h>
+#include <vga.h>
 #include <rtc.h>
 #include <sb16.h>
 #include <v8086m.h>
@@ -56,6 +57,7 @@ void boot_stage2(){
 //first stage of booting, init core
 void boot_stage1(){
     clear_screen();
+    write_regs(g_90x60_text);
     logf("Terminal initialized\n");
     printf("Ethan started to boot!\n");
     printf("GDT...\n");

@@ -340,7 +340,7 @@ assume: chain-4 addressing already off */
 /* write font 0 */
 	for(i = 0; i < 256; i++)
 	{
-	    _vmemwr(get_fb_seg(), 16384u * 0 + i * 32, buf, font_height);
+	    //_vmemwr(get_fb_seg(), 16384u * 0 + i * 32, buf, font_height);
 		buf += font_height;
 	}
 /* restore registers */
