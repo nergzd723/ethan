@@ -111,7 +111,7 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "gfx") == 0){
         disable_paging();
-        memset((char *)0xA0000, 1, (320*200));
+        memset((char *)0xA0000, FB_LIGHT_BROWN, (320*200));
     }
     if (strcmp(command, "paging") == 0){
         if (paging){
