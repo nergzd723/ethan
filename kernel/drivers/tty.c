@@ -85,7 +85,6 @@ int printf (const char * format, ...) {
     }
   }
   return i;
-  }
 }
 
 /** move_cursor:

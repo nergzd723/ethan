@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <io.h>
 #include <logger.h>
-#include <tty.h>
 #include <string.h>
 #include <stddef.h>
 #include <stdbool.h>

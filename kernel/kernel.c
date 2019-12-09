@@ -1,7 +1,6 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <string.h>
-#include <tty.h>
 #include <idt.h>
 #include <pic.h>
 #include <io.h>
