@@ -4,10 +4,13 @@
 ; dont be fooled by how simple this looks, it took lots of 
 ; hours of frustration to get this to work right
 
+%define REBASE(x)                          (((x) - reloc) + INT32_BASE)
 global switchvm
 switchvm:
 jmp vid_start
 save_idt: dd 0
+          dw 0
+save_gdt: dd 0
           dw 0
 save_esp: dd 0
 vid_mode: dw 0
@@ -16,7 +19,9 @@ cli
 mov word [vid_mode],ax
 mov [save_esp],esp
 sidt [save_idt]
-lidt[idt16_ptr]
+lidt [REBASE(idt16_ptr)]
+sgdt [save_gdt]
+lgdt [REBASE(gdt16_ptr)]
 jmp 0x18:pmode
 
 pmode:
@@ -98,9 +103,49 @@ mov ss,ax
 mov dword esp,[save_esp]
 lidt [save_idt]
 ret
-idt16_ptr:                                 ; IDT table pointer for 16bit access
-        dw 0x03FF                              ; table limit (size)
-        dd 0x0000                          ; table base address
-        dw 0x0000
 
+	idt16_ptr:                               ; IDT table pointer for 16bit access
+		dw 0x03FF                              ; table limit (size)
+		dd 0x00000000                          ; table base address
+		
+	gdt16_base:                              ; GDT descriptor table
+		.null:                                 ; 0x00 - null segment descriptor
+			dd 0x00000000                        ; must be left zero'd
+			dd 0x00000000                        ; must be left zero'd
+			
+		.code32:                               ; 0x01 - 32bit code segment descriptor 0xFFFFFFFF
+			dw 0xFFFF                            ; limit  0:15
+			dw 0x0000                            ; base   0:15
+			db 0x00                              ; base  16:23
+			db 0x9A                              ; present, iopl/0, code, execute/read
+			db 0xCF                              ; 4Kbyte granularity, 32bit selector; limit 16:19
+			db 0x00                              ; base  24:31
+			
+		.data32:                               ; 0x02 - 32bit data segment descriptor 0xFFFFFFFF
+			dw 0xFFFF                            ; limit  0:15
+			dw 0x0000                            ; base   0:15
+			db 0x00                              ; base  16:23
+			db 0x92                              ; present, iopl/0, data, read/write
+			db 0xCF                              ; 4Kbyte granularity, 32bit selector; limit 16:19
+			db 0x00                              ; base  24:31
+			
+		.code16:                               ; 0x03 - 16bit code segment descriptor 0x000FFFFF
+			dw 0xFFFF                            ; limit  0:15
+			dw 0x0000                            ; base   0:15
+			db 0x00                              ; base  16:23
+			db 0x9A                              ; present, iopl/0, code, execute/read
+			db 0x0F                              ; 1Byte granularity, 16bit selector; limit 16:19
+			db 0x00                              ; base  24:31
+			
+		.data16:                               ; 0x04 - 16bit data segment descriptor 0x000FFFFF
+			dw 0xFFFF                            ; limit  0:15
+			dw 0x0000                            ; base   0:15
+			db 0x00                              ; base  16:23
+			db 0x92                              ; present, iopl/0, data, read/write
+			db 0x0F                              ; 1Byte granularity, 16bit selector; limit 16:19
+			db 0x00                              ; base  24:31
+			
+	gdt16_ptr:                               ; GDT table pointer for 16bit access
+		dw gdt16_ptr - gdt16_base - 1          ; table limit (size)
+		dd gdt16_base                          ; table base address
 times 512-($-$$) db 0
