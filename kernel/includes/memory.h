@@ -12,9 +12,9 @@ unsigned char himem();
 
 #define halloc(a) heap_allocate(a)
 
-uint32_t page_directory[1024] __attribute__((aligned(PAGE_SIZE)));
-uint32_t first_page_table[1024] __attribute__((aligned(PAGE_SIZE)));
-uint32_t second_page_table[1024] __attribute__((aligned(PAGE_SIZE)));
+uint32_t page_directory[8192] __attribute__((aligned(PAGE_SIZE)));
+uint32_t first_page_table[8192] __attribute__((aligned(PAGE_SIZE)));
+uint32_t second_page_table[8192] __attribute__((aligned(PAGE_SIZE)));
 uint32_t upper_memory();
 int lower_memory();
 
