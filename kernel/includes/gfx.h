@@ -1,1 +1,1 @@
-void demo_gfx();
+extern void switchvm();

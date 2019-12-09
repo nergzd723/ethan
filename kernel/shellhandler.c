@@ -15,7 +15,6 @@
 #include <fall.h>
 #include <boot.h>
 #include <isr.h>
-#include <vesa.h>
 #include <liballoc.h>
 #include <gfx.h>
 #include <liballoc.h>

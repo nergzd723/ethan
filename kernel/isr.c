@@ -12,7 +12,7 @@ void isr_handler(context_t* context) {
         syscall_handler(context);
     }
     if (interrupt_handlers[context->int_no] != 0) {
-        isr_t handler interrupt_handlers[context->int_no];
+        isr_t handler = interrupt_handlers[context->int_no];
         handler(context);
     }
 }
@@ -22,6 +22,8 @@ void irq_handler(context_t* context) {
         logf("Received IRQ: %x\n", context->int_no - 32);
     // Send an EOI to the PIC-> 
     // Subtract 32 from the interrupt number to get the IRQ number->
+    
+    // We really do not want to send EOI on spurious interrupt
     if (context->int_no == 39){
             return;
         }
