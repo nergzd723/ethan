@@ -67,6 +67,7 @@ void boot_stage2(){
    printf("MHz CPU speed\n");
    srand(discoverspeed());
    logf("Random seeded to CPU speed\n");
+    write_regs(g_90x60_text);
    printf(">>> ");
    __init_done = true;
    init_paging();
@@ -75,7 +76,6 @@ void boot_stage2(){
 //first stage of booting, init core
 void boot_stage1(){
     clear_screen();
-    write_regs(g_90x60_text);
     logf("Terminal initialized\n");
     printf("Ethan started to boot!\n");
     printf("GDT...\n");
