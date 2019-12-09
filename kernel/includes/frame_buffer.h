@@ -2,6 +2,7 @@
 #define __FRAME_BUFFER_H__
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define FB_COLS 80
 #define FB_ROWS 25
@@ -24,6 +25,7 @@
 #define FB_LIGHT_BROWN 14
 #define FB_WHITE 15
 
+bool textmode = false;
 void clear_screen();
 void fb_backspace();
 void fb_write_byte(uint8_t b);
@@ -39,5 +41,17 @@ void rightarrowp();
 void reset_cursor();
 void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg);
 void move_cursor_to_pos(unsigned short pos);
+void clear_screen_a();
+void fb_write_fontbyte(unsigned char b);
+void drawchar_transparent(unsigned char c, int x, int y, int fgcolor);
+
+typedef char color_t;
+
+typedef struct
+{
+    unsigned xpos;
+    unsigned ypos;
+    color_t color;
+} pixel_t;
 
 #endif /* INCLUDE_FRAME_BUFFER_H */

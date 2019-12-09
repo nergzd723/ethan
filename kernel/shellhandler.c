@@ -26,7 +26,7 @@
 #include <acpi.h>
 #include <syscall.h>
 
-bool paging = true;
+bool paging = false;
 time_t* current_time;
 char lastcommbuf[FB_CELLS] = "";
 int inputactive = 0;

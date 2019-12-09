@@ -287,10 +287,6 @@ static unsigned get_fb_seg()
 	return seg;
 }
 
-static void vmemwr(unsigned dst_off, unsigned char *src, unsigned count)
-{
-	_vmemwr(get_fb_seg(), dst_off, src, count);
-}
 static void set_plane(unsigned p)
 {
 	unsigned char pmask;
@@ -338,7 +334,7 @@ assume: chain-4 addressing already off */
 /* write font 0 */
 	for(i = 0; i < 256; i++)
 	{
-	    //_vmemwr(get_fb_seg(), 16384u * 0 + i * 32, buf, font_height);
+	    _vmemwr(get_fb_seg(), i * 32, buf, font_height);
 		buf += font_height;
 	}
 /* restore registers */

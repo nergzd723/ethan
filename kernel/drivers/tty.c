@@ -1,87 +1,191 @@
-#include <tty.h>
-#include <stddef.h>
-#include <string.h>
-#include <stdint.h>
+// Documentation:
+// http://wiki.osdev.org/Printing_To_Screen
 
-static const size_t VGA_WIDTH = 80;
-static const size_t VGA_HEIGHT = 25;
-static uint16_t* const VGA_MEMORY = (uint16_t*) 0xb8000;
+#include "frame_buffer.h"
+#include "io.h"
+#include <logger.h>
 
-static size_t terminal_row;
-static size_t terminal_column;
-static uint8_t terminal_color;
-static uint16_t* terminal_ptr;
+/* The I/O ports */
+#define FB_COMMAND_PORT         0x3D4
+#define FB_DATA_PORT            0x3D5
 
-/* Returns 2-byte vga character value using current terminal color */
-static uint16_t vga_char(uint8_t character) {
-    return (uint16_t) character | (terminal_color << 8);
+/* The I/O port commands */
+#define FB_HIGH_BYTE_COMMAND    14
+#define FB_LOW_BYTE_COMMAND     15
+
+// Start of memory that maps to the frame buffer
+char *fb = (char *) 0x000B8000;
+uint16_t cursor_pos = 0;
+
+//get current VGA row
+int row(){
+  int rr = cursor_pos / 80;
+  return rr;
 }
 
-void init_terminal(void) {
-    terminal_row = 0;
-    terminal_column = 0;
-    terminal_color =  7; // light grey
-    terminal_ptr = (uint16_t *) VGA_MEMORY;
-
-    /* Clear the screen */
-    for (size_t y = 0; y < VGA_HEIGHT; y++) {
-        for (size_t x = 0; x < VGA_WIDTH; x++) {
-            const size_t index = y * VGA_WIDTH + x;
-            terminal_ptr[index] = vga_char(' ');
-        }
-    }
+/** fb_write_cell:
+ *  Writes a character with the given foreground and background to position i
+ *  in the framebuffer.
+ *
+ *  @param i  The location in the framebuffer
+ *  @param c  The character
+ *  @param fg The foreground color
+ *  @param bg The background color
+ */
+void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg)
+{
+    int i = cell*2;
+    fb[i] = c;
+    fb[i + 1] = ((bg & 0x0F) << 4) | (fg & 0x0F);
 }
 
-static void terminal_put_at(uint8_t c, size_t x, size_t y) {
-    const size_t index = y * VGA_WIDTH + x;
-    terminal_ptr[index] = vga_char(c);
+void fill_screen(unsigned char color){
+    for (int i = 0; i < FB_CELLS; i++) {
+    fb_write_cell(i, ' ', color, color);
+  }
+  cursor_pos = 0;
 }
 
-void old_clear_screen(void){
-    for(int i = 0; i<VGA_HEIGHT*VGA_WIDTH; i++){
-        terminal_putchar(' ');
-    }
+char* inttostr( int zahl ) 
+{ 
+   static char text[20];
+   int loc=19;
+   text[19] = 0;
+   while (zahl)
+   {
+       --loc;
+       text[loc] = (zahl%10)+'0';
+       zahl/=10;
+   }
+   if (loc==19)
+   {
+      --loc;
+       text[loc] = '0';
+   }
+   return &text[loc];
 }
 
-// TODO: come back here and make the downscrolling better.
-// TODO: more elegantly handle newlines
-void terminal_putchar(char c) {
-    if (c == '\n') {
-        if (terminal_row++ == VGA_HEIGHT){
-            old_clear_screen();
-            terminal_row = 0;
-        }
-        terminal_row++;
-        terminal_column = 0;
-        return;
-    }
-    if (c == '\b'){
-        if (terminal_column-- == VGA_WIDTH)
-        terminal_column--;
-        terminal_putchar(' ');
-        terminal_column--;
-        return;
-    }
-    if (c == '\t'){
-        terminal_row--;
-        return;
-    }
-    if (++terminal_column == VGA_WIDTH){
-        terminal_column = 0;
-        if (++terminal_row == VGA_HEIGHT) {
-            old_clear_screen();
-            terminal_row = 0;
-        }
-    }
-    terminal_put_at(c, terminal_column, terminal_row);
+void clear_screen()
+{
+  fill_screen(FB_BLACK);
 }
 
-void terminal_write(const char* data, size_t size) {
-    for (size_t i = 0; i < size; i++) {
-        terminal_putchar(data[i]);
+int printf (const char * format, ...) {
+  int i = 0;
+  if (textmode){
+    while (format[i]) {
+      fb_write_byte(format[i]);
+      i++;
     }
+  }else{
+    while (format[i])
+    {
+      fb_write_fontbyte(format[i]);
+      i++;
+    }
+  }
+  return i;
+  }
 }
 
-void terminal_print(const char* data) {
-    terminal_write(data, strlen(data));
+/** move_cursor:
+ *  Moves the cursor of the framebuffer to the given position
+ *
+ *  @param pos The new position of the cursor
+ */
+void move_cursor_to_pos(unsigned short pos)
+{
+  outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
+  outb(FB_DATA_PORT,    ((pos >> 8) & 0x00FF));
+  outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
+  outb(FB_DATA_PORT,    pos & 0x00FF);
+}
+
+// down arrow pointer
+void downarrowp()
+{
+//  int i = cursor_pos += 79;
+//  if (i > FB_CELLS){
+//    return;
+//  }
+  cursor_pos += FB_COLS-1;
+  move_cursor_to_pos(cursor_pos);
+}
+// up arrow pointer
+void uparrowp()
+{
+  int i = cursor_pos - FB_COLS-1;
+  if (i < 0){
+    return;
+  } 
+  cursor_pos -= FB_COLS-1;
+  move_cursor_to_pos(cursor_pos);
+}
+
+// left arrow pointer
+void leftarrowp(){
+  if (cursor_pos == 0){
+    return;
+  }
+  cursor_pos -= 1;
+  move_cursor_to_pos(cursor_pos);
+}
+
+// right arrow pointer
+void rightarrowp(){
+  if (cursor_pos == FB_CELLS){
+    cursor_pos = 0;
+    return;
+}
+  cursor_pos += 1;
+  move_cursor_to_pos(cursor_pos);
+}
+//\n like func
+void fb_newline()
+{
+  int a = cursor_pos % FB_COLS;
+  if(a == FB_COLS-1){
+    cursor_pos = 0;
+    move_cursor_to_pos(cursor_pos);
+    return;
+  }
+  cursor_pos += FB_COLS;
+  cursor_pos -= a;
+  if (cursor_pos > FB_CELLS){
+    cursor_pos = 0;
+  }
+  move_cursor_to_pos(cursor_pos);
+}
+
+//reset cursor pos, need for other tasks
+void reset_cursor(){
+  cursor_pos = 0;
+}
+
+void fb_write_byte(uint8_t b) {
+  if (b == '\n'){
+    fb_newline();
+    return;
+  }
+  fb_write_cell(cursor_pos, b, FB_LIGHT_GREY, FB_BLACK);
+  cursor_pos++;
+  // Stop the cursor from going off the screen
+  // TODO: advance the screen
+  if (cursor_pos < FB_CELLS) {
+    move_cursor_to_pos(cursor_pos);
+  }
+  else{
+    clear_screen();
+    cursor_pos = 0;
+    move_cursor_to_pos(cursor_pos);
+  }
+}
+
+void fb_backspace() {
+  if (cursor_pos == 0){
+    return;
+  }
+  cursor_pos--;
+  fb_write_cell(cursor_pos, ' ', FB_WHITE, FB_BLACK);
+  move_cursor_to_pos(cursor_pos);
 }
