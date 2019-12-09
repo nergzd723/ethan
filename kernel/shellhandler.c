@@ -111,7 +111,7 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "gfx") == 0){
         disable_paging();
-        write_regs(g_90x60_text);
+        init_paging();
         paging = true;
     }
     if (strcmp(command, "paging") == 0){
