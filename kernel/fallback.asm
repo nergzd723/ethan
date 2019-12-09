@@ -4,7 +4,6 @@
 ; dont be fooled by how simple this looks, it took lots of 
 ; hours of frustration to get this to work right
 
-%define REBASE(x)                          (((x) - reloc) + INT32_BASE)
 global switchvm
 switchvm:
 jmp vid_start
@@ -19,9 +18,9 @@ cli
 mov word [vid_mode],ax
 mov [save_esp],esp
 sidt [save_idt]
-lidt [REBASE(idt16_ptr)]
+lidt [idt16_ptr]
 sgdt [save_gdt]
-lgdt [REBASE(gdt16_ptr)]
+lgdt [gdt16_ptr]
 jmp 0x18:pmode
 
 pmode:
@@ -102,6 +101,7 @@ mov gs,ax
 mov ss,ax
 mov dword esp,[save_esp]
 lidt [save_idt]
+lgdt [save_gdt]
 ret
 
 	idt16_ptr:                               ; IDT table pointer for 16bit access
