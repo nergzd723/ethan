@@ -34,7 +34,7 @@ void boot_stage2(){
    clear_screen();
    logf("80x25 text mode applying\n");
    write_regs(g_640x480x16);
-   textmode = false;
+   vmode();
    clear_screen_a();
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));

@@ -25,7 +25,9 @@
 #define FB_LIGHT_BROWN 14
 #define FB_WHITE 15
 
-bool textmode = false;
+void textmode();
+void vmode();
+bool getmode();
 void clear_screen();
 void fb_backspace();
 void fb_write_byte(uint8_t b);

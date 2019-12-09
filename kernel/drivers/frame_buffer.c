@@ -9,6 +9,19 @@ void fillrect(pixel_t* first_pos, pixel_t* second_pos){
 
 }
 
+void putpixelc(int color, int xpos, int ypos) {
+    unsigned where = xpos*4 + ypos*2560;
+    fb[where] = color & 255;              // BLUE
+    fb[where + 1] = (color >> 8) & 255;   // GREEN
+    fb[where + 2] = (color >> 16) & 255;  // RED
+}
+void putpixel(pixel_t* pixel) {
+    unsigned where = pixel->xpos*4 + pixel->ypos*2560;
+    fb[where] = pixel->color & 255;              // BLUE
+    fb[where + 1] = (pixel->color >> 8) & 255;   // GREEN
+    fb[where + 2] = (pixel->color >> 16) & 255;  // RED
+}
+
 uint32_t cursor_pos = 0;
 unsigned char font[4096] =
 {
@@ -296,17 +309,4 @@ void fb_write_fontbyte(unsigned char b)
         cursor_pos = 0;
     }
     cursor_pos++;
-}
-
-void putpixelc(int color, int xpos, int ypos) {
-    unsigned where = xpos*4 + ypos*2560;
-    fb[where] = color & 255;              // BLUE
-    fb[where + 1] = (color >> 8) & 255;   // GREEN
-    fb[where + 2] = (color >> 16) & 255;  // RED
-}
-void putpixel(pixel_t* pixel) {
-    unsigned where = pixel->xpos*4 + pixel->ypos*2560;
-    fb[where] = pixel->color & 255;              // BLUE
-    fb[where + 1] = (pixel->color >> 8) & 255;   // GREEN
-    fb[where + 2] = (pixel->color >> 16) & 255;  // RED
 }

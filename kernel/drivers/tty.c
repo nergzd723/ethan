@@ -4,7 +4,17 @@
 #include "frame_buffer.h"
 #include "io.h"
 #include <logger.h>
-
+#include <stdbool.h>
+bool textmode = true;
+void textmode(){
+  textmode = true;
+}
+void vmode(){
+  textmode = false;
+}
+bool getmode(){
+  return textmode;
+}
 /* The I/O ports */
 #define FB_COMMAND_PORT         0x3D4
 #define FB_DATA_PORT            0x3D5
