@@ -26,7 +26,7 @@ debug: all
 	qemu-system-i386 -m 32M -s -S -monitor stdio -kernel $(BUILDDIR)/kernel.bin
 
 build: asm_objects linker.ld
-	$(CC) -g -I lib/includes -I kernel/includes  $(CPP_SOURCES) $(C_SOURCES) $(BUILDDIR)/*.o -o $(BUILDDIR)/kernel.bin -nostdlib -ffreestanding -static-libgcc -lgcc -Ttext=0xfe00 linker.ld
+	$(CC) -g -I lib/includes -I kernel/includes  $(CPP_SOURCES) $(C_SOURCES) $(BUILDDIR)/*.o -o $(BUILDDIR)/kernel.bin -nostdlib -ffreestanding -static-libgcc -lgcc -Ttext=0x7c00 linker.ld
 asm_objects:
 	mkdir -p build
 	nasm -f elf32 $(KERNELDIR)/boot.asm -o $(BUILDDIR)/boot.o
