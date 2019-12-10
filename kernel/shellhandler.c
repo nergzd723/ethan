@@ -114,6 +114,7 @@ void fb_newlinehandler(){
         write_regs(g_640x480x16);
         vmode();
         clear_screen_a();
+        asm volatile("sti")
     }
     if (strcmp(command, "paging") == 0){
         if (paging){
