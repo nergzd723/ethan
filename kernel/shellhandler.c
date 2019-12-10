@@ -114,7 +114,7 @@ void fb_newlinehandler(){
         write_regs(g_640x480x16);
         vmode();
         clear_screen_a();
-        memset((char*)0x000A0000, FB_BLACK, (640*480));
+        memset((char*)0x000B8000, FB_BLACK, (640*480));
     }
     if (strcmp(command, "paging") == 0){
         if (paging){
