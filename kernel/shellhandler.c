@@ -111,7 +111,7 @@ void fb_newlinehandler(){
         reinit();
     }
     if (strcmp(command, "gfx") == 0){
-        write_regs(g_320x200x256);
+        write_regs(g_640x480x16);
         vmode();
         clear_screen_a();
     }
