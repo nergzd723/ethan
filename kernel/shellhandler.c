@@ -111,13 +111,13 @@ void fb_newlinehandler(){
         reinit();
     }
     if (strcmp(command, "tmode") == 0){
-        write_regs(g_80x25_text);
+        write_regs(g_80x25_text, false);
         reinit();
         textmodes();
         fb_write_cell(15, 'a', FB_WHITE, FB_BLACK);
     }
     if (strcmp(command, "gfx") == 0){
-        write_regs(g_320x200x256);
+        write_regs(g_320x200x256, true);
         vmode();
         clear_screen_a();
         for (int i = 0; i < 500; i++){

@@ -6,6 +6,7 @@
 #define BYTES_SKIP 16
 #define CHARSET_LENGTH 256
 #define FONT_SIZE CHARSET_LENGTH * BYTES_PER_GLYPTH
+char *fbpm = (char *) 0x000A0000;
 /* @iport - index port, @iport + 1 - data port */
 static inline void vga_write_reg(uint16_t iport, uint8_t reg, uint8_t val){
    outb(iport, reg); /* Select register */
@@ -667,10 +668,10 @@ static void set_plane(unsigned p)
 	outb(VGA_SEQ_DATA, pmask);
 }
 
-static void write_font(unsigned char font[4096])
+static void write_font(unsigned char font[4096], unsigned char* vmp)
 {
 int i, j;
-   unsigned char *p = (unsigned char *)0xB8000;
+   unsigned char *p = vmp;
    uint8_t mem_mode, graphics_mode;
    
    /* Panel 2 write enable */
@@ -712,7 +713,7 @@ int i, j;
    vga_write_reg(VGA_GC_INDEX_PORT, VGA_GC_MISC_REG, 0x0C);
 }
 
-void write_regs(unsigned char *regs)
+void write_regs(unsigned char *regs, bool isVmode)
 {
 	unsigned i;
 
@@ -756,7 +757,12 @@ void write_regs(unsigned char *regs)
 		outb(VGA_AC_WRITE, *regs);
 		regs++;
 	}
-	write_font(font_16);
+	if (isVmode){
+		write_font(font_16, fbpm);
+	}
+	else{
+		write_font(font_16, (char*)0xB000);
+	}
 /* lock 16-color palette and unblank display */
 	(void)inb(VGA_INSTAT_READ);
 	outb(VGA_AC_INDEX, 0x20);
