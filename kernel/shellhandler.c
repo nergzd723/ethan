@@ -23,6 +23,7 @@
 #include <v8086m.h>
 #include <real.h>
 #include <sysinit.h>
+#include <vmodes.h>
 #include <acpi.h>
 #include <syscall.h>
 
@@ -110,7 +111,8 @@ void fb_newlinehandler(){
         reinit();
     }
     if (strcmp(command, "gfx") == 0){
-        disable_paging();
+        write_regs(g_320x200x256);
+        vmode();
         memset((char *)0xA0000, FB_LIGHT_BROWN, (320*200));
     }
     if (strcmp(command, "paging") == 0){
