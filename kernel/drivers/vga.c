@@ -395,7 +395,7 @@ static void set_plane(unsigned p)
 	outb(VGA_SEQ_DATA, pmask);
 }
 
-static void write_font(unsigned char *buf, unsigned font_height)
+static void write_font(unsigned char font[2048])
 {
 	unsigned char seq2, seq4, gc4, gc5, gc6;
 	unsigned i;
@@ -425,11 +425,16 @@ assume: chain-4 addressing already off */
 	outb(VGA_GC_DATA, gc6 & ~0x02);
 /* write font to plane P4 */
 	set_plane(2);
+	unsigned char *p = (unsigned char *)0xB0000;
 /* write font 0 */
-	for(i = 0; i < 256; i++)
-	{
-		buf += font_height;
-	}
+   for(int ir = 0; i < 256; i++){
+      for(int j = 0; j < 16; j++){
+         *p = *font;
+         ++p;
+         ++font;
+      }
+      p += 16;
+   }
 /* restore registers */
 	outb(VGA_SEQ_INDEX, 2);
 	outb(VGA_SEQ_DATA, seq2);
@@ -487,6 +492,7 @@ void write_regs(unsigned char *regs)
 		outb(VGA_AC_WRITE, *regs);
 		regs++;
 	}
+	write_font(g_8x8_font);
 /* lock 16-color palette and unblank display */
 	(void)inb(VGA_INSTAT_READ);
 	outb(VGA_AC_INDEX, 0x20);
