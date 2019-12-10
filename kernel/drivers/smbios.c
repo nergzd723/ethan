@@ -7,7 +7,31 @@ const char *machine_bios_vendor ;
 const char *machine_bios_version;
 const char *machine_bios_bdate  ;
 struct SMBIOSEntryPoint *smb_ep;
-
+void detect_SM_(){
+   unsigned char *mem = (unsigned char *) 0xF0000;
+   int length, i;
+   unsigned char checksum;
+	while ((unsigned int) mem < 0x100000)
+	{
+		if (memcmp(mem,"_SM_",4)==0)
+		{
+			length = mem[5];
+			checksum = 0;
+			for(i = 0; i < length; i++)
+			{
+				checksum += mem[i];
+			}
+			if(checksum == 0) break;
+		}
+		mem += 16;
+	}
+	if ((unsigned int) mem == 0x100000)
+	{
+		logf("error: SMBIOS not found!");
+		
+	}
+	smb_ep = (struct SMBIOSEntryPoint*)mem;
+}
 uint16_t detectCPUSpeed()
 {
     SMBIOSHeader *shdr = (SMBIOSHeader*)smb_ep->TableAddress;

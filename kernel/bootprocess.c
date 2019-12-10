@@ -33,9 +33,9 @@ void boot_stage2(){
    printf("OK\n");
    clear_screen();
    logf("80x25 text mode applying\n");
-   write_regs(g_640x480x16);
-   vmode();
-   clear_screen_a();
+   write_regs(g_80x25_text);
+   //vmode();
+   //clear_screen_a();
    printf("Ethanium booted! Got ");
    printf(inttostr(upper_memory()+lower_memory()));
    printf("K mem total, ");
@@ -87,29 +87,7 @@ void boot_stage1(){
    rtc_install();
    printf("OK\n");
    printf("Detecting SMBIOS...\n");
-   unsigned char *mem = (unsigned char *) 0xF0000;
-   int length, i;
-   unsigned char checksum;
-	while ((unsigned int) mem < 0x100000)
-	{
-		if (memcmp(mem,"_SM_",4)==0)
-		{
-			length = mem[5];
-			checksum = 0;
-			for(i = 0; i < length; i++)
-			{
-				checksum += mem[i];
-			}
-			if(checksum == 0) break;
-		}
-		mem += 16;
-	}
-	if ((unsigned int) mem == 0x100000)
-	{
-		logf("error: SMBIOS not found!");
-		
-	}
-	smb_ep = (struct SMBIOSEntryPoint*)mem;
+   detect_SM_();
 	logf("SMBIOS found at 0x%08x.");
     printf("OK\n");
    printf("Entering second stage...\n");

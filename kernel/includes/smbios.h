@@ -32,12 +32,12 @@ struct SMBIOSEntryPoint
     uint16_t NumberOfStructures;   //Number of structures in the table
     uint8_t BCDRevision;           //Unused
 };
-extern SMBIOSEntryPoint *smb_ep;
 
 extern uint16_t cpuMHZ;
 uint16_t detectCPUSpeed();
 const char *detectBIOSVendor ();
 const char *detectBIOSVersion();
 const char *detectBIOSBDate  ();
+void detect_SM_();
 
 #endif // SMBIOS_H
