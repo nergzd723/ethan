@@ -10,7 +10,7 @@ void fillrect(pixel_t* first_pos, pixel_t* second_pos){
 }
 
 void putpixelc(int color, int xpos, int ypos) {
-    unsigned where = xpos*4 + ypos*2560;
+    unsigned where = xpos*8 + ypos*2560;
     fbp[where] = color & 255;              // BLUE
     fbp[where + 1] = (color >> 8) & 255;   // GREEN
     fbp[where + 2] = (color >> 16) & 255;  // RED
@@ -296,12 +296,12 @@ void drawchar_transparent(unsigned char c, int x, int y, int fgcolor)
 	}
 }
 void clear_screen_a(){
-    memset((char *)0x000A0000, FB_LIGHT_BROWN, (640*480));
+    memset((char *)0x000A0000, FB_LIGHT_BROWN, (320*200));
 }
 
 void fb_write_fontbyte(unsigned char b)
 {
-    drawchar_transparent(b, cursor_pos_a%640, cursor_pos_a/640, FB_LIGHT_GREY);
+    drawchar_transparent(b, cursor_pos_a%320, cursor_pos_a/320, FB_LIGHT_GREY);
     if (cursor_pos_a > FB_CELLS) {
         clear_screen_a();
         cursor_pos_a = 0;
