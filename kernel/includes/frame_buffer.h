@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define FB_COLS 80
-#define FB_ROWS 25
+#define FB_COLS 90
+#define FB_ROWS 30
 #define FB_CELLS FB_COLS * FB_ROWS
 
 #define FB_BLACK 0
