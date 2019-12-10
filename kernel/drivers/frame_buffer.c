@@ -296,7 +296,7 @@ void drawchar_transparent(unsigned char c, int x, int y, int fgcolor)
 	}
 }
 void clear_screen_a(){
-    memset(fbp, FB_BLACK, (640*480));
+    memset((char *)0x000A0000, FB_LIGHT_BROWN, (320*200));
 }
 
 void fb_write_fontbyte(unsigned char b)
