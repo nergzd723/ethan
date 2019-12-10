@@ -113,6 +113,7 @@ void fb_newlinehandler(){
     if (strcmp(command, "tmode") == 0){
         write_regs(g_80x25_text);
         reinit();
+        textmodes();
     }
     if (strcmp(command, "gfx") == 0){
         write_regs(g_320x200x256);
