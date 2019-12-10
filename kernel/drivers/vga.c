@@ -490,7 +490,4 @@ void write_regs(unsigned char *regs)
 /* lock 16-color palette and unblank display */
 	(void)inb(VGA_INSTAT_READ);
 	outb(VGA_AC_INDEX, 0x20);
-    write_font(g_8x8_font, 8);
-	write_eax(6451819);
-    scall();
 }
