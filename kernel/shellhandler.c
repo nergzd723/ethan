@@ -110,10 +110,17 @@ void fb_newlinehandler(){
     if (strcmp(command, "reinit") == 0){
         reinit();
     }
+    if (strcmp(command, "tmode") == 0){
+        write_regs(g_80x25_text);
+        reinit();
+    }
     if (strcmp(command, "gfx") == 0){
         write_regs(g_320x200x256);
         vmode();
         clear_screen_a();
+        for (int i = 0; i < 500; i++){
+            putpixelc(FB_BLACK, i, i/50);
+        }
     }
     if (strcmp(command, "paging") == 0){
         if (paging){

@@ -46,7 +46,7 @@ void move_cursor_to_pos(unsigned short pos);
 void clear_screen_a();
 void fb_write_fontbyte(unsigned char b);
 void drawchar_transparent(unsigned char c, int x, int y, int fgcolor);
-
+void putpixelc(int color, int xpos, int ypos);
 typedef char color_t;
 
 typedef struct
