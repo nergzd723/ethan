@@ -10,7 +10,7 @@ void fillrect(pixel_t* first_pos, pixel_t* second_pos){
 }
 
 void putpixelc(int color, int xpos, int ypos) {
-    unsigned where = xpos*8 + ypos*2560;
+    unsigned where = xpos*4 + ypos*2560;
     fbp[where] = color & 255;              // BLUE
     fbp[where + 1] = (color >> 8) & 255;   // GREEN
     fbp[where + 2] = (color >> 16) & 255;  // RED
