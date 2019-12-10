@@ -111,10 +111,10 @@ void fb_newlinehandler(){
         reinit();
     }
     if (strcmp(command, "gfx") == 0){
-        write_regs(g_640x480x16);
+        write_regs(g_320x200x256);
         vmode();
-        clear_screen_a();
-        memset((char*)0x000B8000, FB_BLACK, (640*480));
+        memset((char *)0x000A0000, FB_LIGHT_BROWN, (320*200));
+        memset((char *)0xB8000, FB_BLACK, (320*200));
     }
     if (strcmp(command, "paging") == 0){
         if (paging){
