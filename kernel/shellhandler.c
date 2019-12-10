@@ -114,6 +114,7 @@ void fb_newlinehandler(){
         write_regs(g_80x25_text);
         reinit();
         textmodes();
+        fb_write_cell(15, 'a', FB_WHITE, FB_BLACK);
     }
     if (strcmp(command, "gfx") == 0){
         write_regs(g_320x200x256);
