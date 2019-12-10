@@ -37,4 +37,4 @@
 #define VGA_GC_READ_MAP_SELECT_REG 0x04
 #define VGA_GC_GRAPHICS_MODE_REG 0x05
 #define VGA_GC_MISC_REG 0x06
-void write_regs(unsigned char *regs, bool isVmode);
+void write_regs(unsigned char *regs, _Bool isVmode);
