@@ -1,6 +1,6 @@
 #include <frame_buffer.h>
 #include <stdint.h>
-
+#include <string.h>
 
 char *fbp = (char *) 0x000A0000;
 
