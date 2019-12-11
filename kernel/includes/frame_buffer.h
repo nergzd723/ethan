@@ -37,7 +37,7 @@ int printf (const char * format, ...);
 int row();
 char* inttostr( int zahl );
 void downarrowp();
-void putPixel_simpleStd(int x, int y, int color);
+void putpixel(int x, int y, int color);
 void uparrowp();
 void leftarrowp();
 void VGA_clear_screen();
