@@ -797,7 +797,7 @@ void write_regs(unsigned char *regs, bool isVmode)
 		regs++;
 	}
 	if (isVmode){
-		write_font(g_8x8_font, fbpm);
+		//write_font(g_8x8_font, fbpm);
 	}
 	else{
 		write_font(font_16, (char*)0xB800);
