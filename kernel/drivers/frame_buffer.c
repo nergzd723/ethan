@@ -4,16 +4,7 @@
 
 char *fbp = (char *) 0x000A0000;
 
-void fillrect(pixel_t* first_pos, pixel_t* second_pos){
-    unsigned bast = first_pos->xpos-second_pos->xpos;
-
-}
-
-void pp(uint8_t color, int32_t x, int32_t y) {
-  uint8_t* pixelAddress = (uint8_t*)0xA0000 + 320 * y + x;
-  
-}
-void putPixel_simpleStd(int x, int y, int color)
+void putpixel(int x, int y, int color)
 {
   int offset = x + 320 * y;
   fbp[offset] = color;
@@ -28,7 +19,7 @@ void VGA_clear_screen()
   {
     for(x = 0; x < 320; x++)
     {
-		putPixel_simpleStd(x, y, 14);
+		putpixel(x, y, 14);
     }
   }
 
@@ -315,7 +306,7 @@ void drawchar_transparent(unsigned char c, int x, int y, int fgcolor)
  
 	for(cy=0;cy<16;cy++){
 		for(cx=0;cx<8;cx++){
-			if(glyph[cy]&mask[cx]) pp(fgcolor,x+cx,y+cy-12);
+			if(glyph[cy]&mask[cx]) putpixel(fgcolor,x+cx,y+cy-12);
 		}
 	}
 }
