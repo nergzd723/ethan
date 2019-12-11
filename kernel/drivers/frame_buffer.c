@@ -19,6 +19,20 @@ void putPixel_simpleStd(int x, int y, int color)
   fbp[offset] = color;
 }
 
+void VGA_clear_screen()
+{
+  unsigned int x = 0;
+  unsigned int y = 0;
+    
+  for(y = 0; y < 200; y++)
+  {
+    for(x = 0; x < 320; x++)
+    {
+		putPixel(x, y, 15);
+    }
+  }
+
+}
 void putpixelc(int color, int xpos, int ypos) {
     unsigned where = xpos*4 + ypos*2560;
     fbp[where] = color & 255;              // BLUE
