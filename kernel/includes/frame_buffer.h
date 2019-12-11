@@ -40,6 +40,7 @@ void downarrowp();
 void putPixel_simpleStd(int x, int y, int color);
 void uparrowp();
 void leftarrowp();
+void VGA_clear_screen();
 void rightarrowp();
 void pp(uint8_t color, int32_t x, int32_t y);
 void reset_cursor();

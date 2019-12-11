@@ -28,7 +28,7 @@ void VGA_clear_screen()
   {
     for(x = 0; x < 320; x++)
     {
-		putPixel_simpleStd(x, y, 15);
+		putPixel_simpleStd(x, y, 14);
     }
   }
 

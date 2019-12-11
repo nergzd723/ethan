@@ -118,7 +118,7 @@ void fb_newlinehandler(){
     if (strcmp(command, "gfx") == 0){
         write_regs(g_320x200x256, true);
         vmode();
-        clear_screen_a();
+        VGA_clear_screen();
         for (int i = 0; i < 21518; i++){
             putPixel_simpleStd(i, 1, FB_RED);
         }
