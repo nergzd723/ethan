@@ -120,7 +120,7 @@ void fb_newlinehandler(){
         vmode();
         VGA_clear_screen();
         for (unsigned b = 0; b < 199; b++){
-            putPixel_simpleStd(15, b, FB_CYAN);
+            putpixel(15, b, FB_CYAN);
         }
     }
     if (strcmp(command, "paging") == 0){
