@@ -317,7 +317,7 @@ void clear_screen_a(){
 
 void fb_write_fontbyte(unsigned char b)
 {
-    drawchar_transparent(b, cursor_pos_a%320, cursor_pos_a/320, FB_LIGHT_GREY);
+    drawchar(b, cursor_pos_a%320, cursor_pos_a/320, FB_LIGHT_GREY, FB_BLACK);
     if (cursor_pos_a > FB_CELLS) {
         clear_screen_a();
         cursor_pos_a = 0;
