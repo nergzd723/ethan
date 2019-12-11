@@ -120,7 +120,7 @@ void fb_newlinehandler(){
         vmode();
         clear_screen_a();
         for (int i = 0; i < 500; i++){
-            putpixelc(FB_BLACK, i, i/50);
+            pp(FB_LIGHT_GREY, i, i);
         }
     }
     if (strcmp(command, "paging") == 0){

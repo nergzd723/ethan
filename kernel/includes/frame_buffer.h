@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define FB_COLS 90
-#define FB_ROWS 30
+#define FB_COLS 80
+#define FB_ROWS 25
 #define FB_CELLS FB_COLS * FB_ROWS
 
 #define FB_BLACK 0
@@ -40,6 +40,7 @@ void downarrowp();
 void uparrowp();
 void leftarrowp();
 void rightarrowp();
+void pp(uint8_t color, int32_t x, int32_t y);
 void reset_cursor();
 void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg);
 void move_cursor_to_pos(unsigned short pos);
