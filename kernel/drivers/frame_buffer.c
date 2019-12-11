@@ -9,6 +9,14 @@ void fillrect(pixel_t* first_pos, pixel_t* second_pos){
 
 }
 
+void pp(uint8_t color, int32_t x, int32_t y) {
+  if (x < 0 || 320 <= x || y < 0 || 200 <= y) {
+    return;
+  }
+  uint8_t* pixelAddress = 0xA0000 + 320 * y + x;
+  *pixelAddress = color;
+}
+
 void putpixelc(int color, int xpos, int ypos) {
     unsigned where = xpos*4 + ypos*2560;
     fbp[where] = color & 255;              // BLUE
@@ -291,7 +299,7 @@ void drawchar_transparent(unsigned char c, int x, int y, int fgcolor)
  
 	for(cy=0;cy<16;cy++){
 		for(cx=0;cx<8;cx++){
-			if(glyph[cy]&mask[cx]) putpixelc(fgcolor,x+cx,y+cy-12);
+			if(glyph[cy]&mask[cx]) pp(fgcolor,x+cx,y+cy-12);
 		}
 	}
 }
