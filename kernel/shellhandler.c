@@ -119,6 +119,9 @@ void fb_newlinehandler(){
         write_regs(g_320x200x256, true);
         vmode();
         VGA_clear_screen();
+        for (unsigned b = 0; b < 199; b++){
+            putPixel_simpleStd(15, b, FB_CYAN);
+        }
     }
     if (strcmp(command, "paging") == 0){
         if (paging){
