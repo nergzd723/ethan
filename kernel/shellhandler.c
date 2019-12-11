@@ -119,9 +119,6 @@ void fb_newlinehandler(){
         write_regs(g_320x200x256, true);
         vmode();
         VGA_clear_screen();
-        for (int i = 0; i < 21518; i++){
-            putPixel_simpleStd(i, 1, FB_RED);
-        }
     }
     if (strcmp(command, "paging") == 0){
         if (paging){
