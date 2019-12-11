@@ -796,12 +796,7 @@ void write_regs(unsigned char *regs, bool isVmode)
 		outb(VGA_AC_WRITE, *regs);
 		regs++;
 	}
-	if (isVmode){
-		//write_font(g_8x8_font, fbpm);
-	}
-	else{
-		write_font(font_16, (char*)0xB800);
-	}
+	write_font(font_16, (char*)0xB800);
 /* lock 16-color palette and unblank display */
 	(void)inb(VGA_INSTAT_READ);
 	outb(VGA_AC_INDEX, 0x20);
