@@ -707,7 +707,7 @@ static void set_plane(unsigned p)
 	outb(VGA_SEQ_DATA, pmask);
 }
 
-static void write_font(unsigned char* font, unsigned char* vmp)
+static void write_font(unsigned char font[4096], unsigned char* vmp)
 {
 int i, j;
    unsigned char *p = vmp;
