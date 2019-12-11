@@ -800,7 +800,6 @@ void write_regs(unsigned char *regs, bool isVmode)
 	else
 	{
 		write_font(font_16, (char*)0xB800);
-		write_font(font_16, (char*)0xA000);
 	}
 /* lock 16-color palette and unblank display */
 	(void)inb(VGA_INSTAT_READ);
