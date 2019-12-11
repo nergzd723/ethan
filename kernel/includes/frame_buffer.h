@@ -37,6 +37,7 @@ int printf (const char * format, ...);
 int row();
 char* inttostr( int zahl );
 void downarrowp();
+void putPixel_simpleStd(int x, int y, int color);
 void uparrowp();
 void leftarrowp();
 void rightarrowp();

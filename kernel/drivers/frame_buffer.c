@@ -10,11 +10,13 @@ void fillrect(pixel_t* first_pos, pixel_t* second_pos){
 }
 
 void pp(uint8_t color, int32_t x, int32_t y) {
-  if (x < 0 || 320 <= x || y < 0 || 200 <= y) {
-    return;
-  }
   uint8_t* pixelAddress = (uint8_t*)0xA0000 + 320 * y + x;
-  *pixelAddress = color;
+  
+}
+void putPixel_simpleStd(int x, int y, int color)
+{
+  int offset = x + 320 * y;
+  fbp[offset] = color;
 }
 
 void putpixelc(int color, int xpos, int ypos) {
