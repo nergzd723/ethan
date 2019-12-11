@@ -111,7 +111,7 @@ void fb_newlinehandler(){
         reinit();
     }
     if (strcmp(command, "tmode") == 0){
-        write_regs(g_80x25_text, true);
+        write_regs(g_80x25_text, false);
         textmodes();
     }
     if (strcmp(command, "gfx") == 0){
