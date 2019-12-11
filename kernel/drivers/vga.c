@@ -707,7 +707,7 @@ static void set_plane(unsigned p)
 	outb(VGA_SEQ_DATA, pmask);
 }
 
-static void write_font(unsigned char font[4096], unsigned char* vmp)
+static void write_font(unsigned char* font, unsigned char* vmp)
 {
 int i, j;
    unsigned char *p = vmp;
@@ -733,7 +733,7 @@ int i, j;
    
    /* Write charmap */
    for(i = 0; i < CHARSET_LENGTH; i++){
-      for(j = 0; j < BYTES_PER_GLYPTH; j++){
+      for(j = 0; j < 8; j++){
          *p = *font;
          ++p;
          ++font;
@@ -797,10 +797,10 @@ void write_regs(unsigned char *regs, bool isVmode)
 		regs++;
 	}
 	if (isVmode){
-		write_font(font_16, fbpm);
+		write_font(g_8x8_font, fbpm);
 	}
 	else{
-		write_font(font_16, (char*)0xB000);
+		write_font(font_16, (char*)0xB800);
 	}
 /* lock 16-color palette and unblank display */
 	(void)inb(VGA_INSTAT_READ);
