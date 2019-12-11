@@ -30,7 +30,7 @@ void putpixelc(int color, int xpos, int ypos) {
     fbp[where + 1] = (color >> 8) & 255;   // GREEN
     fbp[where + 2] = (color >> 16) & 255;  // RED
 }
-void putpixel(pixel_t* pixel) {
+void putpixel_t(pixel_t* pixel) {
     unsigned where = pixel->xpos*4 + pixel->ypos*2560;
     fbp[where] = pixel->color & 255;              // BLUE
     fbp[where + 1] = (pixel->color >> 8) & 255;   // GREEN
@@ -298,7 +298,7 @@ unsigned char font[4096] =
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-void drawchar_transparent(unsigned char c, int x, int y, int fgcolor)
+void drawchar(unsigned char c, int x, int y, int fgcolor, int bgcolor)
 {
 	int cx,cy;
 	int mask[8]={1,2,4,8,16,32,64,128};
@@ -306,10 +306,11 @@ void drawchar_transparent(unsigned char c, int x, int y, int fgcolor)
  
 	for(cy=0;cy<16;cy++){
 		for(cx=0;cx<8;cx++){
-			if(glyph[cy]&mask[cx]) putpixel(fgcolor,x+cx,y+cy-12);
+			putpixel(glyph[cy]&mask[cx]?fgcolor:bgcolor,x+cx,y+cy-12);
 		}
 	}
 }
+
 void clear_screen_a(){
     memset((char *)0x000A0000, FB_BLACK, (320*200));
 }
