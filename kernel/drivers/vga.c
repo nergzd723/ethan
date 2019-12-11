@@ -2,6 +2,7 @@
 #include <vga.h>
 #include <string.h>
 #include <frame_buffer.h>
+#include <stdbool.h>
 #define BYTES_PER_GLYPTH 16
 #define BYTES_SKIP 16
 #define CHARSET_LENGTH 256
