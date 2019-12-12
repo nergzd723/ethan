@@ -111,11 +111,11 @@ void fb_newlinehandler(){
         reinit();
     }
     if (strcmp(command, "tmode") == 0){
-        write_regs(g_80x25_text, true);
+        write_regs(g_80x25_text, false);
         textmodes();
     }
     if (strcmp(command, "gfx") == 0){
-        write_regs(g_320x200x256, false);
+        write_regs(g_320x200x256, true);
         vmode();
         VGA_clear_screen();
         for (unsigned b = 0; b < 199; b++){
