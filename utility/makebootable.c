@@ -10,11 +10,11 @@ int main(int argnr, char *args[])
   if (argnr < 4) {
     printf("Invalid number of parameters.\n\n");
     printf("USAGE: %s [output] [input 1] [input 2] ... [input n]\n", args[0]);
-    printf("Example: %s a.img bootsect.bin kernel.bin");
+    printf("Example: a.img bootsect.bin kernel.bin");
     exit(0);
   }
 
-  output = fopen(args[0], "w");
+  output = fopen(args[0], "r");
 
   if (output != NULL) {
     buffer[0] = 0;
