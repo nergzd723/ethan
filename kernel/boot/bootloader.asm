@@ -98,16 +98,6 @@ continue:
 loaded:
     ret
 
-error1:
-    mov bx, errorMsg1
-    call print_string
-    jmp $
-
-error2:
-    mov bx, errorMsg2
-    call print_string
-    jmp $
-
 [bits 32]
 
 BEGIN_PM:
@@ -122,13 +112,6 @@ SectorsPerTrack equ 18
 Sector db 0
 
 BOOT_DRIVE db 0
-msgStage2 db "Stage 2 reached!", 0
-msgProt db "Successfully switched to 32-bit mode",0
-msgKernel db "Loading the kernel onto memory",0
-msg db "Loaded!!", 0
-errorMsg1 db "Error1", 0
-errorMsg2 db "Error2", 0
-msgReal db "Booted in 16-bit mode",0
 
 times 510-($-$$) db 0
 dw 0xaa55
