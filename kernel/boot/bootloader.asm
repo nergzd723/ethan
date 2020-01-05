@@ -10,7 +10,7 @@ TRACKS equ 2
 %include 'kernel/boot/gdt.asm'
 %include 'kernel/boot/protected_mode.asm'
 
-mov [BOOT_DRIVE],dl
+mov [BOOTy_DRIVE],dl
 
 mov bp,0x9000
 mov sp,bp
@@ -24,6 +24,7 @@ call STAGE2
 
 jmp $
 
+
 [bits 16]
 load_stage2:
     mov bx, msgStage2
@@ -31,16 +32,16 @@ load_stage2:
     mov cl, 2
     mov bx, STAGE2
     mov dh, 1
-    mov dl, [BOOT_DRIVE]
-load_sector:
+    mov dl, [BOOTy_DRIVE]
+loads_sector:
     call disk_load
     cmp cl, STAGE2_SECTORS
-    je loaded
+    je loadedr
     cmp cl, 15
     add cl, 1
     add bx, 512
-    jmp load_sector
-loaded:
+    jmp loads_sector
+loadedr:
     ret
 KERNEL equ 0x1000
 KERNEL_SECTORS equ 24
@@ -129,7 +130,6 @@ errorMsg1 db "Error1", 0
 errorMsg2 db "Error2", 0
 BOOT_DRIVE db 0
 msgReal db "Booted in 16-bit mode",0
-msgStage2 db "Loading the stage2 boot loader onto memory",0
 
 times 510-($-$$) db 0
 dw 0xaa55
