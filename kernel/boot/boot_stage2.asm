@@ -14,11 +14,10 @@ mov [0x600], ax
 
 call switch_to_pm
 
-%include 'bios.asm'
+%include 'kernel/boot/bios.asm'
 
-%include 'gdt.asm'
-%include 'protected_mode.asm'
-%include 'print32.asm'
+%include 'kernel/boot/gdt.asm'
+%include 'kernel/boot/protected_mode.asm'
 
 [bits 16]
 

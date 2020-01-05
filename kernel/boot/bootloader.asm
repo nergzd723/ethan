@@ -19,7 +19,7 @@ call STAGE2
 
 jmp $
 
-%include 'bios.asm'
+%include 'kernel/boot/bios.asm'
 
 [bits 16]
 load_stage2:
