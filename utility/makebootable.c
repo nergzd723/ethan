@@ -33,7 +33,7 @@ int main(int argnr, char *args[])
     input = fopen(args[i], "rb");
 
     if (input == NULL) {
-      printf("Missing input file %s.", args[i]);
+      printf("Missing input file %s. Aborting operation...", args[i]);
       fclose(output);
       exit(1);
     }
