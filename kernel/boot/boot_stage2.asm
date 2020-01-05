@@ -1,5 +1,3 @@
-[org 0x800]
-
 KERNEL equ 0x1000
 KERNEL_SECTORS equ 24
 
@@ -16,11 +14,11 @@ mov [0x600], ax
 
 call switch_to_pm
 
-%include 'bios.ASM'
+%include 'bios.asm'
 
-%include 'gdt.ASM'
-%include 'protected_mode.ASM'
-%include 'print32.ASM'
+%include 'gdt.asm'
+%include 'protected_mode.asm'
+%include 'print32.asm'
 
 [bits 16]
 

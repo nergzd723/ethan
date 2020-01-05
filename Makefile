@@ -30,14 +30,14 @@ build: asm_objects linker.ld makeboot bootloader
 	./makebootable os.img $(BUILDDIR)/boot.bin $(BUILDDIR)/kernel.bin
 asm_objects:
 	mkdir -p build
-	nasm -f elf32 $(BOOTDIR)/boot_stage2.asm -o $(BUILDDIR)/boot.o
+	nasm -f elf $(BOOTDIR)/boot_stage2.asm -o $(BUILDDIR)/boot.o
 	nasm -f elf32 $(KERNELDIR)/utility.asm -o $(BUILDDIR)/utility.o
 	nasm -f elf32 $(KERNELDIR)/interrupts.asm -o $(BUILDDIR)/interrupts.o 
 	nasm -f elf32 $(KERNELDIR)/logger.asm -o $(BUILDDIR)/logger.o
 	nasm -f elf32 $(KERNELDIR)/fallback.asm -o $(BUILDDIR)/fallback.o
 	nasm -f elf $(KERNELDIR)/shutdown.asm -o $(BUILDDIR)/shutdown.o
 bootloader:
-	nasm -f bin $(KERNELDIR)/bootloader.asm -o $(BUILDDIR)/boot.bin
+	nasm -f bin $(BOOTDIR)/bootloader.asm -o $(BUILDDIR)/boot.bin
 makeboot:
 	g++ utility/makebootable.c -o makebootable
 clean:
