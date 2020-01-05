@@ -1,13 +1,12 @@
 # Automatically generate lists of sources using wildcards.
 C_SOURCES = $(wildcard $(KERNELDIR)/*.c lib/*/*.c $(KERNELDIR)/drivers/*.c)
 CPP_SOURCES = $(wildcard $(KERNELDIR)/*.cpp lib/*/*.cpp $(KERNELDIR)/drivers/*.cpp)
-ASM_SOURCES = $(KERNELDIR)/utility.asm
+ASM_SOURCES = $(KERNELDIR)/utility.asm 
 HEADERS = $(wildcard $(KERNELDIR)/*.h)
 CC = ~/i686-elf/bin/i386-unknown-elf-gcc
-
 BUILDDIR = build
 KERNELDIR = kernel
-
+BOOTDIR = $(KERNELDIR)/boot
 CFLAGS = -nostdlib -ffreestanding -g -Wall -Wextra
 
 OBJS = ${C_SOURCES:.c=.o}
@@ -31,7 +30,7 @@ build: asm_objects linker.ld makeboot bootloader
 	./makebootable os.img $(BUILDDIR)/boot.bin $(BUILDDIR)/kernel.bin
 asm_objects:
 	mkdir -p build
-	nasm -f elf32 $(KERNELDIR)/boot.asm -o $(BUILDDIR)/boot.o
+	nasm -f elf32 $(BOOTDIR)/boot_stage2.asm -o $(BUILDDIR)/boot.o
 	nasm -f elf32 $(KERNELDIR)/utility.asm -o $(BUILDDIR)/utility.o
 	nasm -f elf32 $(KERNELDIR)/interrupts.asm -o $(BUILDDIR)/interrupts.o 
 	nasm -f elf32 $(KERNELDIR)/logger.asm -o $(BUILDDIR)/logger.o
