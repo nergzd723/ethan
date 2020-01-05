@@ -73,7 +73,6 @@ error2:
 
 BEGIN_PM:
     mov ebx, msgProt
-    call print_string32
     call KERNEL
     jmp $
 
