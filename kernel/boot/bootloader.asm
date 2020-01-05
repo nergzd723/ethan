@@ -24,8 +24,6 @@ call STAGE2
 
 jmp $
 
-%include 'kernel/boot/bios.asm'
-
 [bits 16]
 load_stage2:
     mov bx, msgStage2
