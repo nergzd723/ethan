@@ -103,7 +103,7 @@ global wrstr
 wrstr:
   mov eax, 7828067
   mov ebx, [esp+4]
-  int 0x19
+  int 19h
   ret
 
 global resetact

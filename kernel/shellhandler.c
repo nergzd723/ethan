@@ -104,6 +104,9 @@ void fb_newlinehandler(){
     if (strcmp(command, "hb") == 0){
         happy();
     }
+    if (strcmp(command, "sd") == 0){
+        shutdownasm();
+    }
     if (strcmp(command, "star") == 0){
         staralligns();
     }

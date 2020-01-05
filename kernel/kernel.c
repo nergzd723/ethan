@@ -62,15 +62,6 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
       }
 
    }
-
-   if (mbd->flags & (1 << 7)) {
-      /* Safely read the drive regions */
-      // TODO
-   }
    boot_stage1();
-   //clear_screen(); really shouldnt
-   //shutdown(); that doesnt work, is page faulting
-   //panic("TEST_PANIC", 0); works!
-   while(1) {
-   }
+   while(1){}
 }
