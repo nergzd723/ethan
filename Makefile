@@ -40,6 +40,6 @@ asm_objects:
 bootloader:
 	nasm -f bin $(KERNELDIR)/bootloader.asm -o $(BUILDDIR)/boot.bin
 makeboot:
-	gcc utility/makebootable.c -o makebootable
+	g++ utility/makebootable.c -o makebootable
 clean:
 	rm -rf $(BUILDDIR)/*
