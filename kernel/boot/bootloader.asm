@@ -63,9 +63,6 @@ load_sector:
     mov ah, 0x02
     mov al, 1
     int 0x13
-    jc error1
-    cmp al, 1
-    jne error2
     push bx
     mov bl, [Sector]
     cmp bl, KERNEL_SECTORS
