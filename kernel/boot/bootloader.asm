@@ -10,7 +10,7 @@ TRACKS equ 2
 %include 'kernel/boot/gdt.asm'
 %include 'kernel/boot/protected_mode.asm'
 
-mov [BOOTy_DRIVE],dl
+mov [BOOT_DRIVE],dl
 
 mov bp,0x9000
 mov sp,bp
@@ -32,7 +32,7 @@ load_stage2:
     mov cl, 2
     mov bx, STAGE2
     mov dh, 1
-    mov dl, [BOOTy_DRIVE]
+    mov dl, [BOOT_DRIVE]
 loads_sector:
     call disk_load
     cmp cl, STAGE2_SECTORS
@@ -128,7 +128,6 @@ msgKernel db "Loading the kernel onto memory",0
 msg db "Loaded!!", 0
 errorMsg1 db "Error1", 0
 errorMsg2 db "Error2", 0
-BOOT_DRIVE db 0
 msgReal db "Booted in 16-bit mode",0
 
 times 510-($-$$) db 0
