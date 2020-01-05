@@ -1,11 +1,66 @@
 [BITS 16]       ; We need 16-bit intructions for Real mode
 
 [ORG 0x7C00]    ; The BIOS loads the boot sector into memory location 0x7C00
-mov ah, 0Eh     ; We want to print a single character
-mov al, 'A'     ; That character is 'A'
-mov bh, 0Eh     ; White text on black background, not blinking
-mov bl, 0       ; Page number 0
-int 10h
+mov bp,0x9000
+mov sp,bp
+mov bx, msg
+mov [BOOT_DRIVE],dl
+STAGE2 equ 0x800
+STAGE2_SECTORS equ 2+1
+TRACKS equ 2
+call print_string
+call load_stage2
+call STAGE2
+load_stage2:
+    call print_string
+    mov cl, 2
+    mov bx, STAGE2
+    mov dh, 1
+    mov dl, [BOOT_DRIVE]
+load_sector:
+    call disk_load
+    cmp cl, STAGE2_SECTORS
+    je loaded
+    cmp cl, 15
+    add cl, 1
+    add bx, 512
+    jmp load_sector
+loaded:
+    ret
+disk_load:
+    pusha
+    push dx
+    mov ah,0x02
+    mov al,dh
+    mov dh,0x0
+    int 0x13
+    jc disk_error
+    pop dx
+    cmp dh,al
+    jne disk_error
+    popa
+    ret
+disk_error:
+    mov ah,0x0e
+    mov al,'X'
+    int 0x10
+    mov bx,errMsg
+    call print_string
+    jmp $
+print_string:
+    pusha
+    mov cx,bx
+    mov ah,0x0e
+    printStringStart:
+    mov al,[bx]
+    cmp al,0
+    je done
+    int 0x10
+    inc bx
+    jmp printStringStart
+    done:
+    popa
+    ret
 reset_drive:
         mov ah, 0               ; RESET-command
         int 13h                 ; Call interrupt 13h
@@ -38,7 +93,7 @@ reset_drive:
 
         jmp 08h:clear_pipe      ; Jump to code segment, offset clear_pipe
 
-
+msg db "Ethanium real mode interface", 0
 [BITS 32]                       ; We now need 32-bit instructions
 clear_pipe:
         mov ax, 10h             ; Save data segment identifyer
