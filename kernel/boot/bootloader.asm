@@ -15,8 +15,6 @@ mov [BOOT_DRIVE],dl
 mov bp,0x9000
 mov sp,bp
 
-mov bx, msgReal
-call print_string
 
 call load_stage2
 
@@ -27,8 +25,6 @@ jmp $
 
 [bits 16]
 load_stage2:
-    mov bx, msgStage2
-    call print_string
     mov cl, 2
     mov bx, STAGE2
     mov dh, 1
@@ -46,13 +42,8 @@ loadedr:
 KERNEL equ 0x1000
 KERNEL_SECTORS equ 24
 
-mov bx, msgStage2
-call print_string
 
 call load_kernel
-
-mov bx, msg
-call print_string
 
 int 0x12
 mov [0x600], ax
@@ -61,8 +52,6 @@ call switch_to_pm
 [bits 16]
 
 load_kernel:
-    mov bx, msgKernel
-    call print_string
     mov ax, 3
     mov cl, 4
     mov ch, 0
@@ -101,7 +90,6 @@ loaded:
 [bits 32]
 
 BEGIN_PM:
-    mov ebx, msgProt
     call KERNEL
     jmp $
 
