@@ -9,16 +9,13 @@ TRACKS equ 2
 
 %include 'kernel/boot/gdt.asm'
 %include 'kernel/boot/protected_mode.asm'
-
 mov [BOOT_DRIVE],dl
-
 mov bp,0x9000
 mov sp,bp
-
-
 call load_stage2
 
 call STAGE2
+
 
 jmp $
 
