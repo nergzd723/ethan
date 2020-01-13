@@ -44,5 +44,3 @@ start:
     cli                             ; We should not return here, but if we do:
     hlt
     jmp $                            ;   clear all interrupts and halt
-times 510-($-$$) db 0
-dw 0xaa55
