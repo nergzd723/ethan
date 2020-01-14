@@ -26,7 +26,7 @@ void syscall_handler(context_t* cpustate)
         break;
     // eax=4, returns edx=1
     case 4:
-        write_edx(1);
+        write_edx(14545466);
         break;
     // eax=777, test syscall
     case 777:
