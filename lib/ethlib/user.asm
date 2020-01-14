@@ -4,7 +4,12 @@ printf:
   mov ebx, [esp+4]
   int 19h
   ret
-
+global printb
+printb:
+  mov eax, 3
+  mov ebx, [esp+4]
+  int 19h
+  ret
 global exit
 exit:
    mov eax, 2

@@ -18,6 +18,11 @@ void syscall_handler(context_t* cpustate)
         asm volatile ("sti");
         logf("Closing process");
         reset_shell();
+
+    // eax=3, write single byte to screen
+    case 3:
+        fb_write_byte((char) cpustate->ebx);
+        break;
     // eax=777, test syscall
     case 777:
         printk("\nIndeed\n");
