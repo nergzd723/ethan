@@ -5,9 +5,10 @@ printf:
   int 19h
   ret
 
-global resetact
+global exit
 exit:
    mov eax, 2
+   int 19h
    ret
 global testsyscalls
 testsyscalls:

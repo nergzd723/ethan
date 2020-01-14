@@ -1,6 +1,7 @@
 #include <stdin.h>
 #include <frame_buffer.h>
 #include <string.h>
+#include <user.h>
 
 void add(){
     initgetchar();

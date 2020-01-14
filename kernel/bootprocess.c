@@ -23,37 +23,37 @@
 #include <vmodes.h>
 
 void boot_stage2(){
-   printf("Enabling hardware interrupts...\n");
+   printk("Enabling hardware interrupts...\n");
     asm volatile("sti");
-   printf("OK\n");
-   printf("SoundBlaster16...\n");
+   printk("OK\n");
+   printk("SoundBlaster16...\n");
    sb16_init();
-   printf("ACPI...\n");
+   printk("ACPI...\n");
    initAcpi();
-   printf("OK\n");
+   printk("OK\n");
    clear_screen();
    logf("80x25 text mode applying\n");
    write_regs(g_80x25_text, false);
    //vmode();
    //clear_screen_a();
-   printf("Ethanium booted! Got ");
-   printf(inttostr(upper_memory()+lower_memory()));
-   printf("K mem total, ");
-   printf(inttostr(lower_memory()));
-   printf("K lowmem, ");
-   printf(inttostr(upper_memory()));
-   printf("K USABLE extended memory\n");
-   printf("Running on ");
-   printf(detectBIOSVendor());
-   printf(" machine\n");
+   printk("Ethanium booted! Got ");
+   printk(inttostr(upper_memory()+lower_memory()));
+   printk("K mem total, ");
+   printk(inttostr(lower_memory()));
+   printk("K lowmem, ");
+   printk(inttostr(upper_memory()));
+   printk("K USABLE extended memory\n");
+   printk("Running on ");
+   printk(detectBIOSVendor());
+   printk(" machine\n");
    if (memorycount() > 65535){
-       printf("It seems that you have more than 64M of RAM. Ethanium may not work properly\n");
+       printk("It seems that you have more than 64M of RAM. Ethanium may not work properly\n");
    }
-   printf(inttostr(detectCPUSpeed()));
-   printf("MHz CPU speed\n");
+   printk(inttostr(detectCPUSpeed()));
+   printk("MHz CPU speed\n");
    srand(discoverspeed());
    logf("Random seeded to CPU speed\n");
-   printf(">>> ");
+   printk(">>> ");
    __init_done = true;
 }
 
@@ -61,35 +61,35 @@ void boot_stage2(){
 void boot_stage1(){
     clear_screen();
     logf("Terminal initialized\n");
-    printf("Ethan started to boot!\n");
-    printf("GDT...\n");
+    printk("Ethan started to boot!\n");
+    printk("GDT...\n");
     init_gdt();
-    printf("OK\n");
+    printk("OK\n");
     logf("GDT initialized\n");
-    printf("PIC...\n");
+    printk("PIC...\n");
     init_pic();
-    printf("OK\n");
+    printk("OK\n");
     logf("PIC initialized\n");
-    printf("IDT...\n");
+    printk("IDT...\n");
     init_idt();
-    printf("OK\n");
+    printk("OK\n");
     logf("IDT initialized\n");
-    printf("Keyboard...\n");
+    printk("Keyboard...\n");
     init_keyboard();
-    printf("OK\n");
+    printk("OK\n");
     logf("Keyboard intialized\n");
     logf("IDT and irq handlers operational\n");
-   printf("Timer...\n");
+   printk("Timer...\n");
    init_timer(TIMER_FREQUENCY);
-   printf("OK\n");
+   printk("OK\n");
    logf("Timer initialized\n");
-   printf("Time-of-day clock...\n");
+   printk("Time-of-day clock...\n");
    rtc_install();
-   printf("OK\n");
-   printf("Detecting SMBIOS...\n");
+   printk("OK\n");
+   printk("Detecting SMBIOS...\n");
    detect_SM_();
 	logf("SMBIOS found at 0x%08x.");
-    printf("OK\n");
-   printf("Entering second stage...\n");
+    printk("OK\n");
+   printk("Entering second stage...\n");
    boot_stage2();
 }

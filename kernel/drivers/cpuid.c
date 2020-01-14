@@ -83,38 +83,38 @@ void CpuDetect()
     cpuid(0, &largestStandardFunc, (uint32_t *)(vendor + 0), (uint32_t *)(vendor + 8), (uint32_t *)(vendor + 4));
     vendor[12] = '\0';
 
-    printf("CPU Vendor: ");
-    printf(vendor);
-    printf("\n");
+    printk("CPU Vendor: ");
+    printk(vendor);
+    printk("\n");
     // Function 0x01 - Feature Information
     if (largestStandardFunc >= 0x01)
     {
         cpuid(0x01, &eax, &ebx, &ecx, &edx);
 
-        printf("Features:");
+        printk("Features:");
 
-        if (edx & EDX_PSE)      printf(" PSE");
-        if (edx & EDX_PAE)      printf(" PAE");
-        if (edx & EDX_APIC)     printf(" APIC");
-        if (edx & EDX_MTRR)     printf(" MTRR");
+        if (edx & EDX_PSE)      printk(" PSE");
+        if (edx & EDX_PAE)      printk(" PAE");
+        if (edx & EDX_APIC)     printk(" APIC");
+        if (edx & EDX_MTRR)     printk(" MTRR");
 
-        printf("\n");
+        printk("\n");
 
-        printf("Instructions:");
+        printk("Instructions:");
 
-        if (edx & EDX_TSC)      printf(" TSC");
-        if (edx & EDX_MSR)      printf(" MSR");
-        if (edx & EDX_SSE)      printf(" SSE");
-        if (edx & EDX_SSE2)     printf(" SSE2");
-        if (ecx & ECX_SSE3)     printf(" SSE3");
-        if (ecx & ECX_SSSE3)    printf(" SSSE3");
-        if (ecx & ECX_SSE41)    printf(" SSE41");
-        if (ecx & ECX_SSE42)    printf(" SSE42");
-        if (ecx & ECX_AVX)      printf(" AVX");
-        if (ecx & ECX_F16C)     printf(" F16C");
-        if (ecx & ECX_RDRAND)   printf(" RDRAND");
+        if (edx & EDX_TSC)      printk(" TSC");
+        if (edx & EDX_MSR)      printk(" MSR");
+        if (edx & EDX_SSE)      printk(" SSE");
+        if (edx & EDX_SSE2)     printk(" SSE2");
+        if (ecx & ECX_SSE3)     printk(" SSE3");
+        if (ecx & ECX_SSSE3)    printk(" SSSE3");
+        if (ecx & ECX_SSE41)    printk(" SSE41");
+        if (ecx & ECX_SSE42)    printk(" SSE42");
+        if (ecx & ECX_AVX)      printk(" AVX");
+        if (ecx & ECX_F16C)     printk(" F16C");
+        if (ecx & ECX_RDRAND)   printk(" RDRAND");
 
-        printf("\n");
+        printk("\n");
     }
 
     // Extended Function 0x00 - Largest Extended Function
@@ -130,7 +130,7 @@ void CpuDetect()
 
         if (edx & EDX_64_BIT)
         {
-            printf("64-bit Architecture\n");
+            printk("64-bit Architecture\n");
         }
     }
 
@@ -150,7 +150,7 @@ void CpuDetect()
             ++p;
         }
 
-        printf("CPU Name: ");
-        printf(p);
+        printk("CPU Name: ");
+        printk(p);
     }
 }

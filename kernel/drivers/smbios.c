@@ -25,11 +25,6 @@ void detect_SM_(){
 		}
 		mem += 16;
 	}
-	if ((unsigned int) mem == 0x100000)
-	{
-		logf("error: SMBIOS not found!");
-		
-	}
 	smb_ep = (struct SMBIOSEntryPoint*)mem;
 }
 uint16_t detectCPUSpeed()
