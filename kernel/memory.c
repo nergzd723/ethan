@@ -195,7 +195,7 @@ void page_fault_handler(context_t* context)
     asm volatile ("sti");
     disable_paging();
     printk("\nPage fault! Unloaded page tables and disabled paging\n");
-    panic("page fault interrupt")
+    panic("page fault interrupt");
 }
 
 int liballoc_lock()
