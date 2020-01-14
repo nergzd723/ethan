@@ -219,7 +219,7 @@ void fb_newlinehandler(){
         write_eax(4);
         scall();
         register int one asm("edx");
-        printf(one);
+        logf(one);
     }
     if (strcmp(command, "meminfo") == 0){
         printf("\n");
