@@ -97,7 +97,7 @@ void fb_newlinehandler(){
         add();
     }
     if (strcmp(command, "syswr") == 0){
-        wrstr("Mandt");
+        printf("Sth");
     }
     if (strcmp(command, "beep") == 0){
         beep();
