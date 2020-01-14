@@ -33,7 +33,7 @@ void fb_backspace();
 void fb_write_byte(uint8_t b);
 void fb_newline();
 void fill_screen(unsigned char color);
-int printf (const char * format, ...);
+int printk (const char * format, ...);
 int row();
 char* inttostr( int zahl );
 void downarrowp();

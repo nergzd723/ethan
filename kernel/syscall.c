@@ -9,16 +9,18 @@ void syscall_handler(context_t* cpustate)
     logf("syscall: got a call: %x\n", cpustate->eax);
     switch (cpustate->eax)
     {
-    case 7828067:
-        printf((char*) cpustate->ebx);
-        break; 
-    case 6451819:
+    // eax=1, ebx=char* printf
+    case 1:
+        printk((char*) cpustate->ebx);
+        break;
+    // eax=2, exit to the main kernelspace shell
+    case 2:
         asm volatile ("sti");
-        printf("Process closed");
-        logf("syscall: trying to breakthrough to shell!");
+        logf("Closing process");
         reset_shell();
-    case 0x1:
-        printf("\nIndeed\n");
+    // eax=777, test syscall
+    case 777:
+        printk("\nIndeed\n");
         break;
     default:
         logf("syscall: bad syscall\n");

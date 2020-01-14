@@ -22,6 +22,7 @@
 #include <timer.h>
 #include <v8086m.h>
 #include <real.h>
+#include <user.h>
 #include <sysinit.h>
 #include <vmodes.h>
 #include <acpi.h>

@@ -1,4 +1,4 @@
-#define PANIC
+#define PANIC 1
 
 #include <stdint.h>
 #include <stddef.h>
@@ -10,14 +10,13 @@
 #include <io.h>
 #include <frame_buffer.h>
 #include <timer.h>
+#include <shell.h>
 
 void panic(char* panicmessage){
     cli();
     reset_cursor();
-    clear_screen();
-    printf("                                System crash!\n\n\n\n\n");
-    printf("                                ");
-    printf(panicmessage);
-    printf("\n\n\n\n");
-    halt();
+    printk("The system has crashed, because of %s\n", panicmessage);
+    printk("Returning to main shell...\n");
+    wait(1);
+    reset_shell();
 }

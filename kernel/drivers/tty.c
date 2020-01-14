@@ -80,7 +80,7 @@ void clear_screen()
   fill_screen(FB_BLACK);
 }
 
-int printf (const char * format, ...) {
+int printk (const char * format, ...) {
   int i = 0;
   if (textmode){
     while (format[i]) {

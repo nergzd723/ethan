@@ -1,7 +1,7 @@
 #include <keyboard.h>
 #include <shutdown.h>
 #include <io.h>
-#include <frame_buffer.h>
+#include <user.h>
 
 void reboot()
 {
