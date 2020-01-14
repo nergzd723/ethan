@@ -215,6 +215,12 @@ void fb_newlinehandler(){
         logf("\nRebooting\n");
         reboot();
     }
+    if (strcmp(command, "testreentry") == 0){
+        write_eax(4);
+        scall();
+        register int one asm("edx");
+        printf(one);
+    }
     if (strcmp(command, "meminfo") == 0){
         printf("\n");
         printf(inttostr(lower_memory()+upper_memory()));

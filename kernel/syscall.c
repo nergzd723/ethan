@@ -2,6 +2,7 @@
 #include <logger.h>
 #include <frame_buffer.h>
 #include <shell.h>
+#include <io.h>
 #include <logger.h>
 
 void syscall_handler(context_t* cpustate)
@@ -22,6 +23,10 @@ void syscall_handler(context_t* cpustate)
     // eax=3, write single byte to screen
     case 3:
         fb_write_byte((char) cpustate->ebx);
+        break;
+    // eax=4, returns edx=1
+    case 4:
+        write_edx(1);
         break;
     // eax=777, test syscall
     case 777:
