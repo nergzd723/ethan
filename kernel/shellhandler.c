@@ -282,7 +282,7 @@ void charbridge(unsigned char c){
             }
             append(termbuf, c);
             append(lastcommbuf, c);
-            printf(c);
+            printb(c);
             break;
     }
 }
