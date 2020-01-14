@@ -27,7 +27,7 @@ debug: all
 
 build: asm_objects linker.ld
 	$(CC) -g -I lib/includes -I kernel/includes  $(CPP_SOURCES) $(C_SOURCES) $(BUILDDIR)/*.o -o $(BUILDDIR)/kernel.bin -nostdlib -ffreestanding -static-libgcc -lgcc -T linker.ld
-	./makebootable os.img $(BUILDDIR)/boot.bin $(BUILDDIR)/kernel.bin
+	#./makebootable os.img $(BUILDDIR)/boot.bin $(BUILDDIR)/kernel.bin
 grub:
 	cp $(BUILDDIR)/kernel.bin isodir/boot/kernel.bin
 	grub-mkrescue isodir -o os.iso
@@ -39,6 +39,7 @@ asm_objects:
 	nasm -f elf32 $(KERNELDIR)/logger.asm -o $(BUILDDIR)/logger.o
 	nasm -f elf32 $(KERNELDIR)/fallback.asm -o $(BUILDDIR)/fallback.o
 	nasm -f elf $(KERNELDIR)/shutdown.asm -o $(BUILDDIR)/shutdown.o
+	nasm -f elf32 lib/ethlib/user.asm -o $(BUILDDIR)/usr.o
 bootloader:
 	nasm -f bin $(BOOTDIR)/bootloader.asm -o $(BUILDDIR)/boot.bin
 makeboot:
