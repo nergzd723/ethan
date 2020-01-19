@@ -78,3 +78,4 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
    boot_stage1();
    while(1){}
 }
+}
