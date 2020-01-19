@@ -21,7 +21,9 @@
 #include <acpi.h>
 #include <sysinit.h>
 #include <vmodes.h>
-
+void garbage_handler(){
+    for(;;);
+}
 void boot_stage2(){
    printk("Enabling hardware interrupts...\n");
     asm volatile("sti");
@@ -36,6 +38,7 @@ void boot_stage2(){
    write_regs(g_80x25_text, false);
    //vmode();
    //clear_screen_a();
+   register_interrupt_handler(0x6, &garbage_handler);
    printk("Ethanium booted! Got ");
    printk(inttostr(upper_memory()+lower_memory()));
    printk("K mem total, ");
