@@ -20,9 +20,10 @@
 #include <string.h>
 #include <acpi.h>
 #include <sysinit.h>
+#include <shell.h>
 #include <vmodes.h>
 void garbage_handler(){
-    for(;;);
+    reset_shell();
 }
 void boot_stage2(){
    printk("Enabling hardware interrupts...\n");
