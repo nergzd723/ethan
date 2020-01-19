@@ -12,9 +12,9 @@ CFLAGS = -nostdlib -ffreestanding -g -Wall -Wextra
 OBJS = ${C_SOURCES:.c=.o}
 
 # Default build target
-all: build grub
-userapp:
-	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.o userapp.c
+all: build userapp grub
+userapp: all
+	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.o userapp/userapp.c
 	cp build/userapp.o isodir/boot/app.bin
 runboot: all
 	qemu-system-i386 -m 32M -serial stdio -soundhw sb16,pcspk -fda os.iso
