@@ -18,6 +18,7 @@
 #include <isr.h>
 #include <liballoc.h>
 #include <gfx.h>
+#include <shell.h>
 #include <liballoc.h>
 #include <timer.h>
 #include <v8086m.h>
@@ -214,6 +215,10 @@ void fb_newlinehandler(){
     if (strcmp(command, "reboot") == 0){
         logf("\nRebooting\n");
         reboot();
+    }
+    if (strcmp(command, "run") == 0){
+        logf("Running app 1\n");
+        run(1);
     }
     if (strcmp(command, "testreentry") == 0){
         write_eax(4);

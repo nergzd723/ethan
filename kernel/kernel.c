@@ -26,7 +26,13 @@ uint32_t upper_memory(){
 int lower_memory(){
    return lower_mem;
 }
-
+uint32_t apps[10];
+void run(unsigned app)
+{
+   void (*appp)(void);
+   appp = (void (*)(void))apps[app];
+   appp();
+}
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
    init_logger();
    logf("Logger initialized\n");
@@ -60,7 +66,14 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
                map->len_lower,
                map->type);
       }
-
+   logf("Found apps: %d", mbd->mods_count);
+   unsigned b = 0;
+   for(unsigned i = 0; i<mbd->mods_count;i++){
+      b = b + 4;
+      logf("%d app start memory: %x", i, mbd->mods_addr+b);
+      apps[i] = mbd->mods_addr+b;
+      b = b + 4;
+      logf("%d app end memory: %x", i, mbd->mods_addr+b);
    }
    boot_stage1();
    while(1){}

@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:/Users/king2/OneDrive/Рабочий стол/ethan/kernel/includes/*"
+                "C:/Users/king2/OneDrive/Рабочий стол/ethan/kernel/includes/*",
+                "C:/Users/king2/OneDrive/Рабочий стол/ethan/lib/includes/*"
             ],
             "defines": [
                 "_DEBUG",
