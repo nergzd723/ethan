@@ -13,14 +13,14 @@ OBJS = ${C_SOURCES:.c=.o}
 
 # Default build target
 all: build userapp grub
-userapp: all
-	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.o userapp/userapp.c
+userapp: userlinker.ld asm_objects
+	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.o userapp/userapp.c build/usr.o build/usrldr.o build/usrldr.o -T userlinker.ld
 	cp build/userapp.o isodir/boot/app.bin
 runboot: all
 	qemu-system-i386 -m 32M -serial stdio -soundhw sb16,pcspk -fda os.iso
 # Run the operating system on qemu
 run: all
-	qemu-system-i386 -m 32M -serial stdio -soundhw sb16,pcspk -kernel $(BUILDDIR)/kernel.bin
+	qemu-system-i386 -m 32M -serial stdio -soundhw sb16,pcspk os.iso
 
 monitor: all
 	qemu-system-i386 -m 32M -monitor stdio -kernel $(BUILDDIR)/kernel.bin
@@ -28,7 +28,7 @@ monitor: all
 debug: all
 	qemu-system-i386 -m 32M -s -S -monitor stdio -kernel $(BUILDDIR)/kernel.bin
 
-build: asm_objects linker.ld
+build: asm_objects linker.ld userapp
 	$(CC) -g -I lib/includes -I kernel/includes  $(CPP_SOURCES) $(C_SOURCES) $(BUILDDIR)/*.o -o $(BUILDDIR)/kernel.bin -nostdlib -ffreestanding -static-libgcc -lgcc -T linker.ld
 	#./makebootable os.img $(BUILDDIR)/boot.bin $(BUILDDIR)/kernel.bin
 grub:
@@ -43,6 +43,7 @@ asm_objects:
 	nasm -f elf32 $(KERNELDIR)/fallback.asm -o $(BUILDDIR)/fallback.o
 	nasm -f elf $(KERNELDIR)/shutdown.asm -o $(BUILDDIR)/shutdown.o
 	nasm -f elf32 lib/ethlib/user.asm -o $(BUILDDIR)/usr.o
+	nasm -f elf32 userapp/usrldr.asm -o $(BUILDDIR)/usrldr.o
 bootloader:
 	nasm -f bin $(BOOTDIR)/bootloader.asm -o $(BUILDDIR)/boot.bin
 makeboot:

@@ -92,7 +92,7 @@ void boot_stage1(){
    printk("OK\n");
    printk("Detecting SMBIOS...\n");
    detect_SM_();
-	logf("SMBIOS found at 0x%08x.");
+   logf("SMBIOS found at 0x%08x.");
     printk("OK\n");
    printk("Entering second stage...\n");
    boot_stage2();
