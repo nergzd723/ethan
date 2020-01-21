@@ -29,7 +29,7 @@ debug: all
 	qemu-system-i386 -m 32M -s -S -monitor stdio -kernel $(BUILDDIR)/kernel.bin
 
 build: asm_objects linker.ld userapp
-	$(CC) -g -I lib/includes -I kernel/includes  $(CPP_SOURCES) $(C_SOURCES) $(BUILDDIR)/*.o -o $(BUILDDIR)/kernel.bin -nostdlib -ffreestanding -static-libgcc -lgcc -T linker.ld
+	$(CC) -g -I lib/includes -I kernel/includes  $(CPP_SOURCES) $(C_SOURCES) $(BUILDDIR)/*.o -o $(BUILDDIR)/kernel.bin -g -nostdlib -ffreestanding -static-libgcc -lgcc -T linker.ld
 	#./makebootable os.img $(BUILDDIR)/boot.bin $(BUILDDIR)/kernel.bin
 grub:
 	cp $(BUILDDIR)/kernel.bin isodir/boot/kernel.bin
