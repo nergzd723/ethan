@@ -14,6 +14,7 @@
 #include <defines.h>
 #include <cpu_speed.h>
 #include <random.h>
+#include <frame_buffer.h>
 #include <boot.h>
 #include "multiboot.h"
 

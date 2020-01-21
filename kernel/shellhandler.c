@@ -224,7 +224,7 @@ void fb_newlinehandler(){
         write_eax(4);
         scall();
         register int one asm("edx");
-        logf(one);
+        printf(one);
     }
     if (strcmp(command, "meminfo") == 0){
         printf("\n");
