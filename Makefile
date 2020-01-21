@@ -20,7 +20,7 @@ runboot: all
 	qemu-system-i386 -m 32M -serial stdio -soundhw sb16,pcspk -fda os.iso
 # Run the operating system on qemu
 run: all
-	qemu-system-i386 -m 32M -serial stdio -soundhw sb16,pcspk os.iso
+	qemu-system-i386 -s -S -m 32M -serial stdio -soundhw sb16,pcspk os.iso
 
 monitor: all
 	qemu-system-i386 -m 32M -monitor stdio -kernel $(BUILDDIR)/kernel.bin
