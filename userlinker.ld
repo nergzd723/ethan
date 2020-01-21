@@ -6,7 +6,8 @@ SECTIONS
 
     .text ALIGN(4):
     {
-        *(.text)
+        build/usrldr.o(.text)
+        *(.text)           /* include all other .text sections */
     }
 
     .data ALIGN(4):
