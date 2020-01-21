@@ -6,7 +6,7 @@ SECTIONS
 
     .text ALIGN(4):
     {
-        usrldr.o(.text) /* include the .text section of start_user_program.o */
+        build/usrldr.o(.text)
         *(.text)           /* include all other .text sections */
     }
 
