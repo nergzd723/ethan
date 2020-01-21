@@ -14,8 +14,8 @@ OBJS = ${C_SOURCES:.c=.o}
 # Default build target
 all: build userapp grub
 userapp: userlinker.ld asm_objects
-	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.o userapp/userapp.c build/usr.o build/usrldr.o -T userlinker.ld
-	cp build/userapp.o isodir/boot/app.bin
+	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.bin userapp/userapp.c build/usr.o build/usrldr.o -T userlinker.ld
+	cp build/userapp.bin isodir/boot/app.bin
 runboot: all
 	qemu-system-i386 -m 32M -serial stdio -soundhw sb16,pcspk -fda os.iso
 # Run the operating system on qemu
