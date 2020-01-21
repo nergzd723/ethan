@@ -14,7 +14,7 @@ OBJS = ${C_SOURCES:.c=.o}
 # Default build target
 all: build userapp grub
 userapp: userlinker.ld asm_objects
-	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.bin userapp/userapp.c build/usr.o build/usrldr.o -T userlinker.ld
+	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.bin userapp/userapp.c userapp/build/usr.o build/usrldr.o -T userlinker.ld
 	cp build/userapp.bin isodir/boot/app.bin
 runboot: all
 	qemu-system-i386 -m 32M -serial stdio -soundhw sb16,pcspk -fda os.iso
@@ -42,8 +42,8 @@ asm_objects:
 	nasm -f elf32 $(KERNELDIR)/logger.asm -o $(BUILDDIR)/logger.o
 	nasm -f elf32 $(KERNELDIR)/fallback.asm -o $(BUILDDIR)/fallback.o
 	nasm -f elf $(KERNELDIR)/shutdown.asm -o $(BUILDDIR)/shutdown.o
-	nasm -f elf32 lib/ethlib/user.asm -o $(BUILDDIR)/usr.o
-	nasm -f elf32 userapp/usrldr.asm -o $(BUILDDIR)/usrldr.o
+	nasm -f elf32 lib/ethlib/user.asm -o usr.o
+	nasm -f elf32 userapp/usrldr.asm -o userapp/build/usrldr.o
 bootloader:
 	nasm -f bin $(BOOTDIR)/bootloader.asm -o $(BUILDDIR)/boot.bin
 makeboot:
