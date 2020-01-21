@@ -6,7 +6,7 @@ SECTIONS
 
     .text ALIGN(4):
     {
-        build/usrldr.o(.text)
+        userapp/build/usrldr.o(.text)
         *(.text)           /* include all other .text sections */
     }
 
