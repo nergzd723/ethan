@@ -30,8 +30,8 @@ int lower_memory(){
 uint32_t apps[10];
 void run(unsigned app)
 {
-   typedef void (*appp)(void);
-   appp start_app = (appp) apps[app];
+   typedef void (*appp_t)(void);
+   appp_t start_app = (appp_t)0x000100A8;
    start_app();
 }
 void kmain(multiboot_info_t* mbd, uint32_t magic) {
