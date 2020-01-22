@@ -20,9 +20,6 @@ void init_gdt()
     gdt_set_gate(0, 0, 0, 0, 0);  // null descriptor
     gdt_set_gate(1, 0, 0xFFFFFFFF, SEG_CODE_PL0, 0xCF);  // kernel mode code
     gdt_set_gate(2, 0, 0xFFFFFFFF, SEG_DATA_PL0, 0xCF);  // kernel mode data
-    gdt_set_gate(3, 0, 0xFFFFFFFF, SEG_CODE_PL3, 0xCF);  // user mode code
-    gdt_set_gate(4, 0, 0xFFFFFFFF, SEG_DATA_PL3, 0xCF);  // user mode data segment
-
     // Start using the new GDT.
     gdt_flush((uint32_t) &gdt_ptr);
 }
