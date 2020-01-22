@@ -69,13 +69,11 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
       }
    logf("Found apps: %x", mbd->mods_count);
    logf("\n");
-   unsigned b = 0;
    for(unsigned i = 0; i<mbd->mods_count;i++){
       logf("%x",i);
       logf(" app start memory: ");
-      logf("%x",mbd->mods_addr+b);
-      apps[i] = mbd->mods_addr+b;
-      b = b + 8;
+      logf("%x",mbd->mods_addr);
+      apps[i] = mbd->mods_addr;
    }
    boot_stage1();
    while(1){}
