@@ -15,11 +15,11 @@ gdt_flush:
                      ; far jump to .flush
 .flush:
    ret
-   
+
 global jmp_tomod
 jmp_tomod:
    mov eax, 0x000100A8
-   jmp 0x08:eax
+   jmp eax
    ret
 global idt_flush
 idt_flush:
