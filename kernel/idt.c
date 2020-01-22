@@ -127,4 +127,5 @@ static void idt_set_gate(uint8_t n, uint32_t base, uint16_t sel, uint8_t flags) 
 
 	// TODO: maybe need to | 0x60 later when I create a userspace
 	idt[n].flags = flags;
+	
 }
