@@ -27,6 +27,18 @@ void detect_SM_(){
 	}
 	smb_ep = (struct SMBIOSEntryPoint*)mem;
 }
+void detectmod()
+{
+    unsigned *mem = (unsigned *) 0xF0000;
+    while ((unsigned int) mem < 0xF00000)
+	{
+		if (memcmp(mem,0xDACEA,sizeof(0xDACEA)==0)
+		{
+            
+		}
+		mem += 16;
+	}
+}
 uint16_t detectCPUSpeed()
 {
     SMBIOSHeader *shdr = (SMBIOSHeader*)smb_ep->TableAddress;

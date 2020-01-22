@@ -15,8 +15,6 @@ gdt_flush:
                      ; far jump to .flush
 .flush:
    ret
-
-
 global idt_flush
 idt_flush:
    mov eax, [esp+4]  ; eax = idt_ptr
