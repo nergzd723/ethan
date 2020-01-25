@@ -66,6 +66,9 @@ void boot_stage1(){
     clear_screen();
     logf("Terminal initialized\n");
     printk("Ethan started to boot!\n");
+    printk("GDT...\n");
+    init_gdt();
+    printk("OK\n");
     logf("GDT initialized\n");
     printk("PIC...\n");
     init_pic();
