@@ -12,7 +12,7 @@ CFLAGS = -nostdlib -ffreestanding -g -Wall -Wextra
 OBJS = ${C_SOURCES:.c=.o}
 
 # Default build target
-all: build userapp grub
+all: build userapp grub bootloader
 userapp: userlinker.ld asm_objects
 	$(CC) -I lib/includes -g -nostdlib -ffreestanding -static-libgcc -lgcc -o build/userapp.bin userapp/userapp.c build/usr.o userapp/build/usrldr.o -T userlinker.ld
 	cp build/userapp.bin isodir/boot/app.bin
