@@ -218,7 +218,8 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "run") == 0){
         logf("Running app 1\n");
-        run(1);
+        void jmp_tomod();
+        jmp_tomod();
     }
     if (strcmp(command, "testreentry") == 0){
         write_eax(4);

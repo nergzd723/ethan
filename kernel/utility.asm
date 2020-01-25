@@ -18,8 +18,7 @@ gdt_flush:
 
 global jmp_tomod
 jmp_tomod:
-   mov eax, 0x000100A8
-   jmp eax
+   jmp 0x10:0x000100A8
    iret
 global idt_flush
 idt_flush:
