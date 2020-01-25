@@ -33,8 +33,6 @@ global start
 
 start:
     cld                             ; Clear the direction flag for string operations
-    extern init_gdt
-    call init_gdt
     mov esp, kernel_stack_top       ; Set up the stack
     call init_gdt ;init gdt
     push eax;                       ; Push multiboot header
