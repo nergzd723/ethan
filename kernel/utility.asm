@@ -18,17 +18,6 @@ gdt_flush:
 
 global jmp_tomod
 jmp_tomod:
-   mov ax,0x23
-   mov ds,ax
-   mov es,ax 
-   mov fs,ax 
-   mov gs,ax ;we don't need to worry about SS. it's handled by iret
- 
-   mov eax,esp
-   push 0x23 ;user data segment with bottom 2 bits set for ring 3
-   push eax ;push our current ss for the iret stack frame
-   pushf
-   push 0x1B; ;user code segment with bottom 2 bits set for ring 3
    mov eax, 0x000100A8
    jmp eax
    iret
