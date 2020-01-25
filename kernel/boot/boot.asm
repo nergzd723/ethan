@@ -30,10 +30,11 @@ kernel_stack_top:
 ;--------------------
 section .text
 global start
+extern init_gdt
 start:
     cld                             ; Clear the direction flag for string operations
     mov esp, kernel_stack_top       ; Set up the stack
-
+    call init_gdt ;init gdt
     push eax;                       ; Push multiboot header
     push ebx;                       ; Push multiboot magic
 
