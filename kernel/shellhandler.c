@@ -238,6 +238,7 @@ void fb_newlinehandler(){
     }
     if (strcmp(command, "mark") == 0) {
 	printf("Go to fucking Slack!\n");
+	}
     if (strcmp(command, "syscall") == 0){
         write_eax(1);
         scall();
