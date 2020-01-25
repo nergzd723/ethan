@@ -76,8 +76,6 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
       apps[i] = mbd->mods_addr;
    }
    boot_stage1();
-   void jmp_tomod();
-   jmp_tomod();
    while(1){}
 }
 }

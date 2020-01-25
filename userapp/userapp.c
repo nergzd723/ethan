@@ -1,2 +1,5 @@
 #include <user.h>
-void rattata(){for(;;);}
+void rattata(){
+    printf("RARR\n");
+    for(;;);
+}
