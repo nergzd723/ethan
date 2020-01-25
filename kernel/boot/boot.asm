@@ -46,7 +46,7 @@ start:
     push ebx;                       ; Push multiboot magic
     extern kmain
 
-    jmp 16:kmain                      ; Jump to kmain (never to return)
+    call 16:kmain                      ; Jump to kmain (never to return)
 
     cli                             ; We should not return here, but if we do:
     hlt
