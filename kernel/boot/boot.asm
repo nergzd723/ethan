@@ -45,12 +45,14 @@ start:
     push eax;                       ; Push multiboot header
     push ebx;                       ; Push multiboot magic
     extern kmain
-    call kmain                      ; Jump to kmain (never to return)
+
+    jmp 16:kmain                      ; Jump to kmain (never to return)
 
     cli                             ; We should not return here, but if we do:
     hlt
     jmp $                            ;   clear all interrupts and halt
-
+fl: 
+    ret
 align 16
 GDT_T: 
     dd 0, 0 ;null descriptor
