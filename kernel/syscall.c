@@ -37,3 +37,7 @@ void syscall_handler(context_t* cpustate)
         break;
     }
 }
+
+void install_syscall_handler(){
+    register_interrupt_handler(25, &syscall_handler);
+}

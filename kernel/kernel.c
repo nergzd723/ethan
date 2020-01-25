@@ -16,14 +16,13 @@
 #include <random.h>
 #include <frame_buffer.h>
 #include <boot.h>
+#include <syscall.h>
 #include "multiboot.h"
 
 uint32_t upper_mem = 0;
 int lower_mem = 0;
 
-void install_syscall_handler(){
-    register_interrupt_handler(25, &syscall_handler);
-}
+
 uint32_t upper_memory(){
    return upper_mem;
 }
@@ -72,7 +71,7 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
       }
    init_gdt();
    init_idt();
-   register_interrupt_handler(25, &syscall_handler);
+   install_syscall_handler();
    init_keyboard();
    asm volatile("sti");
    typedef void (*appp_t)(void);
