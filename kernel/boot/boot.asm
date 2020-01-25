@@ -30,11 +30,18 @@ kernel_stack_top:
 ;--------------------
 section .text
 global start
-
 start:
     cld                             ; Clear the direction flag for string operations
+    mov esp, eax ; save eax
+    lgdt[GDT_V] ; set up hardcoded GDT
+    mov ax, 8
+    mov ds, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
+    mov ss, ax
+    mov eax, esp ; restore it
     mov esp, kernel_stack_top       ; Set up the stack
-    call init_gdt ;init gdt
     push eax;                       ; Push multiboot header
     push ebx;                       ; Push multiboot magic
     extern kmain
@@ -43,3 +50,12 @@ start:
     cli                             ; We should not return here, but if we do:
     hlt
     jmp $                            ;   clear all interrupts and halt
+
+align 16
+GDT_T: 
+    dd 0, 0 ;null descriptor
+    dd 0000FFFFh, 008F9200h
+    dd 0000FFFFh, 00CF9A00h
+GDT_V:
+    dw GDT_V-GDT_T
+    dd GDT_T

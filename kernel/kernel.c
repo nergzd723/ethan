@@ -69,15 +69,10 @@ void kmain(multiboot_info_t* mbd, uint32_t magic) {
                map->len_lower,
                map->type);
       }
-   init_gdt();
-   init_idt();
-   install_syscall_handler();
-   init_keyboard();
-   asm volatile("sti");
+   boot_stage1();
    typedef void (*appp_t)(void);
    appp_t start_app = (appp_t)mbd->mods_addr;
    start_app();
-   boot_stage1();
    while(1){}
 }
 }
