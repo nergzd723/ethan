@@ -14,7 +14,7 @@ reset:
     mov dl, 0x00
     int 0x13
     jc reset
-    mov ax, 0x100
+    mov ax, 0x1000
     mov es, ax
     xor bx, bx
     mov ah, 0x02
