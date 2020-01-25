@@ -42,7 +42,7 @@ asm_objects:
 	nasm -f elf32 $(KERNELDIR)/logger.asm -o $(BUILDDIR)/logger.o
 	nasm -f elf32 $(KERNELDIR)/fallback.asm -o $(BUILDDIR)/fallback.o
 	nasm -f elf $(KERNELDIR)/shutdown.asm -o $(BUILDDIR)/shutdown.o
-	nasm -f elf32 lib/ethlib/user.asm -o usr.o
+	nasm -f elf32 lib/ethlib/user.asm -o build/usr.o
 	nasm -f elf32 userapp/usrldr.asm -o userapp/build/usrldr.o
 bootloader:
 	nasm -f bin $(BOOTDIR)/bootloader.asm -o $(BUILDDIR)/boot.bin
