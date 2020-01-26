@@ -35,12 +35,14 @@ start:
     cld                             ; Clear the direction flag for string operations
     mov esp, eax ; save eax
     lgdt[gdt_descriptor] ; set up hardcoded GDT
-    mov ax, 8
-    mov ds, ax
+    mov ax, 0x10      ; 0x10 is kernel segment data descriptor offset
+    mov ds, ax        
     mov es, ax
     mov fs, ax
     mov gs, ax
     mov ss, ax
+    jmp 0x10:cont
+cont:  
     mov eax, esp ; restore it
     mov esp, kernel_stack_top       ; Set up the stack
     push eax;                       ; Push multiboot header
