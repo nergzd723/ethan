@@ -236,6 +236,9 @@ void fb_newlinehandler(){
         printf(inttostr(upper_memory()));
         printf("K USABLE extended memory");
     }
+    if (strcmp(command, "mark") == 0) {
+	printf("Go to fucking Slack!\n");
+	}
     if (strcmp(command, "syscall") == 0){
         write_eax(1);
         scall();
