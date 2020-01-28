@@ -323,7 +323,7 @@ l2hts:			; Calculate head, track and sector settings for int 13h
 ; ------------------------------------------------------------------
 ; STRINGS AND VARIABLES
 
-	os_filename	db "ETH  BIN"	; OS filename
+    kern_filename   db "KERNEL  BIN"    ; kernel filename
 
 	disk_error	db "Floppy error! Press any key...", 0
 	file_not_found	db "ETH.BIN not found!", 0
