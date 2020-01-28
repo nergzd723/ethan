@@ -64,7 +64,7 @@ print:
 .endofprint:
     ret
 
-check_a20:
+CheckA20:
 pushf
 push ds
 push es
@@ -170,7 +170,7 @@ enable_a20:
 a20_fail:
     mov si, a20fail_str
     call print
-    jmp .halt
+    hlt
 
 a20_done:
     ret
