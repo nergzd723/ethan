@@ -41,6 +41,8 @@ start:
     mov si, a20_str
     call print
     call enable_a20
+    mov si, a20_str_end
+    call print
 
 .halt:
     cli
@@ -50,6 +52,7 @@ start:
 welcome_str: db 0x0d, 0x0a, "Ethanium jr. loaded!", 0
 a20fail_str: db 0x0d, 0x0a, "Enabling line A20 failed. Ethanium can not proceed further.", 0
 a20_str: db 0x0d, 0x0a, "Enabling line A20...", 0
+a20_str_end: db 0x0d, 0x0a, "Line A20 successfully enabled. Now loading GDT...", 0
 print:
     mov ah, 14 ; bios tty print call: ah : 114, bx : page number
     xor bx, bx
