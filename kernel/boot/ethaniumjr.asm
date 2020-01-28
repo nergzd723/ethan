@@ -64,46 +64,45 @@ print:
     ret
 
 CheckA20:
-    pushf                          # Save registers that
-    push ds                        # we are going to
-    push es                        # overwrite.
+    pushf
+    push ds
+    push es                
     push di
     push si
 
     cli
 
-    xor ax, ax                     # Set es:di = 0000:0500
+    xor ax, ax                  
     mov es, ax
     mov di, 0x0500
 
-    mov ax, 0xffff                 # Set ds:si = ffff:0510
+    mov ax, 0xffff               
     mov ds, ax
     mov si, 0x0510
 
-    mov al, byte ptr es:[di]       # Save byte at es:di on stack.
-    push ax                        # (we want to restore it later)
+    mov al, es:[di]       
+    push ax                      
 
-    mov al, byte ptr ds:[si]       # Save byte at ds:si on stack.
-    push ax                        # (we want to restore it later)
+    mov al, ds:[si]       
+    push ax                       
 
-    mov byte ptr es:[di], 0x00     # [es:di] = 0x00
-    mov byte ptr ds:[si], 0xFF     # [ds:si] = 0xff
+    mov es:[di], 0x00   
+    mov ds:[si], 0xFF 
 
-    cmp byte ptr es:[di], 0xFF     # Did memory wrap around?
+    cmp es:[di], 0xFF     
+    pop ax
+    mov ds:[si], al  
 
     pop ax
-    mov byte ptr ds:[si], al       # Restore byte at ds:si
-
-    pop ax
-    mov byte ptr es:[di], al       # Restore byte at es:di
+    mov es:[di], al      
 
     mov ax, 0
-    je check_a20__exit             # If memory wrapped around, return 0.
+    je check_a20__exit            
 
-    mov ax, 1                      # else return 1.
+    mov ax, 1          
 
 check_a20__exit:
-    pop si                         # Restore saved registers.
+    pop si                        
     pop di
     pop es
     pop ds
