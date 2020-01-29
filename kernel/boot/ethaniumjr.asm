@@ -23,7 +23,6 @@ start:
     mov ds, ax
     mov es, ax
     mov ax, 0x1000 ; stack just below at 0x1000
-    mov ss, ax
     xor sp, sp
     xor ah, ah
     mov al, 0x03 ; reset graphics mode to clear the screen
