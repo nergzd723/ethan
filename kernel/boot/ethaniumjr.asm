@@ -36,9 +36,9 @@ start:
     mov si, a20_str_end
     call print
     cli
-    lgdt[GDTP]
     mov si, pmode_s
     call print
+    lgdt[GDTP]
     mov eax, cr0
     or eax, 1
     mov cr0, eax ; protected mode
@@ -48,7 +48,7 @@ start:
     mov fs,ax
     mov gs,ax
     mov ss,ax
-    jmp 8:protected_ethjr
+    jmp 08h:protected_ethjr
 
 flush_gdt:
     ret
@@ -190,4 +190,11 @@ a20_done:
 bits 32
 protected_ethjr:
     mov eax, 0xDEADBEEF
+    mov ax, 08h  ;set segment identifier (first segment after the null one)
+    mov ds, ax       ;move 0008h from ax into ds
+    mov ss, ax       ;move 0008h from ax into ss
+    mov ebp,080000h       ;set the stack somewhere away from the code
+    mov esp, 08FFFFh
+    mov ax,0F01h            ;set ax to CGA character code (white smile)
+    mov [0B8000h],ax      ;put ax on first character of CGA video
     hlt
