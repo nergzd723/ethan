@@ -43,6 +43,23 @@ start:
     call enable_a20
     mov si, a20_str_end
     call print
+    cli
+    lgdt[gdt_descriptor]
+    mov si, pmode_s
+    call print
+    mov eax, cr0
+    or eax, 1
+    mov cr0, eax ; protected mode
+    mov ax,10h
+    mov ds,ax
+    mov es,ax
+    mov fs,ax
+    mov gs,ax
+    mov ss,ax
+    jmp 8:protected_ethjr
+
+flush_gdt:
+    ret
 
 .halt:
     cli
@@ -53,6 +70,7 @@ welcome_str: db 0x0d, 0x0a, "Ethanium jr. loaded!", 0
 a20fail_str: db 0x0d, 0x0a, "Enabling line A20 failed. Ethanium can not proceed further.", 0
 a20_str: db 0x0d, 0x0a, "Enabling line A20...", 0
 a20_str_end: db 0x0d, 0x0a, "Line A20 successfully enabled. Now loading GDT...", 0
+pmode_s: db 0x0d, 0x0a, "Done! Entering Protected Mode...", 0
 print:
     mov ah, 14 ; bios tty print call: ah : 114, bx : page number
     xor bx, bx
@@ -177,3 +195,7 @@ a20_fail:
 
 a20_done:
     ret
+bits 32
+protected_ethjr:
+    mov eax, 0xDEADBEEF
+    hlt
