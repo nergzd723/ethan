@@ -323,8 +323,8 @@ l2hts:          ; Calculate head, track and sector settings for int 13h
 
     kern_filename   db "KERNEL  BIN"    ; kernel filename
 
-    disk_error  db "Floppy error! Press any key...", 0
-    file_not_found  db "KERNEL.BIN not found! METHBOOT fatal error", 0
+    disk_error  db "Floppy error!", 0
+    file_not_found  db "KERNEL.BIN fail!METHBOOT fatal error", 0
 
     bootdev     db 0    ; Boot device number
     cluster     dw 0    ; Cluster of the file we want to load

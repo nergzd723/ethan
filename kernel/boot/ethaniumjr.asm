@@ -1,30 +1,22 @@
 jmp start
 
-gdt_start:
-gdt_null:
-    dd 0x0
-    dd 0x0
-
-gdt_code:
-    dw 0xffff
-    dw 0x0
-    db 0x0
-    db 10011010b
-    db 11001111b
-    db 0x0
-
-gdt_data:
-    dw 0xffff
-    dw 0x0
-    db 0x0
-    db 10010010b
-    db 11001111b
-    db 0x0
-gdt_end:
-
-gdt_descriptor:
-    dw gdt_end - gdt_start - 1
-    dd gdt_start
+GDT:
+dq 00000000000000000h    ;null 8-bytes entrie
+dw 0FFFFh      ;limit low word
+dw 00000h      ;base low word
+db 000h          ;base middle byte
+db 010011010b   ;acess byte (code, readable, system, unconforming)
+db 011001111b   ;4 granularity (4Kb) bits and limit high 4 bits
+db 000h             ;base high byte
+dw 0FFFFh      ;limit low word     
+dw 00000h      ;base low word
+db 000h          ;base middle byte
+db 010010010b   ;acess byte (data, writeable, system, unconforming)
+db 011001111b  ;4 granularity (4Kb) bits and limit high 4 bits
+db 000h            ;base high byte
+GDTP:              ;GDT pointer declaration
+dw GDTP-GDT    ;GDT limit = GDT end - GDT init - 1
+dd GDT             ;32-bit offset of GDT
 
 start:
     mov ax, 0x2000 ; we are loaded at 0x2000
@@ -44,7 +36,7 @@ start:
     mov si, a20_str_end
     call print
     cli
-    lgdt[gdt_descriptor]
+    lgdt[GDTP]
     mov si, pmode_s
     call print
     mov eax, cr0
