@@ -27,11 +27,11 @@
 #define G8 6271
 #define A8 7000
 #define B8 7900
-#define HEX 4
-#define OCTAL 8
-#define QUADRO 16
-#define DOUBLE 32
-#define LONG 64
+#define HEX 8
+#define OCTAL 16
+#define QUADRO 32
+#define DOUBLE 64
+#define LONG 128
 void beep();
 void happy();
 void nosound();
