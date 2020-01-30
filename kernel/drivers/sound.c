@@ -55,9 +55,11 @@ void link()
 	playnote(E5, HEX);
 	playnote(E5, HEX);
 	playnote(E5, OCTAL);
+	pause(HEX);
 	playnote(E5, HEX);
 	playnote(E5, HEX);
 	playnote(E5, OCTAL);
+	pause(HEX);
 	playnote(E5, HEX);
 	playnote(E5, HEX);
 	playnote(E5, OCTAL);
@@ -81,6 +83,13 @@ void link()
 	playnote(A6, OCTAL);
 	playnote(G6, OCTAL);
 	playnote(F6, OCTAL);
+	playnote(G6, OCTAL);
+	playnote(F6, HEX);
+	playnote(E6, DOUBLE);
+	playnote(E6, QUADRO);
+	playnote(D6, OCTAL+HEX);
+	playnote(E6, HEX);
+	playnote(F6, DOUBLE);
 	
 }
 void happy(){
