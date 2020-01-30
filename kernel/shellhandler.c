@@ -104,7 +104,8 @@ void fb_newlinehandler(){
         beep();
     }
     if (strcmp(command, "hb") == 0){
-        happy();
+        void link();
+        link();
     }
     if (strcmp(command, "sd") == 0){
         shutdownasm();
@@ -264,7 +265,6 @@ void charbridge(unsigned char c){
             panic("PAUSE/BREAK");
             break;
         case 208:
-
             uparrowp();
             break;
         case 209:

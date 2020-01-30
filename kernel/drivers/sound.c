@@ -35,6 +35,41 @@ void pause(uint32_t time){
 	waitm(time);
 }
 
+void link()
+{
+	playnote(A5, DOUBLE);
+	pause(QUADRO);
+	playnote(A5, QUADRO);
+	playnote(A5, OCTAL);
+	playnote(A5, OCTAL);
+	playnote(A5, OCTAL);
+	playnote(A5, QUADRO);
+	playnote(G5, QUADRO);
+	playnote(A5, QUADRO);
+	pause(QUADRO);
+	playnote(A5, QUADRO);
+	playnote(A5, OCTAL);
+	playnote(A5, OCTAL);
+	playnote(A5, OCTAL);
+	playnote(A5, OCTAL);
+	playnote(E5, HEX);
+	playnote(E5, HEX);
+	playnote(E5, OCTAL);
+	playnote(E5, HEX);
+	playnote(E5, HEX);
+	playnote(E5, OCTAL);
+	playnote(E5, HEX);
+	playnote(E5, HEX);
+	playnote(E5, OCTAL);
+	playnote(E5, OCTAL);
+	playnote(A5, QUADRO);
+	playnote(E5, QUADRO);
+	playnote(A5, OCTAL);
+	playnote(A5, HEX);
+	playnote(B5, HEX);
+	playnote(C6, HEX);
+	playnote(D6, HEX);
+}
 void happy(){
 	playnote(D5, QUADRO);
 	playnote(D5, QUADRO);

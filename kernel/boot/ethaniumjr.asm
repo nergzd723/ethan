@@ -23,6 +23,7 @@ start:
     mov ds, ax
     mov es, ax
     mov ax, 0x1000 ; stack just below at 0x1000
+    mov ss, ax
     xor sp, sp
     xor ah, ah
     mov al, 0x03 ; reset graphics mode to clear the screen
@@ -189,6 +190,9 @@ a20_done:
 bits 32
 protected_ethjr:
     mov eax, 0xDEADBEEF
+    mov ax, 08h  ;set segment identifier (first segment after the null one)
+    mov ds, ax       ;move 0008h from ax into ds
+    mov ss, ax       ;move 0008h from ax into ss
     mov ebp,080000h       ;set the stack somewhere away from the code
     mov esp, 08FFFFh
     mov ax,0F01h            ;set ax to CGA character code (white smile)
