@@ -6,6 +6,7 @@
 #define A5 880
 #define B5 987
 #define C6 1050
+#define C6U 1108
 #define D6 1150
 #define E6 1300
 #define F6 1450

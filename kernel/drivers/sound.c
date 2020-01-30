@@ -67,7 +67,7 @@ void link()
 	playnote(A5, OCTAL);
 	playnote(A5, HEX);
 	playnote(B5, HEX);
-	playnote(C6, HEX);
+	playnote(C6U, HEX);
 	playnote(D6, HEX);
 }
 void happy(){
